@@ -1014,8 +1014,9 @@
   <script>
     // 0. SUPABASE PROJECT PHB CONFIGURATION (AUTO-CONNECTED)
     const SUPABASE_URL = 'https://hupvhnvztvzqbdhuukpt.supabase.co';
-    const SUPABASE_KEY = 'Sb_publishable_AvLLrrZ0-7F2_AXjC1LQhg_H_bolEmB';
+    const SUPABASE_KEY = 'sb_publishable_AvLLrrZ0-7F2_AXjC1LQhg_H_bolEmB';
     const SUPABASE_TABLE = 'fom_vip_fleet_state';
+    const SUPABASE_GUESTS_TABLE = 'fom_vip_guests';
     const SUPABASE_ROW_ID = 'phb-fom-vip-fleet-main';
 
     // 1. ALL 12 OFFICIAL VIP TIERS & DESIGNATIONS
@@ -1408,6 +1409,71 @@
       }
     }
 
+    async function syncGuestsTableToSupabase() {
+      try {
+        const currentIds = new Set(appState.vips.map(v => v.id));
+        // Fetch existing IDs in fom_vip_guests to remove deleted ones
+        const existingRes = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_GUESTS_TABLE}?select=id`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
+          }
+        });
+        if (existingRes.ok) {
+          const existingRows = await existingRes.json();
+          for (const row of existingRows) {
+            if (!currentIds.has(row.id)) {
+              await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_GUESTS_TABLE}?id=eq.${encodeURIComponent(row.id)}`, {
+                method: 'DELETE',
+                headers: {
+                  'apikey': SUPABASE_KEY,
+                  'Authorization': `Bearer ${SUPABASE_KEY}`
+                }
+              });
+            }
+          }
+        }
+
+        if (appState.vips.length > 0) {
+          const guestRows = appState.vips.map(vip => {
+            const roomObj = ROOMS_DB.find(r => r.number === vip.roomNumber) || { floor: '-', type: 'SUITE' };
+            const tierObj = VIP_TIERS.find(t => t.code === vip.tierCode) || { label: vip.tierCode };
+            const veh = getVipVehicleDisplay(vip);
+            return {
+              id: vip.id,
+              guest_name: vip.name,
+              organization: vip.org || '',
+              vip_tier: tierObj.label,
+              official_position: vip.position || '',
+              room_number: vip.roomNumber || '',
+              room_type: `${roomObj.type} (Floor ${roomObj.floor})`,
+              check_in: vip.checkIn || null,
+              check_out: vip.checkOut || null,
+              flight_info: vip.flight || '',
+              vehicle_info: veh.title || '',
+              driver_pickup_by: veh.driver || '',
+              status: vip.status || 'Expected Arrival',
+              notes: vip.notes || '',
+              updated_at: new Date().toISOString()
+            };
+          });
+
+          await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_GUESTS_TABLE}`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_KEY,
+              'Authorization': `Bearer ${SUPABASE_KEY}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'resolution=merge-duplicates,return=minimal'
+            },
+            body: JSON.stringify(guestRows)
+          });
+        }
+      } catch (e) {
+        console.warn('Guest row sync skipped:', e);
+      }
+    }
+
     async function pushToSupabase() {
       saveLocalState();
       setCloudIndicator('syncing', 'Syncing Cloud...');
@@ -1426,6 +1492,7 @@
             updated_at: new Date().toISOString()
           })
         });
+        await syncGuestsTableToSupabase();
         if (res.ok) {
           setCloudIndicator('synced', 'Synced + Supabase Cloud');
         } else {
@@ -1452,6 +1519,7 @@
             appState = rows[0].payload;
             saveLocalState();
             renderAll();
+            await syncGuestsTableToSupabase();
             setCloudIndicator('synced', 'Synced + Supabase Cloud');
           } else {
             await pushToSupabase();
