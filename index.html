@@ -175,20 +175,25 @@
 
       <!-- Right: Clean Header Utility Buttons -->
       <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap shrink-0">
-        <button onclick="openArrivalModal(true)" class="touch-target px-3.5 py-2 rounded-lg bg-white text-[#004E7C] hover:bg-amber-50 font-bold text-xs shadow-sm flex items-center gap-2 transition cursor-pointer pulse-gold">
+        <button onclick="openArrivalModal(true)" class="touch-target px-3 py-2 rounded-lg bg-white text-[#004E7C] hover:bg-amber-50 font-bold text-xs shadow-sm flex items-center gap-1.5 transition cursor-pointer pulse-gold">
           <svg class="w-4 h-4 text-[#C59B27]" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/></svg>
           <span>Today's Arrivals</span>
           <span id="headerArrivalCount" class="px-1.5 py-0.2 rounded-full bg-[#00629B] text-white text-[11px] font-extrabold">0</span>
         </button>
 
-        <button onclick="openRoomMatrixModal()" class="touch-target px-3.5 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-sky-300/25 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
+        <button onclick="openRoomMatrixModal()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-sky-300/25 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
           <svg class="w-4 h-4 text-sky-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-          <span>200 Room Matrix</span>
+          <span>200 Rooms</span>
         </button>
 
-        <button onclick="exportVisualExcelReport()" class="touch-target px-3.5 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-sky-300/25 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
+        <button onclick="openVisualPrintReport()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-amber-300/40 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <span>Visual Report + Photos</span>
+        </button>
+
+        <button onclick="exportVisualExcelReport()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-sky-300/25 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
           <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
-          <span>Export Excel + Photos</span>
+          <span>Export Excel</span>
         </button>
       </div>
     </div>
@@ -225,7 +230,7 @@
           </button>
         </nav>
 
-        <!-- Primary Action Buttons (Cleanly Sized & Never Clipped) -->
+        <!-- Primary Action Buttons -->
         <div class="flex items-center gap-2 shrink-0 justify-end">
           <button onclick="openSopModal()" class="touch-target px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
             <svg class="w-3.5 h-3.5 text-[#00629B]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
@@ -355,7 +360,6 @@
 
         <!-- Right 5 Cols: 12 VIP Tiers Distribution & Live Fleet Status -->
         <div class="lg:col-span-5 space-y-4">
-          <!-- Active VIP Tiers Summary -->
           <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
             <div class="bg-[#004E7C] text-white px-4 py-3 flex items-center justify-between">
               <h3 class="text-xs sm:text-sm font-bold tracking-wide uppercase">12 Official VIP Tiers Breakdown</h3>
@@ -364,7 +368,6 @@
             <div id="dashTierBreakdown" class="p-4 space-y-2.5"></div>
           </div>
 
-          <!-- Live Executive Fleet & Chauffeur Overview -->
           <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
             <div class="bg-[#004E7C] text-white px-4 py-3 flex items-center justify-between">
               <h3 class="text-xs sm:text-sm font-bold tracking-wide uppercase">Live Fleet & Chauffeur Status</h3>
@@ -415,7 +418,6 @@
     <!-- VIEW 3: FLEET & CHAUFFEUR DISPATCH                                  -->
     <!-- =================================================================== -->
     <section id="view-fleet" class="hidden space-y-4">
-      <!-- Hotel Permanent Fleet Cards -->
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 border-b border-slate-100">
           <div>
@@ -430,7 +432,6 @@
         <div id="fleetCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-4"></div>
       </div>
 
-      <!-- Vehicle Usage & Chauffeur Dispatch Matrix (Supports Custom Vehicles) -->
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="px-4 py-3.5 border-b border-slate-200 flex items-center justify-between">
           <div>
@@ -1106,7 +1107,7 @@
       }
     ];
 
-    // 2. EXACT 200-ROOM INVENTORY FROM Room Type (2).xlsx (FLOORS 5-11)
+    // 2. EXACT 200-ROOM INVENTORY (FLOORS 5-11)
     const ROOM_TYPE_LABELS = {
       PLS: 'Platinum Suite (Double)',
       EXS: 'Executive Suite (King)',
@@ -1137,7 +1138,7 @@
     }));
 
     // 3. SAFE STORAGE & DATE HELPERS
-    const STORAGE_KEY = 'phb_fom_vip_fleet_v5';
+    const STORAGE_KEY = 'phb_fom_vip_fleet_v7';
     let memFallback = null;
 
     function getLocalTodayISO() {
@@ -1339,16 +1340,13 @@
     updateClock();
 
     function populateStaticSelectors() {
-      // Filter Tier Dropdown
       const filterTier = document.getElementById('filterVipTier');
       filterTier.innerHTML = '<option value="ALL">All 12 VIP Tiers</option>' +
         VIP_TIERS.map(t => `<option value="${t.code}">${t.label}</option>`).join('');
 
-      // Modal Tier Dropdown
       const modalTier = document.getElementById('vipTier');
       modalTier.innerHTML = VIP_TIERS.map(t => `<option value="${t.code}">${t.label}</option>`).join('');
 
-      // 200-Room Selector Grouped by Floor
       const roomSel = document.getElementById('vipRoomNumber');
       const floors = [11, 10, 9, 8, 7, 6, 5];
       roomSel.innerHTML = floors.map(f => {
@@ -1358,7 +1356,6 @@
           `</optgroup>`;
       }).join('');
 
-      // SOP Reference Modal
       const sopCont = document.getElementById('sopListContainer');
       sopCont.innerHTML = VIP_TIERS.map(t => `
         <div class="bg-white rounded-xl border border-slate-200 p-3.5 shadow-2xs">
@@ -1478,7 +1475,6 @@
       document.getElementById('headerArrivalCount').textContent = todaysArrivals.length;
       document.getElementById('badgeVipCount').textContent = appState.vips.length;
 
-      // Update KPI Cards
       const highProtocolCount = todaysArrivals.filter(v => ['VIP 1', 'VIP 2', 'VIP 3', 'VIP 10'].includes(v.tierCode)).length;
       const pendingPickups = todaysArrivals.filter(v => v.status !== 'Checked-In / In-House').length;
       document.getElementById('kpiTodayArrivals').textContent = `${todaysArrivals.length} Guest${todaysArrivals.length === 1 ? '' : 's'}`;
@@ -1506,7 +1502,6 @@
     }
 
     function renderDashboardPanels(todaysArrivals) {
-      // Today's VIP Spotlight
       const spotEl = document.getElementById('dashTodaySpotlight');
       if (todaysArrivals.length === 0) {
         spotEl.innerHTML = `<div class="text-center py-8 text-xs text-slate-500">No VIP arrivals scheduled for today (${formatDisplayDate(getLocalTodayISO())}).</div>`;
@@ -1526,7 +1521,7 @@
                   <h4 class="text-sm font-extrabold text-slate-900 mt-1">${vip.name}</h4>
                   <div class="text-xs text-slate-600">${vip.org}</div>
                   <div class="flex flex-wrap items-center gap-2 mt-1.5 text-[11px] font-semibold text-slate-700">
-                    <span class="px-2 py-0.5 rounded bg-white border border-slate-200">Room ${vip.number || vip.roomNumber} (${roomObj.type})</span>
+                    <span class="px-2 py-0.5 rounded bg-white border border-slate-200">Room ${vip.roomNumber} (${roomObj.type})</span>
                     <span class="px-2 py-0.5 rounded bg-white border border-slate-200">${vip.flight}</span>
                   </div>
                 </div>
@@ -1541,7 +1536,6 @@
         }).join('');
       }
 
-      // 12 VIP Tiers Breakdown
       const tierEl = document.getElementById('dashTierBreakdown');
       const activeTiers = VIP_TIERS.map(t => ({
         ...t,
@@ -1562,7 +1556,6 @@
         `).join('');
       }
 
-      // Live Fleet Summary
       const fleetEl = document.getElementById('dashFleetSummary');
       fleetEl.innerHTML = appState.vehicles.map(v => {
         const badgeCls = v.status === 'Available'
@@ -1751,13 +1744,12 @@
       `).join('');
     }
 
-    // 8. VIP MODAL INTERACTIONS (CASCADING TIER -> POSITION, ROOM TYPE, CUSTOM VEHICLE, 3:4 PORTRAIT)
+    // 8. VIP MODAL INTERACTIONS
     function openVipFormModal(editId = null) {
       const form = document.getElementById('vipGuestForm');
       form.reset();
       document.getElementById('vipEditId').value = editId || '';
 
-      // Populate Fleet Dropdown + Custom Option
       const vehSel = document.getElementById('vipVehicleSelect');
       vehSel.innerHTML =
         `<option value="none">-- No Hotel Pickup Required --</option>` +
@@ -1871,7 +1863,6 @@
       }
     }
 
-    // Photo Upload (600px High Clarity) + 3-Mode Framing Alignment
     function handlePhotoUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
@@ -2240,20 +2231,94 @@
     function openModal(id) { document.getElementById(id).classList.add('open'); }
     function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-    // 12. VISUAL EXCEL REPORT EXPORT WITH EMBEDDED VIP PORTRAITS (.xls)
+    // 12. VISUAL PRINT / PDF REPORT WITH FULL EMBEDDED VIP PORTRAITS
+    function openVisualPrintReport() {
+      const todayStr = formatDisplayDate(getLocalTodayISO());
+      const rowsHtml = appState.vips.map(vip => {
+        const roomObj = ROOMS_DB.find(r => r.number === vip.roomNumber) || { floor: '-', type: 'SUITE' };
+        const tierObj = VIP_TIERS.find(t => t.code === vip.tierCode) || { label: vip.tierCode };
+        const veh = getVipVehicleDisplay(vip);
+        const objPos = vip.photoFit === 'contain' ? 'object-fit:contain;background:#0F172A;' : vip.photoFit === 'center' ? 'object-fit:cover;object-position:center;' : 'object-fit:cover;object-position:top center;';
+        const portraitBlock = vip.photo
+          ? `<img src="${vip.photo}" alt="${vip.name}" style="width:68px;height:90px;border-radius:6px;border:2px solid #C59B27;${objPos}" />`
+          : `<div style="width:68px;height:90px;border-radius:6px;border:2px solid #C59B27;background:#FFFDF7;color:#004E7C;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto;">${getInitials(vip.name)}</div>`;
+
+        return `
+          <tr>
+            <td style="padding:8px;border:1px solid #CBD5E1;text-align:center;width:84px;">${portraitBlock}</td>
+            <td style="padding:8px;border:1px solid #CBD5E1;"><strong>${vip.name}</strong><br/><span style="color:#475569;font-size:12px;">${vip.org}</span></td>
+            <td style="padding:8px;border:1px solid #CBD5E1;"><strong>${tierObj.label}</strong><br/><span style="color:#9A7414;font-size:12px;font-weight:600;">${vip.position}</span></td>
+            <td style="padding:8px;border:1px solid #CBD5E1;"><strong>Room ${vip.roomNumber}</strong> (Fl. ${roomObj.floor})<br/><span style="color:#00629B;font-size:12px;">${roomObj.type}</span></td>
+            <td style="padding:8px;border:1px solid #CBD5E1;font-size:12px;">In: ${formatDisplayDate(vip.checkIn)}<br/>Out: ${formatDisplayDate(vip.checkOut)}<br/>${vip.flight}</td>
+            <td style="padding:8px;border:1px solid #CBD5E1;font-size:12px;"><strong>${veh.title}</strong><br/><span style="color:#64748B;">${veh.sub}</span></td>
+            <td style="padding:8px;border:1px solid #CBD5E1;font-size:12px;">${vip.notes || '-'}</td>
+          </tr>
+        `;
+      }).join('');
+
+      const win = window.open('', '_blank');
+      if (!win) {
+        alert('Please allow pop-ups in your browser to open the Visual VIP Report with photos.');
+        return;
+      }
+      win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8" />
+          <title>Platinum Balikpapan — VIP Visual Report (${todayStr})</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 24px; color: #0F172A; }
+            .hdr { display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid #00629B; padding-bottom:12px; margin-bottom:16px; }
+            h1 { margin:0; font-size:18px; color:#004E7C; }
+            .sub { color:#9A7414; font-size:12px; font-weight:bold; margin-top:3px; }
+            table { width:100%; border-collapse:collapse; }
+            th { background:#004E7C; color:#FFF; font-size:11px; text-transform:uppercase; padding:8px; border:1px solid #004E7C; text-align:left; }
+            .no-print { margin-bottom:14px; padding:9px 16px; background:#00629B; color:#FFF; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
+            @media print { .no-print { display:none; } }
+          </style>
+        </head>
+        <body>
+          <button class="no-print" onclick="window.print()">Print / Save as PDF</button>
+          <div class="hdr">
+            <div>
+              <h1>PLATINUM HOTEL & CONVENTION HALL BALIKPAPAN</h1>
+              <div class="sub">FRONT OFFICE VIP & FLEET VISUAL REPORT • ${todayStr}</div>
+            </div>
+            <div style="font-size:12px;color:#475569;">Total VIP Profiles: <strong>${appState.vips.length}</strong></div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Portrait</th>
+                <th>Guest & Organization</th>
+                <th>VIP Tier & Position</th>
+                <th>Room & Type</th>
+                <th>Stay & Flight</th>
+                <th>Vehicle</th>
+                <th>Protocol Notes</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </body>
+        </html>
+      `);
+      win.document.close();
+    }
+
+    // 13. CLEAN EXCEL REPORT EXPORT (.xls — NO BROKEN LINKED IMAGES IN EXCEL)
     function exportVisualExcelReport() {
       const todayStr = formatDisplayDate(getLocalTodayISO());
       const vipRowsHtml = appState.vips.map(vip => {
         const roomObj = ROOMS_DB.find(r => r.number === vip.roomNumber) || { floor: '-', type: 'SUITE' };
         const tierObj = VIP_TIERS.find(t => t.code === vip.tierCode) || { label: vip.tierCode };
         const veh = getVipVehicleDisplay(vip);
-        const photoCell = vip.photo
-          ? `<img src="${vip.photo}" width="72" height="96" style="object-fit:cover; border:2px solid #C59B27;" />`
-          : `<div style="width:72px; height:96px; background:#FFFDF7; border:2px solid #C59B27; text-align:center; line-height:96px; font-weight:bold; color:#004E7C; font-size:16px;">${getInitials(vip.name)}</div>`;
+        const photoStatus = vip.photo ? 'Photo Attached (Open Visual Report)' : `Monogram (${getInitials(vip.name)})`;
 
         return `
           <tr>
-            <td style="width:86px; height:106px; text-align:center; vertical-align:middle; border:1px solid #CBD5E1; padding:4px;">${photoCell}</td>
+            <td style="vertical-align:middle; border:1px solid #CBD5E1; padding:6px; font-weight:bold; color:#004E7C;">${photoStatus}</td>
             <td style="vertical-align:middle; border:1px solid #CBD5E1; padding:6px;"><strong>${vip.name}</strong><br/><span style="color:#475569;">${vip.org}</span></td>
             <td style="vertical-align:middle; border:1px solid #CBD5E1; padding:6px;"><strong>${tierObj.label}</strong><br/><span style="color:#9A7414;">${vip.position}</span></td>
             <td style="vertical-align:middle; border:1px solid #CBD5E1; padding:6px;">Room ${vip.roomNumber} (Floor ${roomObj.floor})<br/>${roomObj.type} — ${ROOM_TYPE_LABELS[roomObj.type] || ''}</td>
@@ -2293,11 +2358,11 @@
         <body style="font-family:Calibri, Arial, sans-serif;">
           <h2 style="color:#004E7C; margin-bottom:2px;">PLATINUM HOTEL & CONVENTION HALL BALIKPAPAN</h2>
           <p style="color:#9A7414; font-weight:bold; margin-top:0;">Front Office VIP & Fleet Command Report • Generated: ${todayStr}</p>
-          <h3 style="background:#004E7C; color:#FFFFFF; padding:6px;">1. VIP GUEST REGISTRY & VISUAL PORTRAIT DIRECTORY</h3>
+          <h3 style="background:#004E7C; color:#FFFFFF; padding:6px;">1. VIP GUEST REGISTRY & ROOM ALLOCATION</h3>
           <table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse; width:100%;">
             <thead>
               <tr style="background:#00629B; color:#FFFFFF; font-weight:bold;">
-                <th>VIP Portrait</th>
+                <th>Portrait Status</th>
                 <th>Guest Name & Organization</th>
                 <th>VIP Tier & Official Position</th>
                 <th>Room & Type (200 Inv.)</th>
