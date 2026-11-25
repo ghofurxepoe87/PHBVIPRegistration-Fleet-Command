@@ -391,7 +391,7 @@
                 <th class="py-3 px-3.5">VIP Tier & Official Position</th>
                 <th class="py-3 px-3.5">Room & Type (200 Inv.)</th>
                 <th class="py-3 px-3.5">Check-In / Out & Flight</th>
-                <th class="py-3 px-3.5">Vehicle & PIC / Custom</th>
+                <th class="py-3 px-3.5">Vehicle & Driver / Pick Up By</th>
                 <th class="py-3 px-3.5">Status</th>
                 <th class="py-3 px-3.5 text-right">Actions</th>
               </tr>
@@ -435,7 +435,7 @@
                 <th class="py-3 px-3.5">Vehicle Unit (Fleet / Custom)</th>
                 <th class="py-3 px-3.5">VIP Guest & Room</th>
                 <th class="py-3 px-3.5">Route / Purpose</th>
-                <th class="py-3 px-3.5">Assigned PIC</th>
+                <th class="py-3 px-3.5">Driver / Pick Up By</th>
                 <th class="py-3 px-3.5">Dispatch Status</th>
                 <th class="py-3 px-3.5 text-right">Actions</th>
               </tr>
@@ -722,11 +722,26 @@
           </div>
         </div>
 
-        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-2.5">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">Assigned Vehicle & PIC</label>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Assigned Vehicle</label>
               <select id="vipVehicleSelect" onchange="onVipVehicleSelectChange()" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold bg-white focus:outline-none focus:border-[#00629B]"></select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Driver / Pick Up By</label>
+              <select id="vipDriverSelect" onchange="onVipDriverSelectChange()" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold bg-white focus:outline-none focus:border-[#00629B]">
+                <option value="">-- Select Driver / Pick Up By --</option>
+                <option value="Angga">Angga</option>
+                <option value="Ikram">Ikram</option>
+                <option value="Kholis">Kholis</option>
+                <option value="Elfan">Elfan</option>
+                <option value="Arya">Arya</option>
+                <option value="Rifqi">Rifqi</option>
+                <option value="Yudha">Yudha</option>
+                <option value="__CUSTOM__">+ Custom / Substitute Driver (Manual Entry)</option>
+              </select>
+              <input type="text" id="vipDriverCustom" placeholder="Enter substitute driver / pickup person..." class="hidden mt-2 w-full border border-[#C59B27] bg-[#FFFDF7] rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none" />
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">Pickup Time & Location</label>
@@ -734,7 +749,7 @@
             </div>
           </div>
 
-          <div id="vipCustomVehicleBox" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 border-t border-slate-200">
+          <div id="vipCustomVehicleBox" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 border-t border-slate-200">
             <div>
               <label class="block text-[11px] font-bold text-[#9A7414] mb-1">Custom Vehicle Model / Name *</label>
               <input type="text" id="vipCustomCarName" placeholder="e.g., Toyota Land Cruiser V8" class="w-full border border-[#C59B27] bg-white rounded-lg px-2.5 py-1.5 text-xs" />
@@ -742,10 +757,6 @@
             <div>
               <label class="block text-[11px] font-bold text-[#9A7414] mb-1">License Plate Number</label>
               <input type="text" id="vipCustomCarPlate" placeholder="e.g., KT 1 RI / B 1990 VIP" class="w-full border border-[#C59B27] bg-white rounded-lg px-2.5 py-1.5 text-xs" />
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-[#9A7414] mb-1">Driver / PIC Name</label>
-              <input type="text" id="vipCustomCarDriver" placeholder="e.g., Pak Hendra (Protocol)" class="w-full border border-[#C59B27] bg-white rounded-lg px-2.5 py-1.5 text-xs" />
             </div>
           </div>
         </div>
@@ -806,8 +817,18 @@
             <input type="text" id="dispGuest" required placeholder="e.g., H.E. Budi Santoso (Rm 1128)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs" />
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Assigned PIC *</label>
-            <input type="text" id="dispDriver" required placeholder="e.g., Elfan" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs" />
+            <label class="block text-xs font-bold text-slate-700 mb-1">Driver / Pick Up By *</label>
+            <select id="dispDriverSelect" onchange="onDispDriverSelectChange()" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold bg-white">
+              <option value="Angga">Angga</option>
+              <option value="Ikram">Ikram</option>
+              <option value="Kholis">Kholis</option>
+              <option value="Elfan">Elfan</option>
+              <option value="Arya">Arya</option>
+              <option value="Rifqi">Rifqi</option>
+              <option value="Yudha">Yudha</option>
+              <option value="__CUSTOM__">+ Custom / Substitute Driver (Manual Entry)</option>
+            </select>
+            <input type="text" id="dispDriverCustom" placeholder="Enter substitute driver / pickup person..." class="hidden mt-2 w-full border border-[#C59B27] bg-[#FFFDF7] rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none" />
           </div>
         </div>
 
@@ -1249,6 +1270,7 @@
             flight: 'GA-564 • 14:30 WITA',
             vehicleMode: 'fleet',
             vehicleId: 'veh-2',
+            driverName: 'Elfan',
             customVehicle: null,
             pickupDetail: '14:15 WITA • Sepinggan VVIP Gate',
             status: 'Expected Arrival',
@@ -1268,6 +1290,7 @@
             flight: 'SQ-958 • 16:45 WITA',
             vehicleMode: 'fleet',
             vehicleId: 'veh-1',
+            driverName: 'Angga',
             customVehicle: null,
             pickupDetail: '16:30 WITA • International Arrival Hall',
             status: 'En Route from Airport',
@@ -1282,7 +1305,7 @@
           { id: 'veh-3', no: 3, model: 'Toyota Avanza', plate: 'KT 1828 YA', category: 'Operational MPV', driver: 'Ikram', status: 'Available' },
           { id: 'veh-4', no: 4, model: 'Toyota Avanza', plate: 'KT 1828 KP', category: 'Operational MPV', driver: 'Kholis', status: 'Available' },
           { id: 'veh-5', no: 5, model: 'Toyota Avanza', plate: 'KT 1828 LI', category: 'Operational MPV', driver: 'Arya', status: 'Available' },
-          { id: 'veh-6', no: 6, model: 'Toyota Hiace', plate: 'KT 7828 AH', category: 'VIP Shuttle Van', driver: 'Rifqy', status: 'Available' },
+          { id: 'veh-6', no: 6, model: 'Toyota Hiace', plate: 'KT 7828 AH', category: 'VIP Shuttle Van', driver: 'Rifqi', status: 'Available' },
           { id: 'veh-7', no: 7, model: 'Toyota Hiace', plate: 'KT 7828 AG', category: 'VIP Shuttle Van', driver: 'Yudha', status: 'Maintenance' },
           { id: 'veh-8', no: 8, model: 'Isuzu ELF', plate: 'KT 7828 HP', category: 'Group Shuttle Bus', driver: 'Kholis', status: 'Available' }
         ],
@@ -1561,10 +1584,14 @@
     }
 
     function getVipVehicleDisplay(vip) {
+      const assignedDriver = vip.driverName || (vip.customVehicle && vip.customVehicle.driver) || '';
+      const driverPart = assignedDriver ? `Driver / Pick Up By: ${assignedDriver}` : '';
       if (vip.vehicleMode === 'custom' && vip.customVehicle && vip.customVehicle.name) {
+        const platePart = vip.customVehicle.plate || 'Custom Plate';
         return {
-          title: vip.customVehicle.name,
-          sub: `${vip.customVehicle.plate || 'Custom Plate'} • PIC: ${vip.customVehicle.driver || 'External Escort'}`,
+          title: `${vip.customVehicle.name} (${platePart})`,
+          sub: driverPart || (vip.pickupDetail || 'Custom Transport'),
+          driver: assignedDriver,
           isCustom: true
         };
       }
@@ -1573,12 +1600,21 @@
         if (v) {
           return {
             title: `${v.model} (${v.plate})`,
-            sub: `PIC: ${v.driver}`,
+            sub: driverPart || (vip.pickupDetail || 'Hotel Fleet'),
+            driver: assignedDriver,
             isCustom: false
           };
         }
       }
-      return { title: 'No Limousine Requested', sub: vip.pickupDetail || 'Self-Arrival', isCustom: false };
+      if (assignedDriver) {
+        return {
+          title: 'Hotel / Escort Pickup',
+          sub: `${driverPart}${vip.pickupDetail ? ' • ' + vip.pickupDetail : ''}`,
+          driver: assignedDriver,
+          isCustom: false
+        };
+      }
+      return { title: 'No Hotel Pickup Required', sub: vip.pickupDetail || 'Self-Arrival', driver: '', isCustom: false };
     }
 
     // 7. MASTER RENDER FUNCTION
@@ -1937,7 +1973,7 @@
       const vehSel = document.getElementById('vipVehicleSelect');
       vehSel.innerHTML =
         `<option value="none">-- No Hotel Pickup Required --</option>` +
-        appState.vehicles.map((v, i) => `<option value="${v.id}">${i + 1}. ${v.model} (${v.plate} • PIC: ${v.driver} • ${v.status})</option>`).join('') +
+        appState.vehicles.map((v, i) => `<option value="${v.id}">${i + 1}. ${v.model} (${v.plate} • ${v.status})</option>`).join('') +
         `<option value="custom">+ Custom / External Vehicle (Manual Entry)</option>`;
 
       if (editId) {
@@ -1964,7 +2000,6 @@
           onVipVehicleSelectChange();
           document.getElementById('vipCustomCarName').value = vip.customVehicle?.name || '';
           document.getElementById('vipCustomCarPlate').value = vip.customVehicle?.plate || '';
-          document.getElementById('vipCustomCarDriver').value = vip.customVehicle?.driver || '';
         } else if (vip.vehicleMode === 'fleet' && vip.vehicleId) {
           vehSel.value = vip.vehicleId;
           onVipVehicleSelectChange();
@@ -1972,6 +2007,7 @@
           vehSel.value = 'none';
           onVipVehicleSelectChange();
         }
+        setVipDriverSelection(vip.driverName || (vip.customVehicle && vip.customVehicle.driver) || '');
 
         currentFormPhoto = vip.photo || '';
         setPhotoFitMode(vip.photoFit || 'top');
@@ -1985,6 +2021,7 @@
         document.getElementById('vipCheckOut').value = addDaysISO(getLocalTodayISO(), 1);
         vehSel.value = 'none';
         onVipVehicleSelectChange();
+        setVipDriverSelection('');
         currentFormPhoto = '';
         setPhotoFitMode('top');
       }
@@ -2035,6 +2072,37 @@
       const num = document.getElementById('vipRoomNumber').value;
       const room = ROOMS_DB.find(r => r.number === num);
       document.getElementById('vipRoomTypeDisplay').value = room ? room.fullLabel : 'Standard Suite';
+    }
+
+    const OFFICIAL_DRIVERS = ['Angga', 'Ikram', 'Kholis', 'Elfan', 'Arya', 'Rifqi', 'Yudha'];
+
+    function setVipDriverSelection(driverVal) {
+      const sel = document.getElementById('vipDriverSelect');
+      const customInp = document.getElementById('vipDriverCustom');
+      if (!driverVal) {
+        sel.value = '';
+        customInp.classList.add('hidden');
+        customInp.value = '';
+      } else if (OFFICIAL_DRIVERS.includes(driverVal)) {
+        sel.value = driverVal;
+        customInp.classList.add('hidden');
+        customInp.value = '';
+      } else {
+        sel.value = '__CUSTOM__';
+        customInp.classList.remove('hidden');
+        customInp.value = driverVal;
+      }
+    }
+
+    function onVipDriverSelectChange() {
+      const val = document.getElementById('vipDriverSelect').value;
+      const customInp = document.getElementById('vipDriverCustom');
+      if (val === '__CUSTOM__') {
+        customInp.classList.remove('hidden');
+        customInp.focus();
+      } else {
+        customInp.classList.add('hidden');
+      }
     }
 
     function onVipVehicleSelectChange() {
@@ -2128,6 +2196,11 @@
         ? (document.getElementById('vipPositionCustom').value.trim() || 'VIP Dignitary')
         : posSel;
 
+      const drvSel = document.getElementById('vipDriverSelect').value;
+      const finalDriver = drvSel === '__CUSTOM__'
+        ? document.getElementById('vipDriverCustom').value.trim()
+        : drvSel;
+
       const vehVal = document.getElementById('vipVehicleSelect').value;
       let vehicleMode = 'none';
       let vehicleId = '';
@@ -2138,7 +2211,7 @@
         customVehicle = {
           name: document.getElementById('vipCustomCarName').value.trim() || 'Custom Executive Vehicle',
           plate: document.getElementById('vipCustomCarPlate').value.trim() || 'Custom Plate',
-          driver: document.getElementById('vipCustomCarDriver').value.trim() || 'Assigned PIC'
+          driver: finalDriver
         };
       } else if (vehVal !== 'none') {
         vehicleMode = 'fleet';
@@ -2158,6 +2231,7 @@
         status: document.getElementById('vipStatus').value,
         vehicleMode,
         vehicleId,
+        driverName: finalDriver,
         customVehicle,
         pickupDetail: document.getElementById('vipPickupDetail').value.trim(),
         notes: document.getElementById('vipNotes').value.trim(),
@@ -2193,10 +2267,24 @@
       document.getElementById('dispDate').value = getLocalTodayISO();
       const sel = document.getElementById('dispVehicleSelect');
       sel.innerHTML =
-        appState.vehicles.map((v, i) => `<option value="${v.id}">${i + 1}. ${v.model} (${v.plate} • PIC: ${v.driver})</option>`).join('') +
+        appState.vehicles.map((v, i) => `<option value="${v.id}">${i + 1}. ${v.model} (${v.plate} • ${v.status})</option>`).join('') +
         `<option value="custom">+ Custom / External Vehicle (Manual Entry)</option>`;
+      document.getElementById('dispDriverSelect').value = 'Angga';
+      document.getElementById('dispDriverCustom').classList.add('hidden');
+      document.getElementById('dispDriverCustom').value = '';
       onDispVehicleChange();
       openModal('dispatchModal');
+    }
+
+    function onDispDriverSelectChange() {
+      const val = document.getElementById('dispDriverSelect').value;
+      const customInp = document.getElementById('dispDriverCustom');
+      if (val === '__CUSTOM__') {
+        customInp.classList.remove('hidden');
+        customInp.focus();
+      } else {
+        customInp.classList.add('hidden');
+      }
     }
 
     function onDispVehicleChange() {
@@ -2206,8 +2294,6 @@
         box.classList.remove('hidden');
       } else {
         box.classList.add('hidden');
-        const v = appState.vehicles.find(x => x.id === val);
-        if (v) document.getElementById('dispDriver').value = v.driver;
       }
     }
 
@@ -2226,6 +2312,11 @@
         vehicleLabel = v ? `${v.model} (${v.plate})` : 'Hotel Fleet';
       }
 
+      const drvSel = document.getElementById('dispDriverSelect').value;
+      const finalDriver = drvSel === '__CUSTOM__'
+        ? (document.getElementById('dispDriverCustom').value.trim() || 'Substitute Driver')
+        : drvSel;
+
       appState.dispatches.unshift({
         id: `disp-${Date.now()}`,
         date: document.getElementById('dispDate').value,
@@ -2233,7 +2324,7 @@
         vehicleLabel,
         isCustom,
         guest: document.getElementById('dispGuest').value.trim(),
-        driver: document.getElementById('dispDriver').value.trim(),
+        driver: finalDriver,
         route: document.getElementById('dispRoute').value.trim(),
         status: document.getElementById('dispStatus').value
       });
@@ -2483,7 +2574,7 @@
                 <th>VIP Tier & Position</th>
                 <th>Room & Type</th>
                 <th>Stay & Flight</th>
-                <th>Vehicle & PIC</th>
+                <th>Vehicle & Driver / Pick Up By</th>
                 <th>Protocol Notes</th>
               </tr>
             </thead>
@@ -2554,7 +2645,7 @@
                 <th>VIP Tier & Official Position</th>
                 <th>Room & Type (200 Inv.)</th>
                 <th>Check-In / Out & Flight</th>
-                <th>Assigned Vehicle & PIC</th>
+                <th>Assigned Vehicle & Driver / Pick Up By</th>
                 <th>Status</th>
                 <th>Protocol & Amenity Notes</th>
               </tr>
@@ -2580,7 +2671,7 @@
           <table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse; width:100%;">
             <thead>
               <tr style="background:#00629B; color:#FFFFFF; font-weight:bold;">
-                <th>Vehicle & PIC</th>
+                <th>Vehicle & Driver / Pick Up By</th>
                 <th>Service Type</th>
                 <th>Last Service</th>
                 <th>Next Due</th>
