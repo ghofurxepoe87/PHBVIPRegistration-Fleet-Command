@@ -1014,7 +1014,7 @@
   <script>
     // 0. SUPABASE PROJECT PHB CONFIGURATION (AUTO-CONNECTED)
     const SUPABASE_URL = 'https://hupvhnvztvzqbdhuukpt.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_AvLLrrZ0-7F2_AXjC1LQhg_H_bolEmB';
+    const SUPABASE_KEY = 'Sb_publishable_AvLLrrZ0-7F2_AXjC1LQhg_H_bolEmB';
     const SUPABASE_TABLE = 'fom_vip_fleet_state';
     const SUPABASE_ROW_ID = 'phb-fom-vip-fleet-main';
 
@@ -2510,76 +2510,199 @@
     function openModal(id) { document.getElementById(id).classList.add('open'); }
     function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-    // 12. VISUAL PRINT / PDF REPORT WITH FULL EMBEDDED VIP PORTRAITS
+    // 12. EXECUTIVE PDF REPORT FOR GENERAL MANAGER (WITH HOTEL LOGO, OPENING SPEECH & VIP PORTRAITS)
     function openVisualPrintReport() {
-      const todayStr = formatDisplayDate(getLocalTodayISO());
-      const rowsHtml = appState.vips.map(vip => {
+      const todayISO = getLocalTodayISO();
+      const todayStr = formatDisplayDate(todayISO);
+      const timeNow = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' WITA';
+      const baseOrigin = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+      const logoUrl = baseOrigin + 'Logo.png';
+
+      const todaysCount = appState.vips.filter(v => v.checkIn === todayISO).length;
+      const highProtocolCount = appState.vips.filter(v => ['VIP 1', 'VIP 2', 'VIP 3', 'VIP 10'].includes(v.tierCode)).length;
+      const availFleetCount = appState.vehicles.filter(v => v.status === 'Available').length;
+
+      const rowsHtml = appState.vips.map((vip, idx) => {
         const roomObj = ROOMS_DB.find(r => r.number === vip.roomNumber) || { floor: '-', type: 'SUITE' };
         const tierObj = VIP_TIERS.find(t => t.code === vip.tierCode) || { label: vip.tierCode };
         const veh = getVipVehicleDisplay(vip);
+        const isToday = vip.checkIn === todayISO;
         const objPos = vip.photoFit === 'contain' ? 'object-fit:contain;background:#0F172A;' : vip.photoFit === 'center' ? 'object-fit:cover;object-position:center;' : 'object-fit:cover;object-position:top center;';
         const portraitBlock = vip.photo
-          ? `<img src="${vip.photo}" alt="${vip.name}" style="width:68px;height:90px;border-radius:6px;border:2px solid #C59B27;${objPos}" />`
-          : `<div style="width:68px;height:90px;border-radius:6px;border:2px solid #C59B27;background:#FFFDF7;color:#004E7C;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto;">${getInitials(vip.name)}</div>`;
+          ? `<img src="${vip.photo}" alt="${vip.name}" style="width:66px;height:88px;border-radius:6px;border:2px solid #C59B27;${objPos}" />`
+          : `<div style="width:66px;height:88px;border-radius:6px;border:2px solid #C59B27;background:#FFFDF7;color:#004E7C;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px;margin:0 auto;">${getInitials(vip.name)}</div>`;
 
         return `
-          <tr>
-            <td style="padding:8px;border:1px solid #CBD5E1;text-align:center;width:84px;">${portraitBlock}</td>
-            <td style="padding:8px;border:1px solid #CBD5E1;"><strong>${vip.name}</strong><br/><span style="color:#475569;font-size:12px;">${vip.org}</span></td>
-            <td style="padding:8px;border:1px solid #CBD5E1;"><strong>${tierObj.label}</strong><br/><span style="color:#9A7414;font-size:12px;font-weight:600;">${vip.position}</span></td>
-            <td style="padding:8px;border:1px solid #CBD5E1;"><strong>Room ${vip.roomNumber}</strong> (Fl. ${roomObj.floor})<br/><span style="color:#00629B;font-size:12px;">${roomObj.type}</span></td>
-            <td style="padding:8px;border:1px solid #CBD5E1;font-size:12px;">In: ${formatDisplayDate(vip.checkIn)}<br/>Out: ${formatDisplayDate(vip.checkOut)}<br/>${vip.flight}</td>
-            <td style="padding:8px;border:1px solid #CBD5E1;font-size:12px;"><strong>${veh.title}</strong><br/><span style="color:#64748B;">${veh.sub}</span></td>
-            <td style="padding:8px;border:1px solid #CBD5E1;font-size:12px;">${vip.notes || '-'}</td>
+          <tr style="${isToday ? 'background:#FFFDF7;' : ''}">
+            <td style="padding:8px;border:1px solid #CBD5E1;text-align:center;font-weight:700;color:#475569;">${idx + 1}</td>
+            <td style="padding:8px;border:1px solid #CBD5E1;text-align:center;width:82px;">${portraitBlock}</td>
+            <td style="padding:8px;border:1px solid #CBD5E1;">
+              <strong style="font-size:12.5px;color:#0F172A;">${vip.name}</strong>
+              ${isToday ? '<span style="display:inline-block;margin-left:4px;padding:1px 5px;background:#C59B27;color:#FFF;font-size:9px;font-weight:800;border-radius:3px;">TODAY</span>' : ''}
+              <br/><span style="color:#475569;font-size:11.5px;">${vip.org}</span>
+            </td>
+            <td style="padding:8px;border:1px solid #CBD5E1;">
+              <strong style="color:#004E7C;font-size:11.5px;">${tierObj.label}</strong><br/>
+              <span style="color:#9A7414;font-size:11px;font-weight:700;">${vip.position}</span>
+            </td>
+            <td style="padding:8px;border:1px solid #CBD5E1;">
+              <strong>Room ${vip.roomNumber}</strong> <span style="color:#64748B;font-size:11px;">(Fl. ${roomObj.floor})</span><br/>
+              <span style="color:#00629B;font-size:11px;font-weight:600;">${roomObj.type}</span>
+            </td>
+            <td style="padding:8px;border:1px solid #CBD5E1;font-size:11px;">
+              <strong>In:</strong> ${formatDisplayDate(vip.checkIn)}<br/>
+              <strong>Out:</strong> ${formatDisplayDate(vip.checkOut)}<br/>
+              <span style="color:#004E7C;font-weight:600;">${vip.flight}</span>
+            </td>
+            <td style="padding:8px;border:1px solid #CBD5E1;font-size:11px;">
+              <strong>${veh.title}</strong><br/>
+              <span style="color:#64748B;">${veh.sub}</span>
+            </td>
+            <td style="padding:8px;border:1px solid #CBD5E1;font-size:11px;color:#334155;">${vip.notes || '-'}</td>
           </tr>
         `;
       }).join('');
 
       const win = window.open('', '_blank');
       if (!win) {
-        alert('Please allow pop-ups in your browser to open the Visual VIP Report with photos.');
+        alert('Please allow pop-ups in your browser to open the Executive GM PDF Report.');
         return;
       }
       win.document.write(`
         <!DOCTYPE html>
-        <html>
+        <html lang="en">
         <head>
           <meta charset="UTF-8" />
-          <title>Platinum Balikpapan — VIP Visual Report (${todayStr})</title>
+          <title>Executive VIP & Fleet Briefing Report — General Manager (${todayStr})</title>
           <style>
-            body { font-family: Arial, sans-serif; margin: 24px; color: #0F172A; }
-            .hdr { display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid #00629B; padding-bottom:12px; margin-bottom:16px; }
-            h1 { margin:0; font-size:18px; color:#004E7C; }
-            .sub { color:#9A7414; font-size:12px; font-weight:bold; margin-top:3px; }
-            table { width:100%; border-collapse:collapse; }
-            th { background:#004E7C; color:#FFF; font-size:11px; text-transform:uppercase; padding:8px; border:1px solid #004E7C; text-align:left; }
-            .no-print { margin-bottom:14px; padding:9px 16px; background:#00629B; color:#FFF; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
-            @media print { .no-print { display:none; } }
+            @page { size: A4 landscape; margin: 14mm; }
+            * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px 24px; color: #0F172A; background: #FFFFFF; }
+            .toolbar { display:flex; justify-content:space-between; align-items:center; background:#F1F5F9; padding:10px 14px; border-radius:8px; margin-bottom:16px; border:1px solid #CBD5E1; }
+            .btn-print { padding:9px 18px; background:#00629B; color:#FFF; border:none; border-radius:6px; font-weight:700; font-size:12px; cursor:pointer; }
+            .letterhead { display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid #00629B; padding-bottom:12px; margin-bottom:14px; position:relative; }
+            .letterhead::after { content:''; position:absolute; bottom:-6px; left:0; right:0; height:1.5px; background:#C59B27; }
+            .brand-box { display:flex; align-items:center; gap:14px; }
+            .logo-wrap { background:#FFF; padding:4px; border-radius:8px; }
+            .logo-wrap img { height:52px; width:auto; object-fit:contain; display:block; }
+            .hotel-name { margin:0; font-size:18px; font-weight:800; color:#004E7C; letter-spacing:0.4px; }
+            .hotel-addr { margin:2px 0 0; font-size:11px; color:#64748B; }
+            .doc-meta { text-align:right; font-size:11px; color:#334155; line-height:1.5; }
+            .doc-badge { display:inline-block; background:#004E7C; color:#FFF; font-weight:800; font-size:10px; padding:3px 8px; border-radius:4px; letter-spacing:0.6px; text-transform:uppercase; margin-bottom:4px; }
+
+            .speech-box { background:#FFFDF7; border:1px solid #E5D399; border-left:4px solid #C59B27; border-radius:8px; padding:12px 16px; margin-bottom:14px; }
+            .speech-to { font-size:11.5px; font-weight:800; color:#004E7C; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.4px; }
+            .speech-text { font-size:11.5px; line-height:1.6; color:#1E293B; margin:0; text-align:justify; }
+
+            .kpi-strip { display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; margin-bottom:14px; }
+            .kpi-item { border:1px solid #CBD5E1; border-radius:6px; padding:8px 12px; background:#F8FAFC; }
+            .kpi-lbl { font-size:9.5px; font-weight:800; text-transform:uppercase; color:#64748B; letter-spacing:0.4px; }
+            .kpi-val { font-size:15px; font-weight:800; color:#004E7C; margin-top:2px; }
+
+            table { width:100%; border-collapse:collapse; margin-bottom:18px; }
+            th { background:#004E7C; color:#FFF; font-size:10px; text-transform:uppercase; padding:8px; border:1px solid #004E7C; text-align:left; letter-spacing:0.4px; }
+            tr { page-break-inside: avoid; }
+
+            .sign-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:22px; page-break-inside:avoid; text-align:center; font-size:11.5px; }
+            .sign-box { padding-top:4px; }
+            .sign-role { font-weight:700; color:#475569; margin-bottom:48px; }
+            .sign-line { border-top:1px solid #0F172A; width:82%; margin:0 auto; padding-top:4px; font-weight:800; color:#0F172A; }
+            .sign-sub { font-size:10px; color:#64748B; }
+
+            @media print {
+              .toolbar { display:none !important; }
+              body { padding: 0; }
+            }
           </style>
         </head>
         <body>
-          <button class="no-print" onclick="window.print()">Print / Save as PDF</button>
-          <div class="hdr">
-            <div>
-              <h1>PLATINUM HOTEL & CONVENTION HALL BALIKPAPAN</h1>
-              <div class="sub">FRONT OFFICE VIP & FLEET VISUAL REPORT • ${todayStr}</div>
-            </div>
-            <div style="font-size:12px;color:#475569;">Total VIP Profiles: <strong>${appState.vips.length}</strong></div>
+          <div class="toolbar">
+            <span style="font-size:12px;font-weight:700;color:#004E7C;">Executive Briefing Preview — Ready for General Manager (A4 Landscape PDF)</span>
+            <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
           </div>
+
+          <div class="letterhead">
+            <div class="brand-box">
+              <div class="logo-wrap">
+                <img src="${logoUrl}" alt="Platinum Hotel Balikpapan" onerror="this.style.display='none'; document.getElementById('pdfSvgFallback').style.display='block';" />
+                <svg id="pdfSvgFallback" style="display:none;" width="48" height="48" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="18" y="2" width="22.6" height="22.6" rx="2.5" transform="rotate(45 18 2)" stroke="#C59B27" stroke-width="2.4"/>
+                  <rect x="18" y="7.5" width="14.8" height="14.8" rx="1.5" transform="rotate(45 18 7.5)" stroke="#C59B27" stroke-width="1.8"/>
+                  <circle cx="18" cy="18" r="2.5" fill="#C59B27"/>
+                </svg>
+              </div>
+              <div>
+                <h1 class="hotel-name">PLATINUM HOTEL &amp; CONVENTION HALL BALIKPAPAN</h1>
+                <p class="hotel-addr">Jl. Soekarno Hatta No. 28, Batu Ampar, Balikpapan, East Kalimantan • Front Office &amp; Guest Relations Division</p>
+              </div>
+            </div>
+            <div class="doc-meta">
+              <div class="doc-badge">Executive GM Briefing</div>
+              <div><strong>Report Date:</strong> ${todayStr} (${timeNow})</div>
+              <div><strong>Prepared For:</strong> General Manager</div>
+            </div>
+          </div>
+
+          <div class="speech-box">
+            <div class="speech-to">Executive Briefing &amp; Opening Remarks — To: General Manager</div>
+            <p class="speech-text">
+              Dear General Manager,<br/>
+              With warm hospitality greetings from the Front Office &amp; Concierge Division, we respectfully submit the <strong>VIP Guest Arrival &amp; Executive Fleet Readiness Report</strong> for <strong>${todayStr}</strong>. Today, Platinum Hotel &amp; Convention Hall Balikpapan is scheduled to welcome <strong>${todaysCount} VIP arrival(s)</strong> out of <strong>${appState.vips.length} total registered VIP profile(s)</strong> (including <strong>${highProtocolCount} high-protocol dignitary/executive guest(s)</strong>). All designated suites across Floors 5–11, personalized in-room welcome amenities, airport VVIP protocol clearances, and <strong>${availFleetCount}/${appState.vehicles.length} available hotel fleet units</strong> along with their assigned PIC drivers have been thoroughly inspected and briefed to ensure a seamless five-star arrival experience.
+            </p>
+          </div>
+
+          <div class="kpi-strip">
+            <div class="kpi-item">
+              <div class="kpi-lbl">Today's VIP Arrivals</div>
+              <div class="kpi-val">${todaysCount} Guest(s)</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-lbl">Total Registered VIPs</div>
+              <div class="kpi-val">${appState.vips.length} Profile(s)</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-lbl">High-Protocol Dignitaries</div>
+              <div class="kpi-val">${highProtocolCount} Guest(s)</div>
+            </div>
+            <div class="kpi-item">
+              <div class="kpi-lbl">Hotel Fleet Readiness</div>
+              <div class="kpi-val">${availFleetCount}/${appState.vehicles.length} Units Ready</div>
+            </div>
+          </div>
+
           <table>
             <thead>
               <tr>
-                <th>Portrait</th>
-                <th>Guest & Organization</th>
-                <th>VIP Tier & Position</th>
-                <th>Room & Type</th>
-                <th>Stay & Flight</th>
-                <th>Vehicle & Driver / Pick Up By</th>
-                <th>Protocol Notes</th>
+                <th style="width:30px;text-align:center;">No</th>
+                <th style="width:82px;text-align:center;">Portrait</th>
+                <th>VIP Guest &amp; Organization</th>
+                <th>VIP Tier &amp; Official Position</th>
+                <th>Room &amp; Suite Type</th>
+                <th>Stay Period &amp; Flight ETA</th>
+                <th>Vehicle &amp; Driver / Pick Up By</th>
+                <th>Protocol &amp; Amenity Notes</th>
               </tr>
             </thead>
             <tbody>${rowsHtml}</tbody>
           </table>
+
+          <div class="sign-grid">
+            <div class="sign-box">
+              <div class="sign-role">Prepared By,</div>
+              <div class="sign-line">Front Office Manager / Duty Manager</div>
+              <div class="sign-sub">Front Office &amp; Concierge Division</div>
+            </div>
+            <div class="sign-box">
+              <div class="sign-role">Acknowledged By,</div>
+              <div class="sign-line">Hotel Manager</div>
+              <div class="sign-sub">Platinum Hotel &amp; Convention Hall Balikpapan</div>
+            </div>
+            <div class="sign-box">
+              <div class="sign-role">Approved By,</div>
+              <div class="sign-line">General Manager</div>
+              <div class="sign-sub">Platinum Hotel &amp; Convention Hall Balikpapan</div>
+            </div>
+          </div>
         </body>
         </html>
       `);
