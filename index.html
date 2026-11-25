@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="theme-color" content="#00629B" />
-  <title>Front Office VIP &amp; Fleet Command — Platinum Hotel &amp; Convention Hall Balikpapan</title>
+  <title>Front Office VIP & Fleet Command — Platinum Hotel & Convention Hall Balikpapan</title>
   <link rel="icon" type="image/jpeg" href="./favicon.jpg" />
   <link rel="apple-touch-icon" href="./favicon.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,7 +32,7 @@
           }
         }
       }
-    };
+    }
   </script>
   <style>
     :root {
@@ -62,7 +62,6 @@
         padding-right: 24px;
       }
     }
-    /* Prevent iOS Safari zoom on input focus */
     @media (max-width: 767px) {
       input, select, textarea { font-size: 16px !important; }
     }
@@ -155,21 +154,17 @@
         <div class="min-w-0">
           <div class="flex flex-wrap items-center gap-2">
             <h1 class="text-base sm:text-lg lg:text-[19px] font-extrabold tracking-tight text-white truncate">
-              Front Office VIP &amp; Fleet Command
+              Front Office VIP & Fleet Command
             </h1>
             <span class="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-bold tracking-wider uppercase bg-[#004E7C] text-sky-100 border border-sky-400/30">
               PLATINUM BALIKPAPAN • 200 ROOMS
             </span>
           </div>
-          <div class="flex flex-wrap items-center gap-2 mt-1 text-xs">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#16A34A] text-white shadow-xs">
-              <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-              <span id="cloudBadgeText">Synced + Cloud</span>
+          <div class="flex flex-wrap items-center gap-2.5 mt-1 text-xs">
+            <span id="cloudStatusBadge" onclick="forceSupabasePull(true)" title="Click to sync with Supabase Cloud" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#16A34A] text-white shadow-xs cursor-pointer">
+              <span id="cloudStatusDot" class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              <span id="cloudStatusText">Synced + Cloud</span>
             </span>
-            <button type="button" onclick="openCloudConfigModal()" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#004E7C] hover:bg-[#003E63] text-amber-200 border border-amber-300/35 transition cursor-pointer" title="Supabase & Hostinger (ghofur.site) Cloud Config">
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-              <span>ghofur.site Cloud</span>
-            </button>
             <span class="text-sky-100 font-medium text-[11px] flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-sky-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               <span id="liveClock">--:--:-- WITA</span>
@@ -180,23 +175,23 @@
 
       <!-- Right: Clean Header Utility Buttons -->
       <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap shrink-0">
-        <button type="button" onclick="openArrivalModal(true)" class="touch-target px-3 py-2 rounded-lg bg-white text-[#004E7C] hover:bg-amber-50 font-bold text-xs shadow-sm flex items-center gap-1.5 transition cursor-pointer pulse-gold">
+        <button onclick="openArrivalModal(true)" class="touch-target px-3 py-2 rounded-lg bg-white text-[#004E7C] hover:bg-amber-50 font-bold text-xs shadow-sm flex items-center gap-1.5 transition cursor-pointer pulse-gold">
           <svg class="w-4 h-4 text-[#C59B27]" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/></svg>
           <span>Today's Arrivals</span>
           <span id="headerArrivalCount" class="px-1.5 py-0.2 rounded-full bg-[#00629B] text-white text-[11px] font-extrabold">0</span>
         </button>
 
-        <button type="button" onclick="openRoomMatrixModal()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-sky-300/25 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
+        <button onclick="openRoomMatrixModal()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-sky-300/25 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
           <svg class="w-4 h-4 text-sky-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span>200 Rooms</span>
         </button>
 
-        <button type="button" onclick="openVisualPrintReport()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-amber-300/40 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
+        <button onclick="openVisualPrintReport()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-amber-300/40 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
           <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
           <span>Visual Report + Photos</span>
         </button>
 
-        <button type="button" onclick="exportVisualExcelReport()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-sky-300/25 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
+        <button onclick="exportVisualExcelReport()" class="touch-target px-3 py-2 rounded-lg bg-[#004E7C] hover:bg-[#003E63] text-white border border-sky-300/25 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
           <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
           <span>Export Excel</span>
         </button>
@@ -212,24 +207,24 @@
       <!-- Row 1: Primary Navigation Tabs + Primary CTA -->
       <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2.5">
         <nav class="scroll-smooth-x flex items-center gap-1 bg-[#F1F5F9] p-1 rounded-lg border border-slate-200/80" aria-label="Workspace Modules">
-          <button type="button" id="tab-dashboard" onclick="switchTab('dashboard')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer bg-[#00629B] text-white shadow-xs">
+          <button id="tab-dashboard" onclick="switchTab('dashboard')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer bg-[#00629B] text-white shadow-xs">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
             <span>Executive Dashboard</span>
           </button>
-          <button type="button" id="tab-vip" onclick="switchTab('vip')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900">
+          <button id="tab-vip" onclick="switchTab('vip')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900">
             <svg class="w-3.5 h-3.5 text-[#C59B27]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <span>VIP Guest Directory</span>
             <span id="badgeVipCount" class="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-slate-200 text-slate-700">0</span>
           </button>
-          <button type="button" id="tab-fleet" onclick="switchTab('fleet')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900">
+          <button id="tab-fleet" onclick="switchTab('fleet')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 17h14v-5l-2-5H7L5 12v5z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
-            <span>Fleet &amp; Chauffeur</span>
+            <span>Fleet & PIC</span>
           </button>
-          <button type="button" id="tab-service" onclick="switchTab('service')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900">
+          <button id="tab-service" onclick="switchTab('service')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
             <span>Maintenance Logs</span>
           </button>
-          <button type="button" id="tab-handover" onclick="switchTab('handover')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900">
+          <button id="tab-handover" onclick="switchTab('handover')" class="nav-tab touch-target px-3.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 cursor-pointer text-slate-600 hover:text-slate-900">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
             <span>FOM Shift Handover</span>
           </button>
@@ -237,42 +232,39 @@
 
         <!-- Primary Action Buttons -->
         <div class="flex items-center gap-2 shrink-0 justify-end">
-          <button type="button" onclick="openSopModal()" class="touch-target px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
+          <button onclick="openSopModal()" class="touch-target px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs flex items-center gap-1.5 transition cursor-pointer">
             <svg class="w-3.5 h-3.5 text-[#00629B]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             <span>12 VIP Tiers SOP</span>
           </button>
-          <button type="button" onclick="openVipFormModal()" class="touch-target px-4 py-1.5 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs shadow-sm border border-[#C59B27]/60 flex items-center gap-1.5 transition cursor-pointer">
+          <button onclick="openVipFormModal()" class="touch-target px-4 py-1.5 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs shadow-sm border border-[#C59B27]/60 flex items-center gap-1.5 transition cursor-pointer">
             <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             <span>Register VIP Guest</span>
           </button>
         </div>
       </div>
 
-      <!-- Row 2: Contextual Filter Sub-Bar (Shown on VIP / Fleet Tabs) -->
+      <!-- Row 2: Contextual Filter Sub-Bar -->
       <div id="operationalFilterBar" class="hidden pt-2 border-t border-slate-100 flex-col md:flex-row md:items-center md:justify-between gap-2">
         <div class="flex flex-wrap items-center gap-2">
-          <!-- Check-In Date Filter -->
           <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1">
             <span class="text-[11px] font-semibold text-slate-500">Check-In:</span>
             <input type="date" id="filterCheckInDate" onchange="renderAll()" class="bg-transparent text-xs font-bold text-slate-800 focus:outline-none" />
-            <button type="button" onclick="setFilterToday()" class="px-2 py-0.5 rounded bg-sky-50 hover:bg-sky-100 text-[#00629B] font-bold text-[11px] border border-sky-200 cursor-pointer">Today</button>
+            <button onclick="setFilterToday()" class="px-2 py-0.5 rounded bg-sky-50 hover:bg-sky-100 text-[#00629B] font-bold text-[11px] border border-sky-200 cursor-pointer">Today</button>
           </div>
 
-          <!-- 12 VIP Tiers Filter -->
           <select id="filterVipTier" onchange="renderAll()" class="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-[#00629B]">
             <option value="ALL">All 12 VIP Tiers</option>
           </select>
 
-          <!-- Quick Search -->
           <div class="relative flex-1 min-w-[200px] sm:w-64">
-            <input type="text" id="filterSearch" oninput="renderAll()" placeholder="Search guest, title, room, car..." class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#00629B] focus:bg-white" />
+            <input type="text" id="filterSearch" oninput="renderAll()" placeholder="Search guest, title, room, car, PIC..." class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#00629B] focus:bg-white" />
             <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
         </div>
 
         <div class="flex items-center gap-2 justify-end">
           <span id="activeDatePill" class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#FFFDF7] text-[#9A7414] border border-[#C59B27]/40">Today: --</span>
-          <button type="button" onclick="resetFilters()" class="px-2.5 py-1 rounded-md text-[11px] font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 cursor-pointer">Reset Filters</button>
+          <button onclick="resetFilters()" class="px-2.5 py-1 rounded-md text-[11px] font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 cursor-pointer">Reset Filters</button>
         </div>
       </div>
     </section>
@@ -281,23 +273,21 @@
     <!-- VIEW 1: DEDICATED EXECUTIVE DASHBOARD                               -->
     <!-- =================================================================== -->
     <section id="view-dashboard" class="space-y-4">
-      <!-- Executive Summary Header & 4 KPI Cards -->
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4 sm:p-5">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-4 border-b border-slate-100">
           <div>
             <div class="flex flex-wrap items-center gap-2">
-              <h2 class="text-sm sm:text-base font-extrabold tracking-tight text-slate-900 uppercase">Executive VIP &amp; Fleet Intelligence Summary</h2>
+              <h2 class="text-sm sm:text-base font-extrabold tracking-tight text-slate-900 uppercase">Executive VIP & Fleet Intelligence Summary</h2>
               <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 text-[#00629B] border border-sky-200">12 OFFICIAL VIP TIERS</span>
               <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">AUTO ARRIVAL POP-UP</span>
             </div>
-            <p class="text-xs text-slate-500 mt-1">Real-time executive overview of today's VIP arrivals, 12-tier protocol distribution, 200-room inventory (Floors 5–11), and chauffeur fleet readiness.</p>
+            <p class="text-xs text-slate-500 mt-1">Real-time executive overview of today's VIP arrivals, 12-tier protocol distribution, 200-room inventory (Floors 5–11), and 8-unit fleet PIC readiness.</p>
           </div>
           <div class="flex items-center gap-2 shrink-0">
             <span id="dashDateBadge" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#FFFDF7] text-[#9A7414] border border-[#C59B27]/50">Today: --</span>
           </div>
         </div>
 
-        <!-- 4 KPI Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-4">
           <div onclick="switchTab('vip'); setFilterToday();" class="rounded-xl border border-[#C59B27]/50 bg-[#FFFDF7] p-4 hover:shadow-md transition cursor-pointer">
             <div class="flex items-center justify-between">
@@ -329,23 +319,22 @@
               </span>
             </div>
             <div id="kpiFleetReady" class="text-2xl sm:text-[26px] font-extrabold text-emerald-700 mt-1.5">100% Ready</div>
-            <div id="kpiFleetSub" class="text-xs text-slate-500 mt-1">0/0 Units Available • 0 Active Trips</div>
+            <div id="kpiFleetSub" class="text-xs text-slate-500 mt-1">0/8 Units Available • 0 Active Trips</div>
           </div>
 
           <div onclick="switchTab('service')" class="rounded-xl border border-slate-200 bg-slate-50/60 p-4 hover:shadow-md transition cursor-pointer">
             <div class="flex items-center justify-between">
-              <span class="text-[11px] font-extrabold tracking-wider uppercase text-slate-700">Maintenance &amp; Service</span>
+              <span class="text-[11px] font-extrabold tracking-wider uppercase text-slate-700">Maintenance & Service</span>
               <span class="w-7 h-7 rounded-lg bg-slate-200/80 text-slate-700 flex items-center justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
               </span>
             </div>
             <div id="kpiServiceAlerts" class="text-2xl sm:text-[26px] font-extrabold text-slate-900 mt-1.5">0 Alerts</div>
-            <div id="kpiServiceSub" class="text-xs text-slate-500 mt-1">All Hotel Fleet Serviced</div>
+            <div id="kpiServiceSub" class="text-xs text-slate-500 mt-1">All Fleet Units Serviced</div>
           </div>
         </div>
       </div>
 
-      <!-- Dashboard Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
         <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden flex flex-col">
           <div class="bg-[#004E7C] text-white px-4 py-3 flex items-center justify-between">
@@ -353,7 +342,7 @@
               <span class="w-2 h-2 rounded-full bg-[#C59B27]"></span>
               <h3 class="text-xs sm:text-sm font-bold tracking-wide uppercase">Today's VIP Arrival Spotlight</h3>
             </div>
-            <button type="button" onclick="switchTab('vip')" class="text-[11px] font-semibold text-sky-200 hover:text-white underline cursor-pointer">Open Full VIP Directory →</button>
+            <button onclick="switchTab('vip')" class="text-[11px] font-semibold text-sky-200 hover:text-white underline cursor-pointer">Open Full VIP Directory →</button>
           </div>
           <div id="dashTodaySpotlight" class="p-4 space-y-3 flex-1"></div>
         </div>
@@ -362,17 +351,17 @@
           <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
             <div class="bg-[#004E7C] text-white px-4 py-3 flex items-center justify-between">
               <h3 class="text-xs sm:text-sm font-bold tracking-wide uppercase">12 Official VIP Tiers Breakdown</h3>
-              <button type="button" onclick="openSopModal()" class="text-[11px] font-semibold text-amber-300 hover:text-amber-200 cursor-pointer">View SOP</button>
+              <button onclick="openSopModal()" class="text-[11px] font-semibold text-amber-300 hover:text-amber-200 cursor-pointer">View SOP</button>
             </div>
             <div id="dashTierBreakdown" class="p-4 space-y-2.5"></div>
           </div>
 
           <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
             <div class="bg-[#004E7C] text-white px-4 py-3 flex items-center justify-between">
-              <h3 class="text-xs sm:text-sm font-bold tracking-wide uppercase">Live Fleet &amp; Chauffeur Status</h3>
-              <button type="button" onclick="switchTab('fleet')" class="text-[11px] font-semibold text-sky-200 hover:text-white underline cursor-pointer">Manage Fleet →</button>
+              <h3 class="text-xs sm:text-sm font-bold tracking-wide uppercase">Daftar PIC Kendaraan (8 Units)</h3>
+              <button onclick="switchTab('fleet')" class="text-[11px] font-semibold text-sky-200 hover:text-white underline cursor-pointer">Manage Fleet →</button>
             </div>
-            <div id="dashFleetSummary" class="p-4 space-y-2.5"></div>
+            <div id="dashFleetSummary" class="p-4 space-y-2"></div>
           </div>
         </div>
       </div>
@@ -385,10 +374,10 @@
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="px-4 py-3.5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            <h2 class="text-sm sm:text-base font-extrabold text-slate-900 uppercase tracking-tight">VIP Guest Arrival &amp; Room Assignment Directory</h2>
+            <h2 class="text-sm sm:text-base font-extrabold text-slate-900 uppercase tracking-tight">VIP Guest Arrival & Room Assignment Directory</h2>
             <p class="text-xs text-slate-500">Click any guest portrait to zoom full screen. Highlighted gold rows indicate VIP arrivals scheduled for today.</p>
           </div>
-          <button type="button" onclick="openVipFormModal()" class="touch-target px-3.5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs flex items-center gap-1.5 self-start sm:self-auto cursor-pointer">
+          <button onclick="openVipFormModal()" class="touch-target px-3.5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs flex items-center gap-1.5 self-start sm:self-auto cursor-pointer">
             <span>+ Add VIP Profile</span>
           </button>
         </div>
@@ -398,11 +387,11 @@
             <thead>
               <tr class="bg-[#004E7C] text-white text-[11px] font-bold uppercase tracking-wider">
                 <th class="py-3 px-3.5">Portrait</th>
-                <th class="py-3 px-3.5">VIP Guest &amp; Organization</th>
-                <th class="py-3 px-3.5">VIP Tier &amp; Official Position</th>
-                <th class="py-3 px-3.5">Room &amp; Type (200 Inv.)</th>
-                <th class="py-3 px-3.5">Check-In / Out &amp; Flight</th>
-                <th class="py-3 px-3.5">Assigned Vehicle / Custom</th>
+                <th class="py-3 px-3.5">VIP Guest & Organization</th>
+                <th class="py-3 px-3.5">VIP Tier & Official Position</th>
+                <th class="py-3 px-3.5">Room & Type (200 Inv.)</th>
+                <th class="py-3 px-3.5">Check-In / Out & Flight</th>
+                <th class="py-3 px-3.5">Vehicle & PIC / Custom</th>
                 <th class="py-3 px-3.5">Status</th>
                 <th class="py-3 px-3.5 text-right">Actions</th>
               </tr>
@@ -414,18 +403,18 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- VIEW 3: FLEET & CHAUFFEUR DISPATCH                                  -->
+    <!-- VIEW 3: FLEET & PIC DISPATCH                                        -->
     <!-- =================================================================== -->
     <section id="view-fleet" class="hidden space-y-4">
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 border-b border-slate-100">
           <div>
-            <h2 class="text-sm sm:text-base font-extrabold text-slate-900 uppercase tracking-tight">Hotel Executive Fleet Inventory</h2>
-            <p class="text-xs text-slate-500">Manage hotel-owned executive vehicles, PIC / chauffeur assignments, and live operational availability.</p>
+            <h2 class="text-sm sm:text-base font-extrabold text-slate-900 uppercase tracking-tight">Daftar PIC Kendaraan — Hotel Fleet Roster</h2>
+            <p class="text-xs text-slate-500">Official vehicle roster, plate numbers, PIC assignments, and live operational availability.</p>
           </div>
           <div class="flex items-center gap-2">
-            <button type="button" onclick="openVehicleModal()" class="touch-target px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs cursor-pointer">+ Add Fleet Unit</button>
-            <button type="button" onclick="openDispatchModal()" class="touch-target px-3.5 py-1.5 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs cursor-pointer">+ Schedule Vehicle Dispatch</button>
+            <button onclick="openVehicleModal()" class="touch-target px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs cursor-pointer">+ Add Fleet Unit</button>
+            <button onclick="openDispatchModal()" class="touch-target px-3.5 py-1.5 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs cursor-pointer">+ Schedule Dispatch</button>
           </div>
         </div>
         <div id="fleetCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-4"></div>
@@ -434,7 +423,7 @@
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="px-4 py-3.5 border-b border-slate-200 flex items-center justify-between">
           <div>
-            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-tight">Vehicle Usage &amp; Chauffeur Dispatch Schedule</h3>
+            <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-tight">Vehicle Usage & PIC Dispatch Schedule</h3>
             <p class="text-xs text-slate-500">Includes both hotel fleet units and custom/external VVIP escort vehicles entered manually by duty staff.</p>
           </div>
         </div>
@@ -442,11 +431,11 @@
           <table class="w-full text-left border-collapse min-w-[920px]">
             <thead>
               <tr class="bg-[#004E7C] text-white text-[11px] font-bold uppercase tracking-wider">
-                <th class="py-3 px-3.5">Date &amp; Pickup Time</th>
+                <th class="py-3 px-3.5">Date & Pickup Time</th>
                 <th class="py-3 px-3.5">Vehicle Unit (Fleet / Custom)</th>
-                <th class="py-3 px-3.5">VIP Guest &amp; Room</th>
+                <th class="py-3 px-3.5">VIP Guest & Room</th>
                 <th class="py-3 px-3.5">Route / Purpose</th>
-                <th class="py-3 px-3.5">Assigned Chauffeur / PIC</th>
+                <th class="py-3 px-3.5">Assigned PIC</th>
                 <th class="py-3 px-3.5">Dispatch Status</th>
                 <th class="py-3 px-3.5 text-right">Actions</th>
               </tr>
@@ -458,107 +447,86 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- VIEW 4: VEHICLE MAINTENANCE & SERVICE LOGS                          -->
+    <!-- VIEW 4: VEHICLE MAINTENANCE, DATE RANGE FILTER & 12-MONTH MATRIX    -->
     <!-- =================================================================== -->
     <section id="view-service" class="hidden space-y-4">
-      <!-- Date Range, Year & Preset Filter Toolbar -->
-      <div class="bg-white rounded-xl border border-slate-200 shadow-xs p-3.5 sm:p-4 space-y-3">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 pb-3 border-b border-slate-100">
+      <!-- Date Range & Annual Year Filter Card -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 border-b border-slate-100">
           <div>
-            <h2 class="text-sm sm:text-base font-extrabold text-slate-900 uppercase tracking-tight">Vehicle Preventive Maintenance &amp; Service Schedule</h2>
-            <p class="text-xs text-slate-500">Filter service schedules by date range or full year, inspect the 12-month vehicle maintenance matrix, and track PIC assignments.</p>
+            <h2 class="text-sm sm:text-base font-extrabold text-slate-900 uppercase tracking-tight">Vehicle Preventive Maintenance & Annual Metrics</h2>
+            <p class="text-xs text-slate-500">Filter service logs by custom date range (From–To), view full-year schedules, and monitor monthly service metrics across all 8 fleet units.</p>
           </div>
-          <button type="button" onclick="openServiceModal()" class="touch-target px-3.5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs cursor-pointer shrink-0">+ Log Service / Schedule Maintenance</button>
+          <button onclick="openServiceModal()" class="touch-target px-3.5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs cursor-pointer self-start sm:self-auto">+ Log Service / Schedule Maintenance</button>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2.5 text-xs">
-          <div class="flex flex-wrap items-center gap-2">
-            <!-- Year Selector -->
-            <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5">
-              <label for="srvYearSelect" class="text-[11px] font-bold text-slate-600">Year:</label>
-              <select id="srvYearSelect" onchange="onServiceYearChange()" class="bg-transparent font-extrabold text-[#004E7C] focus:outline-none cursor-pointer">
-                <option value="2025">2025</option>
-                <option value="2026" selected>2026</option>
-                <option value="2027">2027</option>
-              </select>
-            </div>
-
-            <!-- From Date -->
-            <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1">
-              <label for="srvFromDate" class="text-[11px] font-semibold text-slate-500">From:</label>
-              <input type="date" id="srvFromDate" onchange="renderServiceSection()" class="bg-transparent font-bold text-slate-800 focus:outline-none" />
-            </div>
-
-            <!-- To Date -->
-            <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1">
-              <label for="srvToDate" class="text-[11px] font-semibold text-slate-500">To:</label>
-              <input type="date" id="srvToDate" onchange="renderServiceSection()" class="bg-transparent font-bold text-slate-800 focus:outline-none" />
-            </div>
-
-            <!-- Vehicle Filter -->
-            <select id="srvFilterVehicle" onchange="renderServiceSection()" class="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 font-semibold text-slate-700 focus:outline-none focus:border-[#00629B]">
-              <option value="ALL">All 8 Fleet Units</option>
+        <div class="flex flex-wrap items-center gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <div class="flex items-center gap-1.5 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5">
+            <span class="text-[11px] font-bold text-slate-500">From:</span>
+            <input type="date" id="srvFilterFrom" onchange="renderAll()" class="bg-transparent text-xs font-bold text-slate-800 focus:outline-none" />
+          </div>
+          <div class="flex items-center gap-1.5 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5">
+            <span class="text-[11px] font-bold text-slate-500">To:</span>
+            <input type="date" id="srvFilterTo" onchange="renderAll()" class="bg-transparent text-xs font-bold text-slate-800 focus:outline-none" />
+          </div>
+          <div class="flex items-center gap-1.5 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5">
+            <span class="text-[11px] font-bold text-slate-500">Year:</span>
+            <select id="srvFilterYear" onchange="renderAll()" class="bg-transparent text-xs font-extrabold text-[#004E7C] focus:outline-none">
+              <option value="2025">2025</option>
+              <option value="2026" selected>2026</option>
+              <option value="2027">2027</option>
             </select>
           </div>
+          <button onclick="setServiceFullYearFilter()" class="touch-target px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-[#00629B] border border-sky-200 font-bold text-xs cursor-pointer">Full Year View</button>
+          <button onclick="clearServiceDateFilter()" class="touch-target px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-semibold text-xs cursor-pointer">All Dates</button>
+        </div>
 
-          <div class="flex flex-wrap items-center gap-1.5">
-            <button type="button" onclick="setServiceFullYearPreset()" class="px-2.5 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-[#00629B] border border-sky-200 font-bold text-[11px] cursor-pointer">Full Selected Year</button>
-            <button type="button" onclick="setServiceQ4Preset()" class="px-2.5 py-1.5 rounded-lg bg-[#FFFDF7] hover:bg-amber-50 text-[#9A7414] border border-[#C59B27]/50 font-bold text-[11px] cursor-pointer">Nov–Dec 2026</button>
-            <button type="button" onclick="resetServiceFilters()" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[11px] cursor-pointer">Reset</button>
+        <!-- 12-Month Maintenance Metrics Matrix (Jan-Dec + Annual) -->
+        <div class="pt-1">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-[#004E7C]">12-Month Maintenance Matrix (<span id="matrixYearTitle">2026</span>)</h3>
+            <div class="flex items-center gap-3 text-[10px] font-bold">
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">DONE = Completed</span>
+              <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800">DUE = Scheduled / Due</span>
+              <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800">IN WORKSHOP</span>
+            </div>
+          </div>
+          <div class="scroll-smooth-x border border-slate-200 rounded-xl">
+            <table class="w-full text-center border-collapse min-w-[980px] text-xs">
+              <thead>
+                <tr class="bg-[#004E7C] text-white text-[10px] font-bold uppercase tracking-wider">
+                  <th class="py-2.5 px-3 text-left">Vehicle, Plate & PIC</th>
+                  <th class="py-2.5 px-1.5">Jan</th>
+                  <th class="py-2.5 px-1.5">Feb</th>
+                  <th class="py-2.5 px-1.5">Mar</th>
+                  <th class="py-2.5 px-1.5">Apr</th>
+                  <th class="py-2.5 px-1.5">May</th>
+                  <th class="py-2.5 px-1.5">Jun</th>
+                  <th class="py-2.5 px-1.5">Jul</th>
+                  <th class="py-2.5 px-1.5">Aug</th>
+                  <th class="py-2.5 px-1.5">Sep</th>
+                  <th class="py-2.5 px-1.5">Oct</th>
+                  <th class="py-2.5 px-1.5">Nov</th>
+                  <th class="py-2.5 px-1.5">Dec</th>
+                  <th class="py-2.5 px-3 bg-[#003657]">Annual</th>
+                </tr>
+              </thead>
+              <tbody id="serviceMatrixBody" class="divide-y divide-slate-200 bg-white"></tbody>
+            </table>
           </div>
         </div>
       </div>
 
-      <!-- 12-Month Vehicle Maintenance Metrics Matrix (Jan - Dec + Annual Total) -->
+      <!-- Filtered Service Log Table -->
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
-        <div class="px-4 py-3 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-[#F8FAFC]">
-          <div>
-            <h3 id="srvMatrixTitle" class="text-xs sm:text-sm font-extrabold text-[#004E7C] uppercase tracking-wide">12-Month Maintenance Metrics Matrix (2026)</h3>
-            <p class="text-[11px] text-slate-500">Monthly service event count per vehicle &amp; PIC across the selected year. Click any month cell to filter the log table below.</p>
-          </div>
-          <div class="flex items-center gap-2 text-[11px]">
-            <span id="srvActiveMonthFilterBadge" class="hidden px-2.5 py-1 rounded-full bg-amber-100 text-[#9A7414] font-bold"></span>
-            <span id="srvFilteredCountBadge" class="px-2.5 py-1 rounded-full bg-sky-50 text-[#00629B] border border-sky-200 font-bold">0 Logs</span>
-          </div>
-        </div>
-
-        <div class="scroll-smooth-x">
-          <table class="w-full text-left border-collapse min-w-[1060px]">
-            <thead>
-              <tr class="bg-[#004E7C] text-white text-[11px] font-bold uppercase tracking-wider">
-                <th class="py-2.5 px-3">Vehicle &amp; Plate</th>
-                <th class="py-2.5 px-2.5">PIC</th>
-                <th class="py-2.5 px-2 text-center">Jan</th>
-                <th class="py-2.5 px-2 text-center">Feb</th>
-                <th class="py-2.5 px-2 text-center">Mar</th>
-                <th class="py-2.5 px-2 text-center">Apr</th>
-                <th class="py-2.5 px-2 text-center">May</th>
-                <th class="py-2.5 px-2 text-center">Jun</th>
-                <th class="py-2.5 px-2 text-center">Jul</th>
-                <th class="py-2.5 px-2 text-center">Aug</th>
-                <th class="py-2.5 px-2 text-center">Sep</th>
-                <th class="py-2.5 px-2 text-center">Oct</th>
-                <th class="py-2.5 px-2 text-center">Nov</th>
-                <th class="py-2.5 px-2 text-center">Dec</th>
-                <th class="py-2.5 px-3 text-center bg-[#00385A]">Annual</th>
-              </tr>
-            </thead>
-            <tbody id="serviceMonthlyMatrixBody" class="divide-y divide-slate-200 text-xs"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Detailed Maintenance Schedule Table -->
-      <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
-        <div class="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
-          <h3 class="text-xs sm:text-sm font-extrabold text-slate-900 uppercase tracking-wide">Filtered Maintenance Log Entries</h3>
-          <span class="text-[11px] text-slate-500">Showing records within selected date range &amp; year</span>
+        <div class="px-4 py-3 border-b border-slate-200">
+          <h3 class="text-xs sm:text-sm font-extrabold text-slate-900 uppercase tracking-tight">Filtered Maintenance & Service History</h3>
         </div>
         <div class="scroll-smooth-x">
-          <table class="w-full text-left border-collapse min-w-[920px]">
+          <table class="w-full text-left border-collapse min-w-[880px]">
             <thead>
               <tr class="bg-[#004E7C] text-white text-[11px] font-bold uppercase tracking-wider">
-                <th class="py-3 px-3.5">Vehicle, Plate &amp; PIC</th>
+                <th class="py-3 px-3.5">Vehicle, Plate & PIC</th>
                 <th class="py-3 px-3.5">Service Type</th>
                 <th class="py-3 px-3.5">Last Service Date</th>
                 <th class="py-3 px-3.5">Next Scheduled Due</th>
@@ -581,7 +549,7 @@
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs p-4 sm:p-5 space-y-4">
         <div class="border-b border-slate-100 pb-3">
           <h2 class="text-sm sm:text-base font-extrabold text-slate-900 uppercase tracking-tight">Front Office Manager (FOM) Shift Handover Log</h2>
-          <p class="text-xs text-slate-500">Record VIP amenity readiness, airport protocol updates, and chauffeur handover instructions across Morning, Afternoon, and Night shifts.</p>
+          <p class="text-xs text-slate-500">Record VIP amenity readiness, airport protocol updates, and PIC handover instructions across Morning, Afternoon, and Night shifts.</p>
         </div>
 
         <form onsubmit="addHandoverNote(event)" class="grid grid-cols-1 md:grid-cols-12 gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
@@ -598,8 +566,8 @@
             <input type="text" id="hoOfficer" required placeholder="e.g., Duty Manager / FOM" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs" />
           </div>
           <div class="md:col-span-4">
-            <label class="block text-[11px] font-bold text-slate-700 mb-1">VIP &amp; Fleet Handover Remarks</label>
-            <input type="text" id="hoNotes" required placeholder="e.g., Platinum Suite 1128 welcome fruit & Alphard standby at Sepinggan VIP Gate..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs" />
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">VIP & Fleet Handover Remarks</label>
+            <input type="text" id="hoNotes" required placeholder="e.g., Platinum Suite 1128 welcome fruit & Alphard KT 28 MI (Elfan) standby..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs" />
           </div>
           <div class="md:col-span-2 flex items-end">
             <button type="submit" class="w-full touch-target bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs rounded-lg px-4 py-2 cursor-pointer">Post Log</button>
@@ -627,14 +595,14 @@
             <h3 class="text-base sm:text-lg font-extrabold text-white">Today's VIP Guest Arrivals</h3>
           </div>
         </div>
-        <button type="button" onclick="closeModal('arrivalAlertModal')" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold cursor-pointer">✕</button>
+        <button onclick="closeModal('arrivalAlertModal')" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold cursor-pointer">✕</button>
       </div>
 
       <div id="arrivalAlertContent" class="p-4 sm:p-5 overflow-y-auto space-y-3.5 flex-1 bg-[#F4F7FA]"></div>
 
       <div class="px-5 py-3 bg-white border-t border-slate-200 flex items-center justify-between gap-2">
         <span class="text-[11px] text-slate-500">Click any guest photo to enlarge for airport/lobby recognition.</span>
-        <button type="button" onclick="closeModal('arrivalAlertModal')" class="touch-target px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs cursor-pointer">Acknowledge &amp; Dismiss</button>
+        <button onclick="closeModal('arrivalAlertModal')" class="touch-target px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs cursor-pointer">Acknowledge & Dismiss</button>
       </div>
     </div>
   </div>
@@ -647,15 +615,14 @@
       <div class="bg-[#00629B] text-white px-5 py-3.5 flex items-center justify-between">
         <div>
           <h3 id="vipModalTitle" class="text-base font-extrabold">Register New VIP Guest</h3>
-          <p class="text-[11px] text-sky-100">Platinum Hotel &amp; Convention Hall Balikpapan — 12-Tier VIP Protocol &amp; 200-Room Allocation</p>
+          <p class="text-[11px] text-sky-100">Platinum Hotel & Convention Hall Balikpapan — 12-Tier VIP Protocol & 200-Room Allocation</p>
         </div>
-        <button type="button" onclick="closeModal('vipFormModal')" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold cursor-pointer">✕</button>
+        <button onclick="closeModal('vipFormModal')" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold cursor-pointer">✕</button>
       </div>
 
       <form id="vipGuestForm" onsubmit="saveVipGuest(event)" class="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1">
         <input type="hidden" id="vipEditId" />
 
-        <!-- Portrait Upload & 3:4 Framing Alignment Card -->
         <div class="bg-[#F8FAFC] border border-slate-200 rounded-xl p-3.5 sm:p-4 flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div onclick="zoomCurrentFormPhoto()" class="portrait-34 w-[132px] h-[176px] sm:w-[144px] sm:h-[192px] flex items-center justify-center cursor-zoom-in group" title="Click to zoom portrait">
             <img id="vipPhotoPreviewImg" src="" alt="VIP Portrait" class="hidden w-full h-full object-cover object-top" />
@@ -668,8 +635,8 @@
 
           <div class="flex-1 space-y-2.5 text-center sm:text-left">
             <div>
-              <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">VIP Guest Portrait &amp; Visual Identification</h4>
-              <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Upload a high-clarity portrait photo so Airport Representatives, Chauffeurs, and Duty Managers can immediately recognize the guest. Click the portrait frame anytime to zoom full screen.</p>
+              <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">VIP Guest Portrait & Visual Identification</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Upload a high-clarity portrait photo so Airport Representatives, PIC Chauffeurs, and Duty Managers can immediately recognize the guest.</p>
             </div>
 
             <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
@@ -681,11 +648,10 @@
               <button type="button" onclick="resetFormPhoto()" class="touch-target px-3 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs cursor-pointer">Reset Monogram</button>
             </div>
 
-            <!-- 3-Mode Framing Alignment Controls -->
             <div class="pt-1">
               <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Portrait Framing Alignment:</span>
               <div class="inline-flex rounded-lg border border-slate-200 bg-white p-0.5 gap-0.5">
-                <button type="button" id="fitBtn-top" onclick="setPhotoFitMode('top')" class="fit-btn px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#00629B] text-white cursor-pointer">Head &amp; Top Focus</button>
+                <button type="button" id="fitBtn-top" onclick="setPhotoFitMode('top')" class="fit-btn px-2.5 py-1 rounded-md text-[11px] font-bold bg-[#00629B] text-white cursor-pointer">Head & Top Focus</button>
                 <button type="button" id="fitBtn-center" onclick="setPhotoFitMode('center')" class="fit-btn px-2.5 py-1 rounded-md text-[11px] font-semibold text-slate-600 hover:bg-slate-100 cursor-pointer">Center Crop</button>
                 <button type="button" id="fitBtn-contain" onclick="setPhotoFitMode('contain')" class="fit-btn px-2.5 py-1 rounded-md text-[11px] font-semibold text-slate-600 hover:bg-slate-100 cursor-pointer">Fit Full Photo</button>
               </div>
@@ -693,10 +659,9 @@
           </div>
         </div>
 
-        <!-- Guest Name & Organization -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Full Name &amp; Honorific Title *</label>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Full Name & Honorific Title *</label>
             <input type="text" id="vipName" required oninput="updateMonogramPreview()" placeholder="e.g., H.E. Budi Santoso" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#00629B]" />
           </div>
           <div>
@@ -705,7 +670,6 @@
           </div>
         </div>
 
-        <!-- Cascading 12 VIP Tiers + Official Position / Designation -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">VIP Tier Classification (12 Official Levels) *</label>
@@ -718,29 +682,26 @@
           </div>
         </div>
 
-        <!-- Live Tier Definition & Protocol Banner -->
         <div id="tierProtocolBanner" class="rounded-xl bg-[#FFFDF7] border border-[#C59B27]/50 px-3.5 py-2.5 text-xs">
           <div class="font-extrabold text-[#9A7414]" id="tierBannerTitle">VIP 1 — Government Officials</div>
           <div class="text-slate-600 mt-0.5" id="tierBannerDesc"></div>
         </div>
 
-        <!-- Room Number (200 Inventory) + Auto Room Type + Flight ETA -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Room Number (200 Rooms) *</label>
             <select id="vipRoomNumber" onchange="onRoomNumberChange()" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs font-bold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]"></select>
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Room Type &amp; Bed (Auto)</label>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Room Type & Bed (Auto)</label>
             <input type="text" id="vipRoomTypeDisplay" readonly class="w-full border border-slate-200 bg-slate-100 rounded-lg px-3 py-2 text-xs font-bold text-[#004E7C]" />
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Flight Number &amp; ETA *</label>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Flight Number & ETA *</label>
             <input type="text" id="vipFlight" required placeholder="e.g., GA-564 • 14:30 WITA" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#00629B]" />
           </div>
         </div>
 
-        <!-- Check-In, Check-Out, Status -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Check-In Date *</label>
@@ -761,20 +722,18 @@
           </div>
         </div>
 
-        <!-- Executive Fleet Assignment + Custom Free-Text Vehicle Option -->
         <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-2.5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">Assigned Chauffeur Vehicle</label>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Assigned Vehicle & PIC</label>
               <select id="vipVehicleSelect" onchange="onVipVehicleSelectChange()" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold bg-white focus:outline-none focus:border-[#00629B]"></select>
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">Pickup Time &amp; Location</label>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Pickup Time & Location</label>
               <input type="text" id="vipPickupDetail" placeholder="e.g., 14:15 WITA • Sepinggan VVIP Gate" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs bg-white focus:outline-none focus:border-[#00629B]" />
             </div>
           </div>
 
-          <!-- Custom Manual Vehicle Fields -->
           <div id="vipCustomVehicleBox" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 border-t border-slate-200">
             <div>
               <label class="block text-[11px] font-bold text-[#9A7414] mb-1">Custom Vehicle Model / Name *</label>
@@ -785,21 +744,20 @@
               <input type="text" id="vipCustomCarPlate" placeholder="e.g., KT 1 RI / B 1990 VIP" class="w-full border border-[#C59B27] bg-white rounded-lg px-2.5 py-1.5 text-xs" />
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-[#9A7414] mb-1">Driver / Escort Name</label>
+              <label class="block text-[11px] font-bold text-[#9A7414] mb-1">Driver / PIC Name</label>
               <input type="text" id="vipCustomCarDriver" placeholder="e.g., Pak Hendra (Protocol)" class="w-full border border-[#C59B27] bg-white rounded-lg px-2.5 py-1.5 text-xs" />
             </div>
           </div>
         </div>
 
-        <!-- Special Preferences & Amenities -->
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Special Preferences, Protocol &amp; Amenity Notes</label>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Special Preferences, Protocol & Amenity Notes</label>
           <textarea id="vipNotes" rows="2" placeholder="e.g., Welcome fruit platter, hypoallergenic pillows, airport VIP tarmac clearance, Security Escort..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#00629B]"></textarea>
         </div>
 
         <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-200">
           <button type="button" onclick="closeModal('vipFormModal')" class="touch-target px-4 py-2 rounded-lg border border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-50 cursor-pointer">Cancel</button>
-          <button type="submit" class="touch-target px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs shadow-sm cursor-pointer">Save VIP Profile</button>
+          <button type="submit" class="touch-target px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold text-xs shadow-sm cursor-pointer">Save & Sync to Cloud</button>
         </div>
       </form>
     </div>
@@ -811,8 +769,8 @@
   <div id="dispatchModal" class="modal-overlay" role="dialog" aria-modal="true">
     <div class="modal-sheet bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl max-h-[90vh] flex flex-col overflow-hidden">
       <div class="bg-[#00629B] text-white px-5 py-3.5 flex items-center justify-between">
-        <h3 class="text-base font-extrabold">Schedule Chauffeur &amp; Vehicle Dispatch</h3>
-        <button type="button" onclick="closeModal('dispatchModal')" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold cursor-pointer">✕</button>
+        <h3 class="text-base font-extrabold">Schedule PIC & Vehicle Dispatch</h3>
+        <button onclick="closeModal('dispatchModal')" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold cursor-pointer">✕</button>
       </div>
       <form onsubmit="saveDispatch(event)" class="p-4 sm:p-5 overflow-y-auto space-y-3.5">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -844,11 +802,11 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">VIP Guest Name &amp; Room *</label>
+            <label class="block text-xs font-bold text-slate-700 mb-1">VIP Guest Name & Room *</label>
             <input type="text" id="dispGuest" required placeholder="e.g., H.E. Budi Santoso (Rm 1128)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs" />
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Assigned Chauffeur / PIC *</label>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Assigned PIC *</label>
             <input type="text" id="dispDriver" required placeholder="e.g., Elfan" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs" />
           </div>
         </div>
@@ -882,17 +840,17 @@
   <div id="vehicleModal" class="modal-overlay" role="dialog" aria-modal="true">
     <div class="modal-sheet bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-md overflow-hidden">
       <div class="bg-[#00629B] text-white px-5 py-3.5 flex items-center justify-between">
-        <h3 class="text-base font-extrabold">Add Hotel Executive Fleet Unit</h3>
-        <button type="button" onclick="closeModal('vehicleModal')" class="w-8 h-8 rounded-lg bg-white/15 text-white font-bold cursor-pointer">✕</button>
+        <h3 class="text-base font-extrabold">Add Hotel Fleet Unit</h3>
+        <button onclick="closeModal('vehicleModal')" class="w-8 h-8 rounded-lg bg-white/15 text-white font-bold cursor-pointer">✕</button>
       </div>
       <form onsubmit="saveNewVehicle(event)" class="p-4 sm:p-5 space-y-3">
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Vehicle Model *</label>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Jenis Kendaraan *</label>
           <input type="text" id="vehModel" required placeholder="e.g., Toyota Alphard" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs" />
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">License Plate *</label>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Nomor Plat *</label>
             <input type="text" id="vehPlate" required placeholder="e.g., KT 28 MI" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs" />
           </div>
           <div>
@@ -900,14 +858,14 @@
             <select id="vehCategory" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs bg-white">
               <option value="VVIP Luxury MPV">VVIP Luxury MPV</option>
               <option value="Executive EV">Executive EV</option>
-              <option value="Executive MPV">Executive MPV</option>
+              <option value="Operational MPV">Operational MPV</option>
               <option value="VIP Shuttle Van">VIP Shuttle Van</option>
-              <option value="Group Shuttle">Group Shuttle</option>
+              <option value="Group Shuttle Bus">Group Shuttle Bus</option>
             </select>
           </div>
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">PIC / Chauffeur Name *</label>
+          <label class="block text-xs font-bold text-slate-700 mb-1">PIC Name *</label>
           <input type="text" id="vehDriver" required placeholder="e.g., Elfan" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs" />
         </div>
         <div class="flex justify-end gap-2 pt-2 border-t border-slate-200">
@@ -921,13 +879,12 @@
   <div id="serviceModal" class="modal-overlay" role="dialog" aria-modal="true">
     <div class="modal-sheet bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden">
       <div class="bg-[#00629B] text-white px-5 py-3.5 flex items-center justify-between">
-        <h3 id="srvModalTitle" class="text-base font-extrabold">Log Vehicle Maintenance &amp; Service</h3>
-        <button type="button" onclick="closeModal('serviceModal')" class="w-8 h-8 rounded-lg bg-white/15 text-white font-bold cursor-pointer">✕</button>
+        <h3 class="text-base font-extrabold">Log Vehicle Maintenance & Service</h3>
+        <button onclick="closeModal('serviceModal')" class="w-8 h-8 rounded-lg bg-white/15 text-white font-bold cursor-pointer">✕</button>
       </div>
       <form onsubmit="saveServiceLog(event)" class="p-4 sm:p-5 space-y-3">
-        <input type="hidden" id="srvEditId" />
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Select Fleet Vehicle &amp; PIC *</label>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Select Vehicle & PIC *</label>
           <select id="srvVehicleSelect" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs font-semibold bg-white"></select>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -982,7 +939,7 @@
           <h3 class="text-base font-extrabold">Platinum Hotel Balikpapan — 200 Room Inventory Matrix</h3>
           <p class="text-[11px] text-sky-100">Floors 5–11 • PLS (Platinum Suite), EXS (Executive Suite), JSU (Junior Suite), BSNQ/BSNT (Business), DLXQ/DLXT (Deluxe)</p>
         </div>
-        <button type="button" onclick="closeModal('roomMatrixModal')" class="w-8 h-8 rounded-lg bg-white/15 text-white font-bold cursor-pointer">✕</button>
+        <button onclick="closeModal('roomMatrixModal')" class="w-8 h-8 rounded-lg bg-white/15 text-white font-bold cursor-pointer">✕</button>
       </div>
       <div class="p-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
         <div class="flex flex-wrap items-center gap-1.5" id="roomFloorFilters"></div>
@@ -1002,10 +959,10 @@
     <div class="modal-sheet bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
       <div class="bg-[#00629B] text-white px-5 py-3.5 flex items-center justify-between">
         <div>
-          <h3 class="text-base font-extrabold">12 Official VIP Tier Classifications &amp; Front Office Protocol</h3>
-          <p class="text-[11px] text-sky-100">Standard Operating Procedure for Platinum Hotel &amp; Convention Hall Balikpapan</p>
+          <h3 class="text-base font-extrabold">12 Official VIP Tier Classifications & Front Office Protocol</h3>
+          <p class="text-[11px] text-sky-100">Standard Operating Procedure for Platinum Hotel & Convention Hall Balikpapan</p>
         </div>
-        <button type="button" onclick="closeModal('sopModal')" class="w-8 h-8 rounded-lg bg-white/15 text-white font-bold cursor-pointer">✕</button>
+        <button onclick="closeModal('sopModal')" class="w-8 h-8 rounded-lg bg-white/15 text-white font-bold cursor-pointer">✕</button>
       </div>
       <div id="sopListContainer" class="p-4 sm:p-5 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-3 flex-1 bg-[#F4F7FA]"></div>
     </div>
@@ -1018,7 +975,7 @@
     <div class="bg-white rounded-2xl p-4 shadow-2xl border-2 border-[#C59B27] max-w-sm w-full text-center space-y-3" onclick="event.stopPropagation()">
       <div class="flex items-center justify-between border-b border-slate-100 pb-2">
         <span class="text-xs font-extrabold uppercase tracking-wider text-[#004E7C]">VIP Identification Portrait</span>
-        <button type="button" onclick="closeModal('lightboxModal')" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs cursor-pointer">✕</button>
+        <button onclick="closeModal('lightboxModal')" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs cursor-pointer">✕</button>
       </div>
       <div class="portrait-34 w-[240px] h-[320px] sm:w-[270px] sm:h-[360px] mx-auto flex items-center justify-center">
         <img id="lightboxImg" src="" alt="Zoomed Portrait" class="w-full h-full object-cover object-top" />
@@ -1031,71 +988,15 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- MODAL 8: SUPABASE CLOUD & GHOFUR.SITE HOSTINGER CONFIGURATION         -->
-  <!-- ===================================================================== -->
-  <div id="cloudConfigModal" class="modal-overlay" role="dialog" aria-modal="true">
-    <div class="modal-sheet bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-2xl max-h-[92vh] flex flex-col overflow-hidden">
-      <div class="bg-[#00629B] text-white px-5 py-3.5 flex items-center justify-between border-b-2 border-[#C59B27]">
-        <div>
-          <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-300">Platinum Balikpapan • ghofur.site</span>
-          <h3 class="text-base font-extrabold">Supabase Cloud &amp; Hostinger Publication Settings</h3>
-        </div>
-        <button type="button" onclick="closeModal('cloudConfigModal')" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold cursor-pointer">✕</button>
-      </div>
-
-      <div class="p-4 sm:p-5 overflow-y-auto space-y-4 text-xs flex-1">
-        <div id="cloudConnBanner" class="p-3 rounded-xl bg-sky-50 border border-sky-200 text-[#004E7C] font-semibold flex items-center justify-between gap-2">
-          <span id="cloudConnStatusText">Cloud sync ready (local cache active + Supabase REST).</span>
-          <span class="px-2 py-0.5 rounded bg-white border border-sky-200 text-[10px] font-extrabold">ghofur.site</span>
-        </div>
-
-        <div class="grid grid-cols-1 gap-3">
-          <div>
-            <label class="block font-bold text-slate-700 mb-1">Supabase Project URL</label>
-            <input type="text" id="cfgSupabaseUrl" class="w-full border border-slate-300 rounded-lg px-3 py-2 font-mono text-[11px]" />
-          </div>
-          <div>
-            <label class="block font-bold text-slate-700 mb-1">Supabase Anon Public Key</label>
-            <input type="password" id="cfgSupabaseKey" class="w-full border border-slate-300 rounded-lg px-3 py-2 font-mono text-[11px]" />
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block font-bold text-slate-700 mb-1">Publication Domain / Hostinger Target</label>
-              <input type="text" id="cfgHostingerDomain" class="w-full border border-slate-300 rounded-lg px-3 py-2 font-semibold" />
-            </div>
-            <div>
-              <label class="block font-bold text-slate-700 mb-1">Workspace State Key</label>
-              <input type="text" id="cfgWorkspaceId" class="w-full border border-slate-300 rounded-lg px-3 py-2 font-mono text-[11px]" />
-            </div>
-          </div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2 pt-1">
-          <button type="button" onclick="saveAndTestCloudConfig()" class="touch-target px-3.5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white font-bold cursor-pointer">Save &amp; Test Connection</button>
-          <button type="button" onclick="pushStateToSupabase(true)" class="touch-target px-3.5 py-2 rounded-lg bg-[#16A34A] hover:bg-emerald-700 text-white font-bold cursor-pointer">Push Now to Supabase</button>
-          <button type="button" onclick="pullStateFromSupabase(true)" class="touch-target px-3.5 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-bold cursor-pointer">Pull Latest from Cloud</button>
-        </div>
-
-        <div class="space-y-1.5 pt-2 border-t border-slate-200">
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-slate-700">Supabase Table SQL Script (<code class="text-[#004E7C]">fom_vip_fleet_state</code>)</span>
-            <button type="button" onclick="copySupabaseSql()" class="text-[#00629B] font-bold hover:underline cursor-pointer">Copy SQL</button>
-          </div>
-          <textarea id="supabaseSqlSnippet" rows="5" readonly class="w-full bg-slate-900 text-emerald-300 font-mono text-[10px] rounded-lg p-2.5 border border-slate-700"></textarea>
-          <p class="text-[11px] text-slate-500">Upload <code class="font-bold">index.html</code>, <code class="font-bold">Logo.png</code>, and <code class="font-bold">favicon.jpg</code> to your Hostinger <code class="font-bold">public_html</code> folder for <code class="font-bold">ghofur.site</code> publication.</p>
-        </div>
-      </div>
-
-      <div class="px-5 py-3 bg-slate-50 border-t border-slate-200 flex justify-end">
-        <button type="button" onclick="closeModal('cloudConfigModal')" class="touch-target px-4 py-2 rounded-lg bg-[#004E7C] text-white font-bold text-xs cursor-pointer">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- APPLICATION JAVASCRIPT                                                -->
+  <!-- APPLICATION JAVASCRIPT + AUTOMATIC SUPABASE CLOUD SYNC                -->
   <!-- ===================================================================== -->
   <script>
+    // 0. SUPABASE PROJECT PHB CONFIGURATION (AUTO-CONNECTED)
+    const SUPABASE_URL = 'https://hupvhnvztvzqbdhuukpt.supabase.co';
+    const SUPABASE_KEY = 'Sb_publishable_AvLLrrZ0-7F2_AXjC1LQhg_H_bolEmB';
+    const SUPABASE_TABLE = 'fom_vip_fleet_state';
+    const SUPABASE_ROW_ID = 'phb-fom-vip-fleet-main';
+
     // 1. ALL 12 OFFICIAL VIP TIERS & DESIGNATIONS
     const VIP_TIERS = [
       {
@@ -1285,42 +1186,9 @@
       fullLabel: `Floor ${r[0]} • ${r[2]} (${ROOM_TYPE_LABELS[r[2]] || r[2]}) • Bed: ${BED_LABELS[r[3]] || r[3]}`
     }));
 
-    // 3. SAFE STORAGE, SUPABASE CLOUD SYNC & DATE HELPERS
-    const STORAGE_KEY = 'phb_fom_vip_fleet_v8';
-    const CLOUD_CFG_KEY = 'phb_ghofur_cloud_cfg_v1';
-    const DEFAULT_SUPABASE_URL = 'https://hupvhnvztvzqbdhuukpt.supabase.co';
-    const DEFAULT_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1cHZobnZ6dHZ6cWJkaHV1a3B0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyNDY4NTIsImV4cCI6MjEwNTgyMjg1Mn0.E-XiAzngGIe_KAe2Znk201Jy55zwLUMOxL4cHhxQCPQ';
-    const SUPABASE_SQL_TEXT = `create table if not exists public.fom_vip_fleet_state (
-  id text primary key,
-  payload jsonb not null,
-  updated_at timestamptz default now()
-);
-alter table public.fom_vip_fleet_state enable row level security;
-create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
-  for all using (true) with check (true);`;
-
+    // 3. SAFE STORAGE, DATE HELPERS & SUPABASE REAL-TIME SYNC
+    const STORAGE_KEY = 'phb_fom_vip_fleet_v8_cloud';
     let memFallback = null;
-    let cloudSyncTimer = null;
-
-    function loadCloudConfig() {
-      try {
-        const raw = localStorage.getItem(CLOUD_CFG_KEY);
-        if (raw) return { ...{ url: DEFAULT_SUPABASE_URL, key: DEFAULT_SUPABASE_KEY, domain: 'https://ghofur.site', workspaceId: 'platinum-bpn-main' }, ...JSON.parse(raw) };
-      } catch (e) {}
-      return { url: DEFAULT_SUPABASE_URL, key: DEFAULT_SUPABASE_KEY, domain: 'https://ghofur.site', workspaceId: 'platinum-bpn-main' };
-    }
-
-    let cloudConfig = loadCloudConfig();
-
-    function setCloudIndicator(stateText, isError = false) {
-      const badge = document.getElementById('cloudBadgeText');
-      if (badge) badge.textContent = stateText;
-      const bannerText = document.getElementById('cloudConnStatusText');
-      if (bannerText) {
-        bannerText.textContent = stateText;
-        bannerText.className = isError ? 'text-rose-700 font-bold' : 'text-[#004E7C] font-semibold';
-      }
-    }
 
     function getLocalTodayISO() {
       const now = new Date();
@@ -1343,10 +1211,30 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       return `${d} ${months[parseInt(m, 10) - 1] || m} ${y}`;
     }
 
+    function setCloudIndicator(status, label) {
+      const badge = document.getElementById('cloudStatusBadge');
+      const dot = document.getElementById('cloudStatusDot');
+      const txt = document.getElementById('cloudStatusText');
+      if (!badge || !txt) return;
+      txt.textContent = label;
+      if (status === 'synced') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#16A34A] text-white shadow-xs cursor-pointer';
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-white';
+      } else if (status === 'syncing') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500 text-white shadow-xs cursor-pointer';
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-white animate-ping';
+      } else {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-700 text-amber-200 shadow-xs cursor-pointer';
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-amber-400';
+      }
+    }
+
+    // 8 OFFICIAL VEHICLES & PIC ROSTER (FROM DAFTAR PIC KENDARAAN)
     function getDefaultState() {
       const today = getLocalTodayISO();
       const tomorrow = addDaysISO(today, 1);
       const dayAfter = addDaysISO(today, 2);
+      const yr = today.split('-')[0];
       return {
         vips: [
           {
@@ -1386,36 +1274,17 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
             notes: 'Japanese Green Tea Setup, Non-Smoking King Suite, Express Check-In.',
             photo: '',
             photoFit: 'top'
-          },
-          {
-            id: 'vip-3',
-            name: 'Mrs. Clara Wijaya',
-            org: 'Platinum Hospitality Group',
-            tierCode: 'VIP 10',
-            position: 'Principal Shareholder',
-            roomNumber: '1129',
-            checkIn: tomorrow,
-            checkOut: addDaysISO(today, 4),
-            flight: 'ID-6260 • 11:20 WITA',
-            vehicleMode: 'fleet',
-            vehicleId: 'veh-2',
-            customVehicle: null,
-            pickupDetail: '11:00 WITA • Sepinggan VIP Lounge',
-            status: 'Expected Arrival',
-            notes: 'Full HOD Greeting, Fresh Orchids & Chilled Sparkling Juice in Suite.',
-            photo: '',
-            photoFit: 'top'
           }
         ],
         vehicles: [
-          { id: 'veh-1', model: 'BYD', plate: 'BYD', category: 'Executive EV', driver: 'Angga', status: 'Available' },
-          { id: 'veh-2', model: 'Toyota Alphard', plate: 'KT 28 MI', category: 'VVIP Luxury MPV', driver: 'Elfan', status: 'In Use' },
-          { id: 'veh-3', model: 'Toyota Avanza', plate: 'KT 1828 YA', category: 'Executive MPV', driver: 'Ikram', status: 'Available' },
-          { id: 'veh-4', model: 'Toyota Avanza', plate: 'KT 1828 KP', category: 'Executive MPV', driver: 'Kholis', status: 'Available' },
-          { id: 'veh-5', model: 'Toyota Avanza', plate: 'KT 1828 LI', category: 'Executive MPV', driver: 'Arya', status: 'Available' },
-          { id: 'veh-6', model: 'Toyota Hiace', plate: 'KT 7828 AH', category: 'VIP Shuttle Van', driver: 'Rifqy', status: 'Available' },
-          { id: 'veh-7', model: 'Toyota Hiace', plate: 'KT 7828 AG', category: 'VIP Shuttle Van', driver: 'Yudha', status: 'Available' },
-          { id: 'veh-8', model: 'Isuzu ELF', plate: 'KT 7828 HP', category: 'Group Shuttle', driver: 'Kholis', status: 'Maintenance' }
+          { id: 'veh-1', no: 1, model: 'BYD', plate: 'BYD', category: 'Executive EV', driver: 'Angga', status: 'In Use' },
+          { id: 'veh-2', no: 2, model: 'Toyota Alphard', plate: 'KT 28 MI', category: 'VVIP Luxury MPV', driver: 'Elfan', status: 'In Use' },
+          { id: 'veh-3', no: 3, model: 'Toyota Avanza', plate: 'KT 1828 YA', category: 'Operational MPV', driver: 'Ikram', status: 'Available' },
+          { id: 'veh-4', no: 4, model: 'Toyota Avanza', plate: 'KT 1828 KP', category: 'Operational MPV', driver: 'Kholis', status: 'Available' },
+          { id: 'veh-5', no: 5, model: 'Toyota Avanza', plate: 'KT 1828 LI', category: 'Operational MPV', driver: 'Arya', status: 'Available' },
+          { id: 'veh-6', no: 6, model: 'Toyota Hiace', plate: 'KT 7828 AH', category: 'VIP Shuttle Van', driver: 'Rifqy', status: 'Available' },
+          { id: 'veh-7', no: 7, model: 'Toyota Hiace', plate: 'KT 7828 AG', category: 'VIP Shuttle Van', driver: 'Yudha', status: 'Maintenance' },
+          { id: 'veh-8', no: 8, model: 'Isuzu ELF', plate: 'KT 7828 HP', category: 'Group Shuttle Bus', driver: 'Kholis', status: 'Available' }
         ],
         dispatches: [
           {
@@ -1433,7 +1302,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
             id: 'disp-2',
             date: today,
             time: '16:30',
-            vehicleLabel: 'BYD [BYD]',
+            vehicleLabel: 'BYD (BYD)',
             isCustom: false,
             guest: 'Mr. Kenji Takahashi (Rm 1010)',
             route: 'Sepinggan Int. Arrival → Platinum Hotel',
@@ -1442,14 +1311,50 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
           }
         ],
         services: [
-          { id: 'srv-1', vehicleId: 'veh-1', vehicleLabel: 'BYD (BYD) • PIC: Angga', type: 'EV Battery Diagnostics & Tire Rotation', lastDate: '2026-02-14', nextDate: '2026-08-14', odometer: 11200, workshop: 'BYD Authorized Service Balikpapan', status: 'Optimal / Ready' },
-          { id: 'srv-2', vehicleId: 'veh-2', vehicleLabel: 'Toyota Alphard (KT 28 MI) • PIC: Elfan', type: '10,000 KM Executive Oil & Brake Check', lastDate: '2026-03-10', nextDate: '2026-09-10', odometer: 18450, workshop: 'Auto2000 MT Haryono Balikpapan', status: 'Optimal / Ready' },
-          { id: 'srv-3', vehicleId: 'veh-3', vehicleLabel: 'Toyota Avanza (KT 1828 YA) • PIC: Ikram', type: 'Periodic Tune-Up & AC Filter', lastDate: '2026-04-05', nextDate: '2026-10-05', odometer: 24100, workshop: 'Auto2000 Balikpapan', status: 'Optimal / Ready' },
-          { id: 'srv-4', vehicleId: 'veh-4', vehicleLabel: 'Toyota Avanza (KT 1828 KP) • PIC: Kholis', type: 'Oil Change & Suspension Inspection', lastDate: '2026-05-18', nextDate: '2026-11-18', odometer: 26800, workshop: 'Auto2000 Balikpapan', status: 'Service Due Soon' },
-          { id: 'srv-5', vehicleId: 'veh-5', vehicleLabel: 'Toyota Avanza (KT 1828 LI) • PIC: Arya', type: 'Brake Pad & Wheel Alignment', lastDate: '2026-06-22', nextDate: '2026-12-22', odometer: 21500, workshop: 'Auto2000 Sudirman Balikpapan', status: 'Optimal / Ready' },
-          { id: 'srv-6', vehicleId: 'veh-6', vehicleLabel: 'Toyota Hiace (KT 7828 AH) • PIC: Rifqy', type: '20,000 KM Shuttle Maintenance', lastDate: '2026-07-12', nextDate: '2026-11-28', odometer: 31900, workshop: 'Auto2000 MT Haryono Balikpapan', status: 'Service Due Soon' },
-          { id: 'srv-7', vehicleId: 'veh-7', vehicleLabel: 'Toyota Hiace (KT 7828 AG) • PIC: Yudha', type: 'Cabin Sanitization & Engine Service', lastDate: '2026-08-25', nextDate: '2026-12-15', odometer: 28700, workshop: 'Auto2000 Balikpapan', status: 'Optimal / Ready' },
-          { id: 'srv-8', vehicleId: 'veh-8', vehicleLabel: 'Isuzu ELF (KT 7828 HP) • PIC: Kholis', type: 'Transmission & Clutch Overhaul', lastDate: '2026-05-29', nextDate: today, odometer: 42300, workshop: 'Isuzu Astra Balikpapan', status: 'In Workshop' }
+          {
+            id: 'srv-1',
+            vehicleId: 'veh-2',
+            vehicleLabel: 'Toyota Alphard (KT 28 MI) — PIC: Elfan',
+            type: '10,000 KM Periodic Service & Brake Inspection',
+            lastDate: `${yr}-02-15`,
+            nextDate: `${yr}-08-15`,
+            odometer: 18450,
+            workshop: 'Auto2000 MT Haryono Balikpapan',
+            status: 'Optimal / Ready'
+          },
+          {
+            id: 'srv-2',
+            vehicleId: 'veh-1',
+            vehicleLabel: 'BYD (BYD) — PIC: Angga',
+            type: 'EV Battery Diagnostics & Tire Rotation',
+            lastDate: `${yr}-04-10`,
+            nextDate: `${yr}-10-10`,
+            odometer: 9200,
+            workshop: 'BYD Authorized Service Balikpapan',
+            status: 'Optimal / Ready'
+          },
+          {
+            id: 'srv-3',
+            vehicleId: 'veh-7',
+            vehicleLabel: 'Toyota Hiace (KT 7828 AG) — PIC: Yudha',
+            type: 'AC Compressor & Clutch Periodic Overhaul',
+            lastDate: `${yr}-05-20`,
+            nextDate: `${yr}-11-25`,
+            odometer: 42100,
+            workshop: 'Auto2000 Balikpapan',
+            status: 'In Workshop'
+          },
+          {
+            id: 'srv-4',
+            vehicleId: 'veh-8',
+            vehicleLabel: 'Isuzu ELF (KT 7828 HP) — PIC: Kholis',
+            type: 'Diesel Injector & Oil Filter Service',
+            lastDate: `${yr}-06-12`,
+            nextDate: `${yr}-12-12`,
+            odometer: 51300,
+            workshop: 'Astra Isuzu Balikpapan',
+            status: 'Service Due Soon'
+          }
         ],
         handovers: [
           {
@@ -1457,13 +1362,13 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
             timestamp: `${formatDisplayDate(today)} • 07:15 WITA`,
             shift: 'Morning Shift (07:00 – 15:00)',
             officer: 'Duty Manager / FOM',
-            notes: 'Platinum Suite 1128 inspected & cleared for H.E. Budi Santoso arrival at 14:30 WITA. Toyota Alphard KT 28 MI (PIC: Elfan) detailed and standby.'
+            notes: 'Platinum Suite 1128 inspected & cleared for H.E. Budi Santoso arrival at 14:30 WITA. Toyota Alphard KT 28 MI (PIC Elfan) & BYD (PIC Angga) standby.'
           }
         ]
       };
     }
 
-    function loadState() {
+    function loadLocalState() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (raw) return JSON.parse(raw);
@@ -1472,114 +1377,75 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       return memFallback;
     }
 
-    function saveState() {
+    function saveLocalState() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
       } catch (e) {
         memFallback = appState;
       }
-      clearTimeout(cloudSyncTimer);
-      cloudSyncTimer = setTimeout(() => {
-        pushStateToSupabase(false);
-      }, 600);
     }
 
-    async function pushStateToSupabase(showFeedback = false) {
-      if (!cloudConfig.url || !cloudConfig.key) return;
-      const endpoint = `${cloudConfig.url.replace(/\/+$/, '')}/rest/v1/fom_vip_fleet_state?on_conflict=id`;
+    async function pushToSupabase() {
+      saveLocalState();
+      setCloudIndicator('syncing', 'Syncing Cloud...');
       try {
-        setCloudIndicator('Syncing Cloud...', false);
-        const res = await fetch(endpoint, {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`, {
           method: 'POST',
           headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
             'Content-Type': 'application/json',
-            'apikey': cloudConfig.key,
-            'Authorization': `Bearer ${cloudConfig.key}`,
             'Prefer': 'resolution=merge-duplicates,return=minimal'
           },
-          body: JSON.stringify([{
-            id: cloudConfig.workspaceId || 'platinum-bpn-main',
+          body: JSON.stringify({
+            id: SUPABASE_ROW_ID,
             payload: appState,
             updated_at: new Date().toISOString()
-          }])
+          })
         });
-        if (!res.ok) {
-          throw new Error(`HTTP ${res.status}`);
+        if (res.ok) {
+          setCloudIndicator('synced', 'Synced + Supabase Cloud');
+        } else {
+          setCloudIndicator('local', 'Local Backup (Check RLS)');
         }
-        setCloudIndicator('Synced + Cloud', false);
-        if (showFeedback) alert('Successfully synced VIP & Fleet data to Supabase Cloud.');
       } catch (err) {
-        setCloudIndicator('Local + Offline Queue', true);
-        if (showFeedback) alert(`Cloud sync notice (${err.message}). Data remains safely saved locally in your browser.`);
+        setCloudIndicator('local', 'Offline Local Mode');
       }
     }
 
-    async function pullStateFromSupabase(showFeedback = false) {
-      if (!cloudConfig.url || !cloudConfig.key) return;
-      const wsId = encodeURIComponent(cloudConfig.workspaceId || 'platinum-bpn-main');
-      const endpoint = `${cloudConfig.url.replace(/\/+$/, '')}/rest/v1/fom_vip_fleet_state?id=eq.${wsId}&select=payload,updated_at`;
+    async function forceSupabasePull() {
+      setCloudIndicator('syncing', 'Syncing Cloud...');
       try {
-        setCloudIndicator('Pulling Cloud...', false);
-        const res = await fetch(endpoint, {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}?id=eq.${SUPABASE_ROW_ID}&select=payload,updated_at`, {
+          method: 'GET',
           headers: {
-            'apikey': cloudConfig.key,
-            'Authorization': `Bearer ${cloudConfig.key}`
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`
           }
         });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const rows = await res.json();
-        if (Array.isArray(rows) && rows.length > 0 && rows[0].payload) {
-          appState = { ...getDefaultState(), ...rows[0].payload };
-          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); } catch (e) {}
-          renderAll();
-          setCloudIndicator('Synced + Cloud', false);
-          if (showFeedback) alert('Latest VIP, Fleet, and Maintenance records pulled from Supabase.');
+        if (res.ok) {
+          const rows = await res.json();
+          if (rows && rows.length > 0 && rows[0].payload && Array.isArray(rows[0].payload.vips)) {
+            appState = rows[0].payload;
+            saveLocalState();
+            renderAll();
+            setCloudIndicator('synced', 'Synced + Supabase Cloud');
+          } else {
+            await pushToSupabase();
+          }
         } else {
-          setCloudIndicator('Synced + Cloud', false);
-          if (showFeedback) alert('Connected to Supabase. No remote snapshot yet — click "Push Now to Supabase" to publish.');
+          setCloudIndicator('local', 'Local Mode (Run SQL)');
         }
       } catch (err) {
-        setCloudIndicator('Local Cache Active', true);
-        if (showFeedback) alert(`Could not fetch remote row (${err.message}). Ensure table fom_vip_fleet_state exists in Supabase.`);
+        setCloudIndicator('local', 'Offline Local Mode');
       }
     }
 
-    function openCloudConfigModal() {
-      document.getElementById('cfgSupabaseUrl').value = cloudConfig.url;
-      document.getElementById('cfgSupabaseKey').value = cloudConfig.key;
-      document.getElementById('cfgHostingerDomain').value = cloudConfig.domain;
-      document.getElementById('cfgWorkspaceId').value = cloudConfig.workspaceId;
-      document.getElementById('supabaseSqlSnippet').value = SUPABASE_SQL_TEXT;
-      openModal('cloudConfigModal');
-    }
-
-    async function saveAndTestCloudConfig() {
-      cloudConfig = {
-        url: document.getElementById('cfgSupabaseUrl').value.trim() || DEFAULT_SUPABASE_URL,
-        key: document.getElementById('cfgSupabaseKey').value.trim() || DEFAULT_SUPABASE_KEY,
-        domain: document.getElementById('cfgHostingerDomain').value.trim() || 'https://ghofur.site',
-        workspaceId: document.getElementById('cfgWorkspaceId').value.trim() || 'platinum-bpn-main'
-      };
-      try { localStorage.setItem(CLOUD_CFG_KEY, JSON.stringify(cloudConfig)); } catch (e) {}
-      await pushStateToSupabase(true);
-    }
-
-    function copySupabaseSql() {
-      const ta = document.getElementById('supabaseSqlSnippet');
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(SUPABASE_SQL_TEXT).catch(() => {});
-      }
-      alert('Supabase SQL schema copied to clipboard.');
-    }
-
-    let appState = loadState();
+    let appState = loadLocalState();
     let currentTab = 'dashboard';
     let currentFormPhoto = '';
     let currentFormPhotoFit = 'top';
     let selectedRoomFloorFilter = 'ALL';
-    let selectedServiceMonth = null;
 
     // 4. CLOCK & INITIALIZATION
     function updateClock() {
@@ -1698,7 +1564,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       if (vip.vehicleMode === 'custom' && vip.customVehicle && vip.customVehicle.name) {
         return {
           title: vip.customVehicle.name,
-          sub: `${vip.customVehicle.plate || 'Custom Plate'} • ${vip.customVehicle.driver || 'External Escort'}`,
+          sub: `${vip.customVehicle.plate || 'Custom Plate'} • PIC: ${vip.customVehicle.driver || 'External Escort'}`,
           isCustom: true
         };
       }
@@ -1706,8 +1572,8 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
         const v = appState.vehicles.find(x => x.id === vip.vehicleId);
         if (v) {
           return {
-            title: v.model,
-            sub: `${v.plate} • PIC: ${v.driver}`,
+            title: `${v.model} (${v.plate})`,
+            sub: `PIC: ${v.driver}`,
             isCustom: false
           };
         }
@@ -1735,20 +1601,18 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       document.getElementById('kpiTotalVipSub').textContent = `${appState.vips.length}/200 Rooms VIP Assigned`;
 
       const availFleet = appState.vehicles.filter(v => v.status === 'Available').length;
-      const totalFleet = appState.vehicles.length || 1;
-      const readyPct = Math.round((availFleet / totalFleet) * 100);
       const activeTrips = appState.dispatches.filter(d => d.status !== 'Completed').length;
-      document.getElementById('kpiFleetReady').textContent = `${readyPct}% Ready`;
+      document.getElementById('kpiFleetReady').textContent = `${availFleet}/${appState.vehicles.length} Ready`;
       document.getElementById('kpiFleetSub').textContent = `${availFleet}/${appState.vehicles.length} Units Available • ${activeTrips} Active Trips`;
 
       const serviceAlerts = appState.services.filter(s => s.status !== 'Optimal / Ready' || s.nextDate <= today).length;
       document.getElementById('kpiServiceAlerts').textContent = `${serviceAlerts} Alert${serviceAlerts === 1 ? '' : 's'}`;
-      document.getElementById('kpiServiceSub').textContent = serviceAlerts > 0 ? `${serviceAlerts} Unit(s) Due Soon or In Workshop` : 'All Hotel Fleet Serviced';
+      document.getElementById('kpiServiceSub').textContent = serviceAlerts > 0 ? `${serviceAlerts} Unit(s) Due Soon or In Workshop` : 'All Fleet Units Serviced';
 
       renderDashboardPanels(todaysArrivals);
       renderVipTable(today);
       renderFleetPanels();
-      renderServiceSection();
+      renderServiceMatrixAndLogs(today);
       renderHandoverList();
     }
 
@@ -1808,19 +1672,20 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       }
 
       const fleetEl = document.getElementById('dashFleetSummary');
-      fleetEl.innerHTML = appState.vehicles.map(v => {
+      fleetEl.innerHTML = appState.vehicles.map((v, i) => {
         const badgeCls = v.status === 'Available'
           ? 'bg-emerald-100 text-emerald-800'
           : v.status === 'In Use'
           ? 'bg-amber-100 text-amber-800'
           : 'bg-rose-100 text-rose-800';
         return `
-          <div class="flex items-center justify-between text-xs py-1.5 border-b border-slate-100 last:border-0">
+          <div class="flex items-center justify-between text-xs py-1 border-b border-slate-100 last:border-0">
             <div>
-              <div class="font-bold text-slate-900">${v.model} <span class="text-[#004E7C]">(${v.plate})</span></div>
-              <div class="text-[11px] text-slate-500">PIC: <strong class="text-slate-700">${v.driver}</strong> • ${v.category}</div>
+              <span class="font-extrabold text-slate-900">${i + 1}. ${v.model}</span>
+              <span class="text-[11px] font-bold text-[#00629B] ml-1">(${v.plate})</span>
+              <span class="text-[11px] text-slate-500 ml-1.5">• PIC: <strong class="text-slate-700">${v.driver}</strong></span>
             </div>
-            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${badgeCls}">${v.status}</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${badgeCls}">${v.status}</span>
           </div>
         `;
       }).join('');
@@ -1892,8 +1757,8 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
               </span>
             </td>
             <td class="py-3 px-3.5 align-top text-right whitespace-nowrap space-x-1">
-              <button type="button" onclick="openVipFormModal('${vip.id}')" class="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-bold text-[11px] cursor-pointer">Edit</button>
-              <button type="button" onclick="deleteVip('${vip.id}')" class="px-2.5 py-1.5 rounded-lg border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-[11px] cursor-pointer">Delete</button>
+              <button onclick="openVipFormModal('${vip.id}')" class="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-bold text-[11px] cursor-pointer">Edit</button>
+              <button onclick="deleteVip('${vip.id}')" class="px-2.5 py-1.5 rounded-lg border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-[11px] cursor-pointer">Delete</button>
             </td>
           </tr>
         `;
@@ -1902,7 +1767,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
 
     function renderFleetPanels() {
       const grid = document.getElementById('fleetCardsGrid');
-      grid.innerHTML = appState.vehicles.map(v => {
+      grid.innerHTML = appState.vehicles.map((v, idx) => {
         const badgeCls = v.status === 'Available'
           ? 'bg-emerald-100 text-emerald-800'
           : v.status === 'In Use'
@@ -1912,12 +1777,12 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
           <div class="rounded-xl border border-slate-200 p-3.5 bg-slate-50/50 flex flex-col justify-between gap-3">
             <div>
               <div class="flex items-center justify-between gap-2">
-                <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#00629B]">${v.category}</span>
+                <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#00629B]">#${idx + 1} • ${v.category}</span>
                 <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${badgeCls}">${v.status}</span>
               </div>
               <h4 class="text-xs sm:text-sm font-extrabold text-slate-900 mt-1">${v.model}</h4>
-              <div class="text-xs font-bold text-[#004E7C] mt-0.5">${v.plate}</div>
-              <div class="text-[11px] text-slate-500 mt-1">PIC: <strong class="text-slate-800">${v.driver}</strong></div>
+              <div class="text-xs font-extrabold text-[#004E7C] mt-0.5">Plat: ${v.plate}</div>
+              <div class="text-[11px] text-slate-600 mt-1">PIC: <strong class="text-slate-900">${v.driver}</strong></div>
             </div>
             <div class="flex items-center gap-1.5 pt-2 border-t border-slate-200/80">
               <select onchange="updateVehicleStatus('${v.id}', this.value)" class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 text-[11px] font-semibold">
@@ -1932,7 +1797,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
 
       const tbody = document.getElementById('dispatchTableBody');
       if (appState.dispatches.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-500">No chauffeur dispatches scheduled.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-500">No vehicle dispatches scheduled.</td></tr>`;
         return;
       }
       tbody.innerHTML = appState.dispatches.map(d => `
@@ -1949,157 +1814,83 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
             <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${d.status === 'Completed' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">${d.status}</span>
           </td>
           <td class="py-3 px-3.5 text-right">
-            <button type="button" onclick="deleteDispatch('${d.id}')" class="px-2.5 py-1 rounded-lg border border-rose-200 bg-rose-50 text-rose-700 font-bold text-[11px] cursor-pointer">Remove</button>
+            <button onclick="deleteDispatch('${d.id}')" class="px-2.5 py-1 rounded-lg border border-rose-200 bg-rose-50 text-rose-700 font-bold text-[11px] cursor-pointer">Remove</button>
           </td>
         </tr>
       `).join('');
     }
 
-    // MAINTENANCE LOGS: DATE RANGE, YEAR & 12-MONTH MATRIX
-    function onServiceYearChange() {
-      const yr = document.getElementById('srvYearSelect').value || '2026';
-      document.getElementById('srvFromDate').value = `${yr}-01-01`;
-      document.getElementById('srvToDate').value = `${yr}-12-31`;
-      selectedServiceMonth = null;
-      renderServiceSection();
+    // MAINTENANCE LOGS: DATE RANGE FILTER + 12-MONTH MATRIX
+    function setServiceFullYearFilter() {
+      const yr = document.getElementById('srvFilterYear').value;
+      document.getElementById('srvFilterFrom').value = `${yr}-01-01`;
+      document.getElementById('srvFilterTo').value = `${yr}-12-31`;
+      renderAll();
     }
 
-    function setServiceFullYearPreset() {
-      onServiceYearChange();
+    function clearServiceDateFilter() {
+      document.getElementById('srvFilterFrom').value = '';
+      document.getElementById('srvFilterTo').value = '';
+      renderAll();
     }
 
-    function setServiceQ4Preset() {
-      document.getElementById('srvYearSelect').value = '2026';
-      document.getElementById('srvFromDate').value = '2026-11-01';
-      document.getElementById('srvToDate').value = '2026-12-31';
-      selectedServiceMonth = null;
-      renderServiceSection();
-    }
+    function renderServiceMatrixAndLogs(today) {
+      const fromDate = document.getElementById('srvFilterFrom').value;
+      const toDate = document.getElementById('srvFilterTo').value;
+      const matrixYear = document.getElementById('srvFilterYear').value;
+      document.getElementById('matrixYearTitle').textContent = matrixYear;
 
-    function resetServiceFilters() {
-      document.getElementById('srvYearSelect').value = '2026';
-      document.getElementById('srvFilterVehicle').value = 'ALL';
-      selectedServiceMonth = null;
-      onServiceYearChange();
-    }
-
-    function toggleServiceMonthCell(monthIdx) {
-      selectedServiceMonth = (selectedServiceMonth === monthIdx) ? null : monthIdx;
-      renderServiceSection();
-    }
-
-    function populateServiceVehicleFilter() {
-      const sel = document.getElementById('srvFilterVehicle');
-      if (!sel) return;
-      const cur = sel.value || 'ALL';
-      sel.innerHTML = `<option value="ALL">All ${appState.vehicles.length} Fleet Units</option>` +
-        appState.vehicles.map(v => `<option value="${v.id}">${v.model} (${v.plate}) — PIC: ${v.driver}</option>`).join('');
-      sel.value = cur;
-    }
-
-    function renderServiceSection() {
-      populateServiceVehicleFilter();
-      const today = getLocalTodayISO();
-      const yr = document.getElementById('srvYearSelect').value || '2026';
-      if (!document.getElementById('srvFromDate').value) document.getElementById('srvFromDate').value = `${yr}-01-01`;
-      if (!document.getElementById('srvToDate').value) document.getElementById('srvToDate').value = `${yr}-12-31`;
-
-      const fromDate = document.getElementById('srvFromDate').value;
-      const toDate = document.getElementById('srvToDate').value;
-      const vehFilter = document.getElementById('srvFilterVehicle').value;
-
-      document.getElementById('srvMatrixTitle').textContent = `12-Month Maintenance Metrics Matrix (${yr})`;
-
-      const yearServices = appState.services.filter(s => {
-        if (vehFilter !== 'ALL' && s.vehicleId !== vehFilter) return false;
-        const dueYr = (s.nextDate || '').slice(0, 4);
-        const lastYr = (s.lastDate || '').slice(0, 4);
-        return dueYr === yr || lastYr === yr;
-      });
-
-      const matrixBody = document.getElementById('serviceMonthlyMatrixBody');
-      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      const monthColTotals = Array(12).fill(0);
-      let grandAnnualTotal = 0;
-
-      const vehiclesForMatrix = vehFilter === 'ALL'
-        ? appState.vehicles
-        : appState.vehicles.filter(v => v.id === vehFilter);
-
-      matrixBody.innerHTML = vehiclesForMatrix.map(v => {
-        const vLogs = yearServices.filter(s => s.vehicleId === v.id);
-        let rowTotal = 0;
-        const monthCellsHtml = monthNames.map((_, mIdx) => {
+      const matrixBody = document.getElementById('serviceMatrixBody');
+      matrixBody.innerHTML = appState.vehicles.map((v, idx) => {
+        let annualCount = 0;
+        const monthCells = Array.from({ length: 12 }, (_, mIdx) => {
           const mm = String(mIdx + 1).padStart(2, '0');
-          const count = vLogs.filter(s => {
-            const dMonth = (s.nextDate || '').slice(0, 7) === `${yr}-${mm}`;
-            const lMonth = (s.lastDate || '').slice(0, 7) === `${yr}-${mm}`;
-            return dMonth || lMonth;
-          }).length;
-          rowTotal += count;
-          monthColTotals[mIdx] += count;
-          const isSelectedCol = selectedServiceMonth === mIdx;
-          const cellBg = isSelectedCol
-            ? 'bg-amber-100 border-[#C59B27] text-[#9A7414] font-extrabold'
-            : count > 0
-            ? 'bg-sky-50 text-[#004E7C] font-bold hover:bg-sky-100'
-            : 'text-slate-300 hover:bg-slate-50';
-          return `
-            <td onclick="toggleServiceMonthCell(${mIdx})" title="${v.model} (${v.plate}) • ${monthNames[mIdx]} ${yr}: ${count} log(s)" class="py-2 px-2 text-center border-l border-slate-100 cursor-pointer transition ${cellBg}">
-              ${count > 0 ? count : '·'}
-            </td>
-          `;
+          const prefix = `${matrixYear}-${mm}`;
+          const matchedLogs = appState.services.filter(s =>
+            (s.vehicleId === v.id || (s.vehicleLabel && s.vehicleLabel.includes(v.plate))) &&
+            ((s.lastDate && s.lastDate.startsWith(prefix)) || (s.nextDate && s.nextDate.startsWith(prefix)))
+          );
+          if (matchedLogs.length === 0) {
+            return `<td class="py-2 px-1.5 text-slate-300 border-l border-slate-100">—</td>`;
+          }
+          annualCount += matchedLogs.length;
+          const latest = matchedLogs[0];
+          const isDue = latest.nextDate && latest.nextDate.startsWith(prefix) && latest.status !== 'Optimal / Ready';
+          const pillCls = latest.status === 'In Workshop'
+            ? 'bg-rose-100 text-rose-800 border-rose-200'
+            : isDue
+            ? 'bg-amber-100 text-amber-800 border-amber-200'
+            : 'bg-emerald-100 text-emerald-800 border-emerald-200';
+          const tag = latest.lastDate && latest.lastDate.startsWith(prefix) ? 'DONE' : 'DUE';
+          return `<td class="py-2 px-1 border-l border-slate-100" title="${latest.type}"><span class="inline-block px-1.5 py-0.5 rounded border text-[9px] font-extrabold ${pillCls}">${tag}</span></td>`;
         }).join('');
-        grandAnnualTotal += rowTotal;
 
         return `
-          <tr class="bg-white hover:bg-slate-50/70">
-            <td class="py-2.5 px-3 font-bold text-slate-900 whitespace-nowrap">${v.model} <span class="text-[#00629B]">(${v.plate})</span></td>
-            <td class="py-2.5 px-2.5 font-semibold text-slate-700 whitespace-nowrap">${v.driver}</td>
-            ${monthCellsHtml}
-            <td class="py-2.5 px-3 text-center font-extrabold text-[#004E7C] bg-slate-50 border-l border-slate-200">${rowTotal}</td>
+          <tr class="hover:bg-slate-50">
+            <td class="py-2.5 px-3 text-left font-bold text-slate-900 whitespace-nowrap">
+              ${idx + 1}. ${v.model} <span class="text-[#00629B]">(${v.plate})</span>
+              <span class="block text-[10px] font-normal text-slate-500">PIC: ${v.driver}</span>
+            </td>
+            ${monthCells}
+            <td class="py-2.5 px-3 font-extrabold text-[#004E7C] bg-sky-50/50 border-l border-slate-200">${annualCount}x</td>
           </tr>
         `;
-      }).join('') + `
-        <tr class="bg-[#F4F7FA] font-extrabold text-slate-900 border-t-2 border-slate-300">
-          <td class="py-2.5 px-3" colspan="2">Monthly Total (All Filtered Units)</td>
-          ${monthColTotals.map((tot, mIdx) => `
-            <td onclick="toggleServiceMonthCell(${mIdx})" class="py-2.5 px-2 text-center border-l border-slate-200 cursor-pointer ${selectedServiceMonth === mIdx ? 'bg-amber-200 text-[#9A7414]' : 'text-[#004E7C]'}">${tot}</td>
-          `).join('')}
-          <td class="py-2.5 px-3 text-center bg-[#004E7C] text-white">${grandAnnualTotal}</td>
-        </tr>
-      `;
+      }).join('');
 
-      const filteredLogs = appState.services.filter(s => {
-        if (vehFilter !== 'ALL' && s.vehicleId !== vehFilter) return false;
-        const targetDate = s.nextDate || s.lastDate || '';
-        if (fromDate && targetDate < fromDate) return false;
-        if (toDate && targetDate > toDate) return false;
-        if (selectedServiceMonth !== null) {
-          const mm = String(selectedServiceMonth + 1).padStart(2, '0');
-          if ((s.nextDate || '').slice(0, 7) !== `${yr}-${mm}` && (s.lastDate || '').slice(0, 7) !== `${yr}-${mm}`) {
-            return false;
-          }
-        }
+      const filteredServices = appState.services.filter(s => {
+        const refDate = s.nextDate || s.lastDate || '';
+        if (fromDate && refDate < fromDate) return false;
+        if (toDate && refDate > toDate) return false;
         return true;
       });
 
-      const monthBadge = document.getElementById('srvActiveMonthFilterBadge');
-      if (selectedServiceMonth !== null) {
-        monthBadge.textContent = `Month: ${monthNames[selectedServiceMonth]} ${yr} (Click to clear)`;
-        monthBadge.classList.remove('hidden');
-      } else {
-        monthBadge.classList.add('hidden');
-      }
-      document.getElementById('srvFilteredCountBadge').textContent = `${filteredLogs.length} Log${filteredLogs.length === 1 ? '' : 's'}`;
-
       const tbody = document.getElementById('serviceTableBody');
-      if (filteredLogs.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" class="py-7 text-center text-slate-500 font-medium">No maintenance records match the selected date range or month filter.</td></tr>`;
+      if (filteredServices.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="py-6 text-center text-slate-500">No maintenance logs found in the selected date range.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = filteredLogs.map(s => {
+      tbody.innerHTML = filteredServices.map(s => {
         const isDue = s.nextDate <= today || s.status !== 'Optimal / Ready';
         const badgeCls = s.status === 'Optimal / Ready' && s.nextDate > today
           ? 'bg-emerald-100 text-emerald-800'
@@ -2113,9 +1904,8 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
             <td class="py-3 px-3.5 font-semibold">${Number(s.odometer).toLocaleString()} KM</td>
             <td class="py-3 px-3.5 text-slate-600">${s.workshop}</td>
             <td class="py-3 px-3.5"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${badgeCls}">${s.status}</span></td>
-            <td class="py-3 px-3.5 text-right whitespace-nowrap space-x-1">
-              <button type="button" onclick="openServiceModal('${s.id}')" class="px-2.5 py-1 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-bold text-[11px] cursor-pointer">Edit</button>
-              <button type="button" onclick="deleteService('${s.id}')" class="px-2.5 py-1 rounded-lg border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-[11px] cursor-pointer">Delete</button>
+            <td class="py-3 px-3.5 text-right">
+              <button onclick="deleteService('${s.id}')" class="px-2.5 py-1 rounded-lg border border-slate-300 bg-white text-slate-700 font-bold text-[11px] cursor-pointer">Delete</button>
             </td>
           </tr>
         `;
@@ -2147,7 +1937,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       const vehSel = document.getElementById('vipVehicleSelect');
       vehSel.innerHTML =
         `<option value="none">-- No Hotel Pickup Required --</option>` +
-        appState.vehicles.map(v => `<option value="${v.id}">${v.model} (${v.plate} • PIC: ${v.driver})</option>`).join('') +
+        appState.vehicles.map((v, i) => `<option value="${v.id}">${i + 1}. ${v.model} (${v.plate} • PIC: ${v.driver} • ${v.status})</option>`).join('') +
         `<option value="custom">+ Custom / External Vehicle (Manual Entry)</option>`;
 
       if (editId) {
@@ -2330,7 +2120,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       openLightbox(currentFormPhoto, name, `${tier} • Portrait Framing Preview`);
     }
 
-    function saveVipGuest(event) {
+    async function saveVipGuest(event) {
       event.preventDefault();
       const editId = document.getElementById('vipEditId').value;
       const posSel = document.getElementById('vipPositionSelect').value;
@@ -2348,7 +2138,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
         customVehicle = {
           name: document.getElementById('vipCustomCarName').value.trim() || 'Custom Executive Vehicle',
           plate: document.getElementById('vipCustomCarPlate').value.trim() || 'Custom Plate',
-          driver: document.getElementById('vipCustomCarDriver').value.trim() || 'Assigned Escort'
+          driver: document.getElementById('vipCustomCarDriver').value.trim() || 'Assigned PIC'
         };
       } else if (vehVal !== 'none') {
         vehicleMode = 'fleet';
@@ -2382,20 +2172,20 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
         appState.vips.unshift(payload);
       }
 
-      saveState();
       closeModal('vipFormModal');
       renderAll();
+      await pushToSupabase();
 
       if (payload.checkIn === getLocalTodayISO()) {
         openArrivalModal(true);
       }
     }
 
-    function deleteVip(id) {
+    async function deleteVip(id) {
       if (!confirm('Delete this VIP guest profile from the registry?')) return;
       appState.vips = appState.vips.filter(v => v.id !== id);
-      saveState();
       renderAll();
+      await pushToSupabase();
     }
 
     // 9. FLEET, DISPATCH, SERVICE & HANDOVER ACTIONS
@@ -2403,7 +2193,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       document.getElementById('dispDate').value = getLocalTodayISO();
       const sel = document.getElementById('dispVehicleSelect');
       sel.innerHTML =
-        appState.vehicles.map(v => `<option value="${v.id}">${v.model} (${v.plate}) • PIC: ${v.driver}</option>`).join('') +
+        appState.vehicles.map((v, i) => `<option value="${v.id}">${i + 1}. ${v.model} (${v.plate} • PIC: ${v.driver})</option>`).join('') +
         `<option value="custom">+ Custom / External Vehicle (Manual Entry)</option>`;
       onDispVehicleChange();
       openModal('dispatchModal');
@@ -2412,11 +2202,16 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
     function onDispVehicleChange() {
       const val = document.getElementById('dispVehicleSelect').value;
       const box = document.getElementById('dispCustomVehicleBox');
-      if (val === 'custom') box.classList.remove('hidden');
-      else box.classList.add('hidden');
+      if (val === 'custom') {
+        box.classList.remove('hidden');
+      } else {
+        box.classList.add('hidden');
+        const v = appState.vehicles.find(x => x.id === val);
+        if (v) document.getElementById('dispDriver').value = v.driver;
+      }
     }
 
-    function saveDispatch(e) {
+    async function saveDispatch(e) {
       e.preventDefault();
       const vehVal = document.getElementById('dispVehicleSelect').value;
       let vehicleLabel = '';
@@ -2442,107 +2237,77 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
         route: document.getElementById('dispRoute').value.trim(),
         status: document.getElementById('dispStatus').value
       });
-      saveState();
       closeModal('dispatchModal');
       renderAll();
+      await pushToSupabase();
     }
 
-    function deleteDispatch(id) {
+    async function deleteDispatch(id) {
       appState.dispatches = appState.dispatches.filter(d => d.id !== id);
-      saveState();
       renderAll();
+      await pushToSupabase();
     }
 
-    function openVehicleModal() {
-      openModal('vehicleModal');
-    }
+    function openVehicleModal() { openModal('vehicleModal'); }
 
-    function saveNewVehicle(e) {
+    async function saveNewVehicle(e) {
       e.preventDefault();
       appState.vehicles.push({
         id: `veh-${Date.now()}`,
+        no: appState.vehicles.length + 1,
         model: document.getElementById('vehModel').value.trim(),
         plate: document.getElementById('vehPlate').value.trim(),
         category: document.getElementById('vehCategory').value,
         driver: document.getElementById('vehDriver').value.trim(),
         status: 'Available'
       });
-      saveState();
       closeModal('vehicleModal');
       renderAll();
+      await pushToSupabase();
     }
 
-    function updateVehicleStatus(id, status) {
+    async function updateVehicleStatus(id, status) {
       const v = appState.vehicles.find(x => x.id === id);
       if (v) v.status = status;
-      saveState();
       renderAll();
+      await pushToSupabase();
     }
 
-    function openServiceModal(editId = null) {
+    function openServiceModal() {
       const sel = document.getElementById('srvVehicleSelect');
-      sel.innerHTML = appState.vehicles.map(v => `<option value="${v.id}">${v.model} (${v.plate}) • PIC: ${v.driver}</option>`).join('');
-      document.getElementById('srvEditId').value = editId || '';
-
-      if (editId) {
-        const s = appState.services.find(x => x.id === editId);
-        if (!s) return;
-        document.getElementById('srvModalTitle').textContent = 'Edit Vehicle Maintenance Log';
-        sel.value = s.vehicleId;
-        document.getElementById('srvType').value = s.type;
-        document.getElementById('srvOdometer').value = s.odometer;
-        document.getElementById('srvLastDate').value = s.lastDate;
-        document.getElementById('srvNextDate').value = s.nextDate;
-        document.getElementById('srvWorkshop').value = s.workshop;
-        document.getElementById('srvStatus').value = s.status;
-      } else {
-        document.getElementById('srvModalTitle').textContent = 'Log Vehicle Maintenance & Service';
-        document.getElementById('srvType').value = '';
-        document.getElementById('srvOdometer').value = '';
-        document.getElementById('srvWorkshop').value = '';
-        document.getElementById('srvStatus').value = 'Optimal / Ready';
-        document.getElementById('srvLastDate').value = getLocalTodayISO();
-        document.getElementById('srvNextDate').value = addDaysISO(getLocalTodayISO(), 30);
-      }
+      sel.innerHTML = appState.vehicles.map((v, i) => `<option value="${v.id}">${i + 1}. ${v.model} (${v.plate}) — PIC: ${v.driver}</option>`).join('');
+      document.getElementById('srvLastDate').value = getLocalTodayISO();
+      document.getElementById('srvNextDate').value = addDaysISO(getLocalTodayISO(), 90);
       openModal('serviceModal');
     }
 
-    function saveServiceLog(e) {
+    async function saveServiceLog(e) {
       e.preventDefault();
-      const editId = document.getElementById('srvEditId').value;
       const vehId = document.getElementById('srvVehicleSelect').value;
       const v = appState.vehicles.find(x => x.id === vehId);
-      const record = {
-        id: editId || `srv-${Date.now()}`,
+      appState.services.unshift({
+        id: `srv-${Date.now()}`,
         vehicleId: vehId,
-        vehicleLabel: v ? `${v.model} (${v.plate}) • PIC: ${v.driver}` : 'Fleet Vehicle',
+        vehicleLabel: v ? `${v.model} (${v.plate}) — PIC: ${v.driver}` : 'Fleet Vehicle',
         type: document.getElementById('srvType').value.trim(),
         odometer: document.getElementById('srvOdometer').value,
         lastDate: document.getElementById('srvLastDate').value,
         nextDate: document.getElementById('srvNextDate').value,
         workshop: document.getElementById('srvWorkshop').value.trim() || 'Authorized Service Center',
         status: document.getElementById('srvStatus').value
-      };
-
-      if (editId) {
-        const idx = appState.services.findIndex(x => x.id === editId);
-        if (idx !== -1) appState.services[idx] = record;
-      } else {
-        appState.services.unshift(record);
-      }
-      saveState();
+      });
       closeModal('serviceModal');
       renderAll();
+      await pushToSupabase();
     }
 
-    function deleteService(id) {
-      if (!confirm('Delete this maintenance log entry?')) return;
+    async function deleteService(id) {
       appState.services = appState.services.filter(s => s.id !== id);
-      saveState();
       renderAll();
+      await pushToSupabase();
     }
 
-    function addHandoverNote(e) {
+    async function addHandoverNote(e) {
       e.preventDefault();
       const now = new Date();
       const ts = `${formatDisplayDate(getLocalTodayISO())} • ${now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} WITA`;
@@ -2554,8 +2319,8 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
         notes: document.getElementById('hoNotes').value.trim()
       });
       document.getElementById('hoNotes').value = '';
-      saveState();
       renderAll();
+      await pushToSupabase();
     }
 
     // 10. 200-ROOM MATRIX MODAL
@@ -2563,7 +2328,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       const floors = ['ALL', 11, 10, 9, 8, 7, 6, 5];
       document.getElementById('roomFloorFilters').innerHTML = floors.map(f => {
         const active = selectedRoomFloorFilter === f;
-        return `<button type="button" onclick="filterRoomMatrix(${f === 'ALL' ? "'ALL'" : f})" class="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer ${active ? 'bg-[#00629B] text-white' : 'bg-white border border-slate-300 text-slate-700'}">${f === 'ALL' ? 'All Floors (200)' : 'Floor ' + f}</button>`;
+        return `<button onclick="filterRoomMatrix(${f === 'ALL' ? "'ALL'" : f})" class="px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer ${active ? 'bg-[#00629B] text-white' : 'bg-white border border-slate-300 text-slate-700'}">${f === 'ALL' ? 'All Floors (200)' : 'Floor ' + f}</button>`;
       }).join('');
 
       const vipRoomMap = {};
@@ -2631,7 +2396,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
                 <div class="text-xs font-semibold text-slate-600">${vip.org}</div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-200">
                   <div><span class="text-slate-400">Suite / Room:</span> <strong class="text-slate-900">Room ${vip.roomNumber} (${roomObj.type})</strong></div>
-                  <div><span class="text-slate-400">Flight &amp; ETA:</span> <strong class="text-[#00629B]">${vip.flight}</strong></div>
+                  <div><span class="text-slate-400">Flight & ETA:</span> <strong class="text-[#00629B]">${vip.flight}</strong></div>
                   <div class="sm:col-span-2"><span class="text-slate-400">Transport:</span> <strong class="text-slate-900">${veh.title}</strong> (${veh.sub})</div>
                 </div>
                 ${vip.notes ? `<div class="mt-2 text-[11px] text-slate-600"><strong>Protocol Notes:</strong> ${vip.notes}</div>` : ''}
@@ -2705,8 +2470,8 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
           <button class="no-print" onclick="window.print()">Print / Save as PDF</button>
           <div class="hdr">
             <div>
-              <h1>PLATINUM HOTEL &amp; CONVENTION HALL BALIKPAPAN</h1>
-              <div class="sub">FRONT OFFICE VIP &amp; FLEET VISUAL REPORT • ${todayStr}</div>
+              <h1>PLATINUM HOTEL & CONVENTION HALL BALIKPAPAN</h1>
+              <div class="sub">FRONT OFFICE VIP & FLEET VISUAL REPORT • ${todayStr}</div>
             </div>
             <div style="font-size:12px;color:#475569;">Total VIP Profiles: <strong>${appState.vips.length}</strong></div>
           </div>
@@ -2714,11 +2479,11 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
             <thead>
               <tr>
                 <th>Portrait</th>
-                <th>Guest &amp; Organization</th>
-                <th>VIP Tier &amp; Position</th>
-                <th>Room &amp; Type</th>
-                <th>Stay &amp; Flight</th>
-                <th>Vehicle</th>
+                <th>Guest & Organization</th>
+                <th>VIP Tier & Position</th>
+                <th>Room & Type</th>
+                <th>Stay & Flight</th>
+                <th>Vehicle & PIC</th>
                 <th>Protocol Notes</th>
               </tr>
             </thead>
@@ -2730,7 +2495,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
       win.document.close();
     }
 
-    // 13. CLEAN EXCEL REPORT EXPORT (.xls — NO BROKEN LINKED IMAGES IN EXCEL)
+    // 13. CLEAN EXCEL REPORT EXPORT (.xls)
     function exportVisualExcelReport() {
       const todayStr = formatDisplayDate(getLocalTodayISO());
       const vipRowsHtml = appState.vips.map(vip => {
@@ -2753,14 +2518,13 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
         `;
       }).join('');
 
-      const fleetRowsHtml = appState.dispatches.map(d => `
+      const fleetRowsHtml = appState.vehicles.map((v, i) => `
         <tr>
-          <td style="border:1px solid #CBD5E1; padding:6px;">${d.date} ${d.time} WITA</td>
-          <td style="border:1px solid #CBD5E1; padding:6px;">${d.vehicleLabel}</td>
-          <td style="border:1px solid #CBD5E1; padding:6px;">${d.guest}</td>
-          <td style="border:1px solid #CBD5E1; padding:6px;">${d.route}</td>
-          <td style="border:1px solid #CBD5E1; padding:6px;">${d.driver}</td>
-          <td style="border:1px solid #CBD5E1; padding:6px;">${d.status}</td>
+          <td style="border:1px solid #CBD5E1; padding:6px;">${i + 1}</td>
+          <td style="border:1px solid #CBD5E1; padding:6px;">${v.model}</td>
+          <td style="border:1px solid #CBD5E1; padding:6px;">${v.plate}</td>
+          <td style="border:1px solid #CBD5E1; padding:6px;">${v.driver}</td>
+          <td style="border:1px solid #CBD5E1; padding:6px;">${v.status}</td>
         </tr>
       `).join('');
 
@@ -2779,45 +2543,44 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
         <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
         <head><meta charset="UTF-8" /></head>
         <body style="font-family:Calibri, Arial, sans-serif;">
-          <h2 style="color:#004E7C; margin-bottom:2px;">PLATINUM HOTEL &amp; CONVENTION HALL BALIKPAPAN</h2>
-          <p style="color:#9A7414; font-weight:bold; margin-top:0;">Front Office VIP &amp; Fleet Command Report • Generated: ${todayStr}</p>
-          <h3 style="background:#004E7C; color:#FFFFFF; padding:6px;">1. VIP GUEST REGISTRY &amp; ROOM ALLOCATION</h3>
+          <h2 style="color:#004E7C; margin-bottom:2px;">PLATINUM HOTEL & CONVENTION HALL BALIKPAPAN</h2>
+          <p style="color:#9A7414; font-weight:bold; margin-top:0;">Front Office VIP & Fleet Command Report • Generated: ${todayStr}</p>
+          <h3 style="background:#004E7C; color:#FFFFFF; padding:6px;">1. VIP GUEST REGISTRY & ROOM ALLOCATION</h3>
           <table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse; width:100%;">
             <thead>
               <tr style="background:#00629B; color:#FFFFFF; font-weight:bold;">
                 <th>Portrait Status</th>
-                <th>Guest Name &amp; Organization</th>
-                <th>VIP Tier &amp; Official Position</th>
-                <th>Room &amp; Type (200 Inv.)</th>
-                <th>Check-In / Out &amp; Flight</th>
-                <th>Assigned Vehicle / Custom</th>
+                <th>Guest Name & Organization</th>
+                <th>VIP Tier & Official Position</th>
+                <th>Room & Type (200 Inv.)</th>
+                <th>Check-In / Out & Flight</th>
+                <th>Assigned Vehicle & PIC</th>
                 <th>Status</th>
-                <th>Protocol &amp; Amenity Notes</th>
+                <th>Protocol & Amenity Notes</th>
               </tr>
             </thead>
             <tbody>${vipRowsHtml}</tbody>
           </table>
 
-          <h3 style="background:#004E7C; color:#FFFFFF; padding:6px; margin-top:18px;">2. CHAUFFEUR &amp; EXECUTIVE FLEET DISPATCH SCHEDULE</h3>
+          <h3 style="background:#004E7C; color:#FFFFFF; padding:6px; margin-top:18px;">2. DAFTAR PIC KENDARAAN (8 UNITS)</h3>
           <table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse; width:100%;">
             <thead>
               <tr style="background:#00629B; color:#FFFFFF; font-weight:bold;">
-                <th>Date &amp; Time</th>
-                <th>Vehicle Unit</th>
-                <th>VIP Guest</th>
-                <th>Route</th>
-                <th>Chauffeur</th>
+                <th>No</th>
+                <th>Jenis Kendaraan</th>
+                <th>Nomor Plat</th>
+                <th>PIC</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>${fleetRowsHtml}</tbody>
           </table>
 
-          <h3 style="background:#004E7C; color:#FFFFFF; padding:6px; margin-top:18px;">3. VEHICLE PREVENTIVE MAINTENANCE &amp; SERVICE LOGS</h3>
+          <h3 style="background:#004E7C; color:#FFFFFF; padding:6px; margin-top:18px;">3. VEHICLE PREVENTIVE MAINTENANCE & SERVICE LOGS</h3>
           <table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse; width:100%;">
             <thead>
               <tr style="background:#00629B; color:#FFFFFF; font-weight:bold;">
-                <th>Vehicle</th>
+                <th>Vehicle & PIC</th>
                 <th>Service Type</th>
                 <th>Last Service</th>
                 <th>Next Due</th>
@@ -2845,7 +2608,7 @@ create policy "Allow anon read/write fom state" on public.fom_vip_fleet_state
     // BOOTSTRAP APPLICATION
     populateStaticSelectors();
     switchTab('dashboard');
-    pullStateFromSupabase(false);
+    forceSupabasePull();
     setTimeout(() => openArrivalModal(false), 450);
   </script>
 </body>
