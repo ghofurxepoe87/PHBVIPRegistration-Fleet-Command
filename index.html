@@ -1,0 +1,3249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#00629B" />
+  <title>Front Office VIP &amp; Fleet Command — Platinum Hotel &amp; Convention Hall Balikpapan</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            platinum: {
+              blue: '#00629B',
+              navy: '#004E7C',
+              dark: '#00385A',
+              ice: '#F4F7FA',
+              gold: '#C59B27',
+              goldLight: '#FFFDF7',
+              goldBorder: '#FDE68A',
+            }
+          },
+          boxShadow: {
+            'card': '0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.04)',
+            'modal': '0 24px 48px -12px rgba(0, 56, 90, 0.30)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --sat: env(safe-area-inset-top, 0px);
+      --sab: env(safe-area-inset-bottom, 0px);
+      --sal: env(safe-area-inset-left, 0px);
+      --sar: env(safe-area-inset-right, 0px);
+    }
+
+    html {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #F4F7FA;
+      color: #1E293B;
+      padding-bottom: calc(20px + var(--sab));
+      overflow-x: hidden;
+    }
+
+    .safe-header {
+      padding-top: calc(0.75rem + var(--sat));
+    }
+
+    .safe-modal-bottom {
+      padding-bottom: calc(1rem + var(--sab));
+    }
+
+    /* Prevent iOS Safari Auto-Zoom on Input Focus */
+    @media screen and (max-width: 767px) {
+      input[type="text"],
+      input[type="number"],
+      input[type="date"],
+      input[type="time"],
+      select,
+      textarea {
+        font-size: 16px !important;
+      }
+    }
+
+    /* Minimum 44px Touch Target on Mobile */
+    .touch-btn {
+      min-height: 40px;
+    }
+    @media screen and (max-width: 767px) {
+      .touch-btn {
+        min-height: 44px;
+      }
+    }
+
+    .scroll-smooth-x {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F7FA;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* Double Gold Luxury Portrait Frame */
+    .gold-portrait-frame {
+      border: 3px solid #C59B27;
+      box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px rgba(197, 155, 39, 0.35), 0 8px 18px -4px rgba(15, 23, 42, 0.14);
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .animate-modal {
+      animation: modalSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ======================================================================= -->
+  <!-- TOP CERULEAN BLUE HEADER (#00629B)                                      -->
+  <!-- ======================================================================= -->
+  <header class="bg-[#00629B] text-white shadow-md safe-header sticky top-0 z-30 border-b border-[#004E7C]">
+    <div class="max-w-[1440px] mx-auto px-3.5 sm:px-6 pb-3 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+      
+      <!-- Left: Platinum Hotel Emblem + Title + Synced Badge -->
+      <div class="flex items-center gap-3 min-w-0">
+        <!-- Crisp White Logo Badge with Geometric Gold Platinum Emblem -->
+        <div class="bg-white rounded-xl px-3 py-2 flex items-center gap-2.5 shadow-2xs flex-shrink-0 border border-white/80">
+          <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="18" y="2.5" width="21.9" height="21.9" rx="2" transform="rotate(45 18 2.5)" stroke="#C59B27" stroke-width="2.4"/>
+            <rect x="18" y="7.5" width="14.8" height="14.8" rx="1.5" transform="rotate(45 18 7.5)" stroke="#C59B27" stroke-width="1.6"/>
+            <path d="M18 11.5L24.5 18L18 24.5L11.5 18L18 11.5Z" fill="#C59B27"/>
+          </svg>
+          <div class="leading-none">
+            <div class="text-[12px] font-extrabold tracking-[0.14em] text-[#B4891E]">PLATINUM</div>
+            <div class="text-[7.5px] font-bold tracking-[0.06em] text-slate-600 mt-0.5">HOTEL &amp; CONVENTION HALL</div>
+            <div class="text-[7px] font-bold tracking-[0.14em] text-slate-400 mt-0.5">BALIKPAPAN</div>
+          </div>
+        </div>
+
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-2">
+            <h1 class="text-base sm:text-xl font-extrabold tracking-tight text-white truncate">
+              Front Office VIP &amp; Fleet Command
+            </h1>
+            <span class="hidden sm:inline-flex px-2.5 py-0.5 rounded-md text-[10px] font-extrabold tracking-wider bg-[#004E7C] text-sky-100 border border-sky-400/30">
+              PLATINUM BALIKPAPAN • 200 ROOMS
+            </span>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 mt-1">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#10B981] text-white shadow-2xs">
+              <i class="fa-solid fa-database text-[10px]"></i>
+              <span>Synced + Cloud</span>
+            </span>
+            <span class="text-[11px] text-sky-100 font-medium tabular-nums">
+              <i class="fa-regular fa-clock mr-1"></i><span id="witaLiveClock">--:--:-- WITA</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: 3 Cleanly Aligned Action Buttons -->
+      <div class="grid grid-cols-3 sm:flex sm:items-center gap-2 flex-shrink-0">
+        <button type="button" onclick="openTodayAlertsModal(true)" class="touch-btn bg-white hover:bg-sky-50 active:scale-[0.99] text-[#00629B] px-3.5 py-2 rounded-xl text-xs font-bold shadow-2xs inline-flex items-center justify-center gap-2 transition cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-bell-concierge text-[#C59B27]"></i>
+          <span>Today's Arrivals</span>
+          <span id="headerTodayBadge" class="px-1.5 py-0.5 rounded-full bg-[#00629B] text-white text-[11px] font-extrabold tabular-nums">0</span>
+        </button>
+
+        <button type="button" onclick="openRoomMatrixModal()" class="touch-btn bg-[#004E7C] hover:bg-[#00385A] active:scale-[0.99] border border-sky-300/30 text-white px-3.5 py-2 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-table-cells"></i>
+          <span>200 Room Matrix</span>
+        </button>
+
+        <button type="button" onclick="exportExcelWithPhotos()" class="touch-btn bg-[#004E7C] hover:bg-[#00385A] active:scale-[0.99] border border-sky-300/30 text-white px-3.5 py-2 rounded-xl text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-file-excel text-emerald-300"></i>
+          <span>Export Excel Report</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================================= -->
+  <!-- MAIN WORKSPACE                                                          -->
+  <!-- ======================================================================= -->
+  <main class="flex-1 max-w-[1440px] w-full mx-auto px-3.5 sm:px-6 py-4 sm:py-5 space-y-4">
+
+    <!-- ===================================================================== -->
+    <!-- ROW 1: CLEAN SINGLE-ROW WORKSPACE NAVIGATION & FILTER BAR             -->
+    <!-- ===================================================================== -->
+    <section class="bg-white rounded-xl border border-slate-200 p-2.5 shadow-card flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2.5">
+      
+      <!-- Left: 4 Segmented Workspace Tabs (Clean Single Row on Desktop, 2x2 on Mobile) -->
+      <nav aria-label="Workspace Navigation" class="grid grid-cols-2 sm:inline-flex items-center gap-1.5 bg-[#F4F7FA] p-1 rounded-xl border border-slate-200/80">
+        <button type="button" onclick="switchActiveTab('directory')" id="tabBtn-directory" class="tab-pill-btn touch-btn bg-[#00629B] text-white rounded-lg px-3.5 py-2 text-xs font-bold inline-flex items-center justify-center gap-1.5 transition cursor-pointer whitespace-nowrap shadow-2xs">
+          <i class="fa-solid fa-crown text-[#FDE68A]"></i>
+          <span>VIP Guest Directory</span>
+        </button>
+        <button type="button" onclick="switchActiveTab('fleet')" id="tabBtn-fleet" class="tab-pill-btn touch-btn text-slate-600 hover:bg-white rounded-lg px-3.5 py-2 text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-car-side"></i>
+          <span>Fleet &amp; Chauffeur</span>
+        </button>
+        <button type="button" onclick="switchActiveTab('service')" id="tabBtn-service" class="tab-pill-btn touch-btn text-slate-600 hover:bg-white rounded-lg px-3.5 py-2 text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-wrench"></i>
+          <span>Maintenance Logs</span>
+        </button>
+        <button type="button" onclick="switchActiveTab('handover')" id="tabBtn-handover" class="tab-pill-btn touch-btn text-slate-600 hover:bg-white rounded-lg px-3.5 py-2 text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>FOM Shift Handover</span>
+        </button>
+      </nav>
+
+      <!-- Right: Date Filter + 12 VIP Tiers Filter + Primary Register CTA -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+        <!-- Date Picker + Today Button -->
+        <div class="flex items-center gap-1.5 bg-[#F8FAFC] border border-slate-200 rounded-xl px-2.5 py-1">
+          <label for="filterDateInput" class="text-[11px] font-bold text-slate-500 whitespace-nowrap flex items-center gap-1">
+            <i class="fa-regular fa-calendar text-[#00629B]"></i>
+            <span>Check-In:</span>
+          </label>
+          <input type="date" id="filterDateInput" onchange="handleFilterDateChange()" class="bg-transparent text-xs font-bold text-slate-800 focus:outline-none py-1" />
+          <button type="button" onclick="resetFilterToToday()" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:bg-sky-50 text-[11px] font-bold text-[#00629B] transition cursor-pointer whitespace-nowrap">
+            Today
+          </button>
+        </div>
+
+        <!-- 12 Official VIP Tiers Filter Dropdown -->
+        <select id="filterTierSelect" onchange="renderAll()" aria-label="Filter by VIP Tier" class="touch-btn px-3 py-2 rounded-xl border border-slate-200 bg-[#F8FAFC] text-xs font-bold text-slate-700 focus:outline-none focus:border-[#00629B] sm:max-w-[215px]">
+          <option value="ALL">All 12 VIP Tiers</option>
+          <option value="VIP 1">VIP 1 — Government Officials</option>
+          <option value="VIP 2">VIP 2 — Diplomatic Guests</option>
+          <option value="VIP 3">VIP 3 — Royal Family</option>
+          <option value="VIP 4">VIP 4 — Corporate Executives</option>
+          <option value="VIP 5">VIP 5 — Business Partners</option>
+          <option value="VIP 6">VIP 6 — Celebrities &amp; Public Figures</option>
+          <option value="VIP 7">VIP 7 — Sports Personalities</option>
+          <option value="VIP 8">VIP 8 — Religious Leaders</option>
+          <option value="VIP 9">VIP 9 — Loyal Guests</option>
+          <option value="VIP 10">VIP 10 — Hotel Owners &amp; Shareholders</option>
+          <option value="VIP 11">VIP 11 — Hotel Management</option>
+          <option value="VIP 12">VIP 12 — Special Occasion Guests</option>
+        </select>
+
+        <!-- Primary Action Button -->
+        <button type="button" onclick="openVipModal()" class="touch-btn bg-[#00629B] hover:bg-[#004E7C] active:scale-[0.99] text-white px-4 py-2 rounded-xl text-xs font-bold inline-flex items-center justify-center gap-1.5 shadow-2xs transition cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-plus"></i>
+          <span>Register VIP Guest</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- ROW 2: EXECUTIVE HOSPITALITY & FLEET SUMMARY (4 KPI CARDS)            -->
+    <!-- ===================================================================== -->
+    <section class="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-card space-y-4">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="text-sm sm:text-base font-extrabold tracking-wide text-slate-800 uppercase">
+              EXECUTIVE VIP &amp; FLEET INTELLIGENCE SUMMARY
+            </h2>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-[#00629B] border border-sky-200">
+              12 OFFICIAL VIP TIERS
+            </span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200">
+              AUTO ARRIVAL POP-UP
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">
+            Automated VIP arrival alerts, 12-tier protocol &amp; official designation tracking, 200-room inventory (Floors 5–11), and chauffeur fleet dispatch.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 self-start md:self-center">
+          <span id="selectedDatePill" class="px-3 py-1.5 rounded-lg bg-[#FFFDF7] border border-[#FDE68A] text-[#B45309] text-xs font-bold tabular-nums">
+            --
+          </span>
+          <button type="button" onclick="toggleSopBanner()" class="touch-btn px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-[#00629B] text-xs font-semibold inline-flex items-center gap-1.5 transition cursor-pointer">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>12 VIP Tiers SOP</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Collapsible 12 VIP Tiers Protocol Guide -->
+      <div id="sopGuideBox" class="hidden p-4 rounded-xl bg-[#F8FAFC] border border-sky-200 text-xs text-slate-600 space-y-2.5">
+        <div class="flex items-center justify-between">
+          <p class="font-extrabold text-[#00629B] uppercase tracking-wider">Platinum Hotel Balikpapan — Official 12 VIP Tier Classification Matrix</p>
+          <button type="button" onclick="toggleSopBanner()" class="text-slate-400 hover:text-slate-700 p-1 cursor-pointer" aria-label="Close Guide">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div id="sopTierGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5">
+          <!-- Populated dynamically from VIP_TIERS_CONFIG -->
+        </div>
+      </div>
+
+      <!-- 4 Color-Accented KPI Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        
+        <!-- KPI 1: Amber / Gold Card -->
+        <div class="rounded-xl border border-amber-300 bg-amber-50/40 p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800">TODAY'S VIP ARRIVALS</span>
+            <i class="fa-solid fa-crown text-[#C59B27] text-sm"></i>
+          </div>
+          <div class="my-2">
+            <span id="kpiTodayArrivals" class="text-2xl font-extrabold text-slate-900 tabular-nums">0 Guests</span>
+          </div>
+          <div id="kpiTodaySub" class="text-xs text-slate-600 font-medium">0 State/Royal • 0 Pending Pickups</div>
+        </div>
+
+        <!-- KPI 2: Sky Blue Card -->
+        <div class="rounded-xl border border-sky-300 bg-sky-50/40 p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#00629B]">TOTAL VIP REGISTRY</span>
+            <i class="fa-solid fa-user-tie text-[#00629B] text-sm"></i>
+          </div>
+          <div class="my-2">
+            <span id="kpiActiveRegistry" class="text-2xl font-extrabold text-[#00629B] tabular-nums">0 Profiles</span>
+          </div>
+          <div id="kpiRegistrySub" class="text-xs text-slate-600 font-medium">0/200 Rooms VIP Assigned</div>
+        </div>
+
+        <!-- KPI 3: Emerald Green Card -->
+        <div class="rounded-xl border border-emerald-300 bg-emerald-50/40 p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-800">FLEET READINESS</span>
+            <i class="fa-solid fa-car-side text-emerald-600 text-sm"></i>
+          </div>
+          <div class="my-2">
+            <span id="kpiFleetReadiness" class="text-2xl font-extrabold text-emerald-700 tabular-nums">100% Ready</span>
+          </div>
+          <div id="kpiFleetSub" class="text-xs text-slate-600 font-medium">0/0 Units Available • 0 Active Dispatches</div>
+        </div>
+
+        <!-- KPI 4: Slate Card -->
+        <div class="rounded-xl border border-slate-200 bg-slate-50/60 p-4 flex flex-col justify-between">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-700">MAINTENANCE &amp; SERVICE</span>
+            <i class="fa-solid fa-wrench text-slate-500 text-sm"></i>
+          </div>
+          <div class="my-2">
+            <span id="kpiServiceCount" class="text-2xl font-extrabold text-slate-900 tabular-nums">0 Alerts</span>
+          </div>
+          <div id="kpiServiceSub" class="text-xs text-slate-600 font-medium">All Fleet Units Inspected</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: VIP GUEST DIRECTORY                                            -->
+    <!-- ===================================================================== -->
+    <section id="panel-directory" class="tab-panel bg-white rounded-xl border border-slate-200 shadow-card overflow-hidden">
+      <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div>
+          <h3 class="text-sm sm:text-base font-extrabold uppercase tracking-wide text-[#00629B]">
+            VIP GUEST ARRIVAL &amp; ROOM ASSIGNMENT DIRECTORY
+          </h3>
+          <p class="text-xs text-slate-500 mt-0.5">
+            Click any 3:4 portrait thumbnail to inspect full screen. Displays all 12 VIP Tiers, Official Position, 200-Room Type Codes, and Fleet/Custom Vehicles.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+          <select id="filterStatusSelect" onchange="renderVipTable()" aria-label="Filter by Status" class="touch-btn px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:border-[#00629B]">
+            <option value="ALL">Status: All Guests</option>
+            <option value="ARRIVING_DATE">Arriving on Selected Date</option>
+            <option value="PENDING">Pending Arrival</option>
+            <option value="CHECKED_IN">Checked-In / Escorted</option>
+          </select>
+
+          <div class="relative flex-1 sm:flex-initial">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="vipSearchInput" oninput="renderVipTable()" placeholder="Search name, position, room, car..." class="touch-btn pl-8 pr-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B] w-full sm:w-64" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Swipe Hint -->
+      <div class="px-4 py-1.5 bg-slate-50 border-b border-slate-200 text-[11px] text-slate-500 flex items-center justify-between md:hidden">
+        <span><i class="fa-solid fa-arrows-left-right text-[#00629B] mr-1"></i> Swipe horizontally to view full table</span>
+        <span id="mobileVipRowCount" class="font-bold text-[#00629B]">0 VIPs</span>
+      </div>
+
+      <!-- Deep Navy Blue Matrix Table -->
+      <div class="overflow-x-auto scroll-smooth-x">
+        <table class="w-full text-left border-collapse min-w-[1140px]">
+          <thead>
+            <tr class="bg-[#004E7C] text-white text-xs font-bold uppercase tracking-wider">
+              <th class="py-3.5 px-4">VIP Guest &amp; Portrait</th>
+              <th class="py-3.5 px-4">VIP Tier &amp; Official Position</th>
+              <th class="py-3.5 px-4">Check-In / Out</th>
+              <th class="py-3.5 px-4">Flight &amp; ETA</th>
+              <th class="py-3.5 px-4">Room &amp; Excel Room Type</th>
+              <th class="py-3.5 px-4">Pickup Vehicle (Fleet / Custom)</th>
+              <th class="py-3.5 px-4">Arrival Status</th>
+              <th class="py-3.5 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="vipDirectoryBody" class="divide-y divide-slate-200 text-xs sm:text-[13px]">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: FLEET & CHAUFFEUR DISPATCH                                     -->
+    <!-- ===================================================================== -->
+    <section id="panel-fleet" class="tab-panel hidden space-y-5">
+      <div class="bg-white rounded-xl border border-slate-200 shadow-card overflow-hidden">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-sm sm:text-base font-extrabold uppercase tracking-wide text-[#00629B]">
+              EXECUTIVE HOTEL FLEET &amp; CHAUFFEUR DISPATCH
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">
+              Monitor hotel limousines, update vehicle availability, and schedule VIP airport transfers or custom vehicle escorts.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" onclick="openFleetUnitModal()" class="touch-btn px-3.5 py-2 rounded-lg border border-[#00629B] text-[#00629B] hover:bg-sky-50 text-xs font-bold inline-flex items-center gap-1.5 transition cursor-pointer">
+              <i class="fa-solid fa-car"></i>
+              <span>+ Add Fleet Unit</span>
+            </button>
+            <button type="button" onclick="openDispatchModal()" class="touch-btn bg-[#00629B] hover:bg-[#004E7C] text-white px-4 py-2 rounded-lg text-xs font-bold inline-flex items-center gap-1.5 transition cursor-pointer">
+              <i class="fa-solid fa-route"></i>
+              <span>+ Schedule Vehicle Dispatch</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Fleet Cards -->
+        <div id="fleetUnitsContainer" class="p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 bg-[#F8FAFC] border-b border-slate-200">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Active Chauffeur Dispatch Schedule Table -->
+        <div class="overflow-x-auto scroll-smooth-x">
+          <table class="w-full text-left border-collapse min-w-[900px]">
+            <thead>
+              <tr class="bg-[#004E7C] text-white text-xs font-bold uppercase tracking-wider">
+                <th class="py-3.5 px-4">Date &amp; Time</th>
+                <th class="py-3.5 px-4">Vehicle &amp; License Plate</th>
+                <th class="py-3.5 px-4">Chauffeur / Driver</th>
+                <th class="py-3.5 px-4">VIP Passenger</th>
+                <th class="py-3.5 px-4">Route &amp; Purpose</th>
+                <th class="py-3.5 px-4">Dispatch Status</th>
+                <th class="py-3.5 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="dispatchTableBody" class="divide-y divide-slate-200 text-xs sm:text-[13px]">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: VEHICLE SERVICE & MAINTENANCE LOG                              -->
+    <!-- ===================================================================== -->
+    <section id="panel-service" class="tab-panel hidden bg-white rounded-xl border border-slate-200 shadow-card overflow-hidden">
+      <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h3 class="text-sm sm:text-base font-extrabold uppercase tracking-wide text-[#00629B]">
+            VEHICLE PREVENTIVE MAINTENANCE &amp; SERVICE LOG
+          </h3>
+          <p class="text-xs text-slate-500 mt-0.5">
+            Track oil changes, brake &amp; tire inspections, exterior detailing, and odometer intervals for every hotel fleet unit.
+          </p>
+        </div>
+        <button type="button" onclick="openServiceModal()" class="touch-btn bg-[#00629B] hover:bg-[#004E7C] text-white px-4 py-2 rounded-lg text-xs font-bold inline-flex items-center gap-1.5 transition cursor-pointer self-start sm:self-auto">
+          <i class="fa-solid fa-wrench"></i>
+          <span>+ Log Service Record</span>
+        </button>
+      </div>
+
+      <div class="overflow-x-auto scroll-smooth-x">
+        <table class="w-full text-left border-collapse min-w-[920px]">
+          <thead>
+            <tr class="bg-[#004E7C] text-white text-xs font-bold uppercase tracking-wider">
+              <th class="py-3.5 px-4">Vehicle &amp; Plate</th>
+              <th class="py-3.5 px-4">Service Category &amp; Scope</th>
+              <th class="py-3.5 px-4">Odometer</th>
+              <th class="py-3.5 px-4">Last Service</th>
+              <th class="py-3.5 px-4">Next Service Due</th>
+              <th class="py-3.5 px-4">Authorized Workshop</th>
+              <th class="py-3.5 px-4">Health Status</th>
+              <th class="py-3.5 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="serviceLogTableBody" class="divide-y divide-slate-200 text-xs sm:text-[13px]">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 4: FOM SHIFT HANDOVER                                             -->
+    <!-- ===================================================================== -->
+    <section id="panel-handover" class="tab-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-4">
+      
+      <!-- Left: New FOM Shift Handover Entry Form (5 Cols) -->
+      <div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-card space-y-4">
+        <div>
+          <h3 class="text-sm sm:text-base font-extrabold uppercase tracking-wide text-[#00629B]">
+            LOG FOM SHIFT HANDOVER
+          </h3>
+          <p class="text-xs text-slate-500 mt-0.5">Record executive shift briefing notes for incoming Duty Managers.</p>
+        </div>
+
+        <form id="handoverForm" onsubmit="saveShiftHandover(event)" class="space-y-3.5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="hoShift" class="block text-xs font-semibold text-slate-700 mb-1">Shift Period *</label>
+              <select id="hoShift" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]">
+                <option value="Morning Shift (07:00 - 15:00)">Morning Shift (07:00 – 15:00)</option>
+                <option value="Afternoon Shift (15:00 - 23:00)">Afternoon Shift (15:00 – 23:00)</option>
+                <option value="Night Audit Shift (23:00 - 07:00)">Night Audit Shift (23:00 – 07:00)</option>
+              </select>
+            </div>
+            <div>
+              <label for="hoOfficer" class="block text-xs font-semibold text-slate-700 mb-1">Duty Officer Name *</label>
+              <input type="text" id="hoOfficer" required placeholder="e.g., Abdul Ghofur — Front Office Manager" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label for="hoNotes" class="block text-xs font-semibold text-slate-700">Executive Briefing &amp; VIP Escort Notes *</label>
+              <button type="button" onclick="autoFillHandoverSummary()" class="text-[11px] font-bold text-[#00629B] hover:underline cursor-pointer">
+                + Auto-Insert Today's VIP &amp; Fleet Summary
+              </button>
+            </div>
+            <textarea id="hoNotes" rows="5" required placeholder="Enter VIP arrival updates, suite readiness checks, chauffeur assignments, and pending action items..." class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]"></textarea>
+          </div>
+
+          <button type="submit" class="touch-btn w-full bg-[#00629B] hover:bg-[#004E7C] text-white py-2.5 rounded-lg text-xs font-bold shadow-2xs transition cursor-pointer">
+            Submit Shift Handover Log
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Shift Handover Log Feed (7 Cols) -->
+      <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-card space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+          <div>
+            <h3 class="text-sm sm:text-base font-extrabold uppercase tracking-wide text-[#00629B]">
+              FRONT OFFICE SHIFT HANDOVER ARCHIVE
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">Chronological log of VIP welcomes, fleet movements, and duty notes.</p>
+          </div>
+          <span id="handoverCountBadge" class="px-2.5 py-1 rounded-full bg-sky-50 border border-sky-200 text-[#00629B] text-xs font-bold tabular-nums">0 Entries</span>
+        </div>
+
+        <div id="handoverFeedContainer" class="space-y-3 max-h-[520px] overflow-y-auto pr-1">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ======================================================================= -->
+  <!-- FOOTER WITH DEMO RESET & STORAGE STATUS                                 -->
+  <!-- ======================================================================= -->
+  <footer class="max-w-[1440px] w-full mx-auto px-3.5 sm:px-6 pt-2 pb-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
+    <div>
+      &copy; 2026 <strong>Platinum Hotel &amp; Convention Hall Balikpapan</strong> • Front Office VIP &amp; Executive Fleet Management
+    </div>
+    <div class="flex items-center gap-4">
+      <span id="storageStatusLabel" class="text-emerald-700 font-medium"><i class="fa-solid fa-shield-check mr-1"></i>Local Persistence Active</span>
+      <button type="button" onclick="promptResetDemoData()" class="text-[#00629B] hover:underline font-bold cursor-pointer">
+        Reset Demo Data
+      </button>
+    </div>
+  </footer>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 1: AUTOMATIC TODAY'S VIP ARRIVAL POP-UP ALERT                     -->
+  <!-- ======================================================================= -->
+  <div id="todayAlertsModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/65 backdrop-blur-xs">
+    <div class="animate-modal bg-white w-full max-w-2xl rounded-t-2xl sm:rounded-2xl shadow-modal border border-slate-200 overflow-hidden max-h-[92vh] flex flex-col">
+      
+      <div class="bg-[#00629B] px-5 sm:px-6 py-4 text-white flex items-center justify-between border-b-4 border-[#C59B27] flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center text-[#FDE68A] flex-shrink-0">
+            <i class="fa-solid fa-bell-concierge text-xl"></i>
+          </div>
+          <div>
+            <div class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#FDE68A]">PLATINUM EXECUTIVE ARRIVAL ALERT</div>
+            <h3 class="text-base sm:text-xl font-extrabold">Today's VIP Guest Arrivals</h3>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('todayAlertsModal')" class="touch-btn w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer" aria-label="Close Alert">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="todayAlertsBody" class="p-4 sm:p-5 overflow-y-auto scroll-smooth-x space-y-3.5 bg-[#F4F7FA] flex-1">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div class="px-5 sm:px-6 py-3.5 bg-white border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 flex-shrink-0 safe-modal-bottom">
+        <span class="text-xs text-slate-500 text-center sm:text-left">
+          <i class="fa-solid fa-circle-info text-[#00629B] mr-1"></i>
+          Stage welcome garland, cold towel &amp; pre-keyed suite folio 15 mins before ETA.
+        </span>
+        <button type="button" onclick="closeModal('todayAlertsModal')" class="touch-btn w-full sm:w-auto px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white text-xs font-bold transition cursor-pointer">
+          Acknowledge &amp; Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 2: VIP REGISTRATION / EDIT MODAL (3:4 PORTRAIT + 12 TIERS + ROLES)-->
+  <!-- ======================================================================= -->
+  <div id="vipFormModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/65 backdrop-blur-xs">
+    <div class="animate-modal bg-white w-full max-w-2xl rounded-t-2xl sm:rounded-2xl shadow-modal border border-slate-200 overflow-hidden max-h-[94vh] flex flex-col">
+      
+      <div class="bg-[#00629B] px-5 sm:px-6 py-4 text-white flex items-center justify-between border-b-2 border-[#C59B27] flex-shrink-0">
+        <h3 id="vipFormTitle" class="text-base sm:text-lg font-extrabold">Register New VIP Guest</h3>
+        <button type="button" onclick="closeModal('vipFormModal')" class="touch-btn w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer" aria-label="Close Modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="vipForm" onsubmit="saveVipGuest(event)" class="p-4 sm:p-6 overflow-y-auto scroll-smooth-x space-y-4 flex-1 safe-modal-bottom">
+        <input type="hidden" id="vipIdField" />
+
+        <!-- Enlarged 3:4 VIP Portrait Frame Card (150x195px desktop / 128x166px mobile) -->
+        <div class="flex flex-col sm:flex-row items-center gap-5 p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200">
+          <div class="relative group flex-shrink-0">
+            <img
+              id="vipPortraitPreview"
+              src=""
+              alt="VIP Guest Portrait"
+              onclick="openPortraitLightbox(this.src, document.getElementById('vipNameField').value || 'VIP Guest Portrait', 'Registration Portrait Preview', document.getElementById('vipPhotoFitField').value)"
+              title="Click to inspect full-size portrait"
+              class="w-[128px] h-[166px] sm:w-[150px] sm:h-[195px] rounded-2xl object-cover object-top gold-portrait-frame bg-white cursor-zoom-in transition-transform duration-200 group-hover:scale-[1.02]"
+            />
+            <button
+              type="button"
+              onclick="openPortraitLightbox(document.getElementById('vipPortraitPreview').src, document.getElementById('vipNameField').value || 'VIP Guest Portrait', 'Full-Size Portrait Preview', document.getElementById('vipPhotoFitField').value)"
+              title="Zoom Portrait"
+              class="absolute bottom-2 right-2 w-8 h-8 rounded-lg bg-[#004E7C]/90 hover:bg-[#00629B] text-white text-xs flex items-center justify-center shadow-sm cursor-pointer"
+            >
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </button>
+          </div>
+
+          <div class="flex-1 text-center sm:text-left space-y-2.5">
+            <div class="text-sm font-extrabold text-slate-900">VIP Guest Portrait &amp; Visual Identification</div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Upload a clear portrait photo so Airport Representatives, Chauffeurs, and Duty Managers can recognize the guest immediately. This photo is also embedded in the Excel report.
+            </p>
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-0.5">
+              <label for="vipPhotoUploadInput" class="touch-btn px-4 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white text-xs font-bold cursor-pointer inline-flex items-center gap-1.5 shadow-2xs transition">
+                <i class="fa-solid fa-camera"></i>
+                <span>Upload Photo</span>
+              </label>
+              <input type="file" id="vipPhotoUploadInput" accept="image/*" onchange="processVipPhotoUpload(event)" class="hidden" />
+              <button type="button" onclick="resetVipPortraitToMonogram()" class="touch-btn px-3.5 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs font-semibold cursor-pointer transition">
+                Reset Monogram
+              </button>
+            </div>
+
+            <!-- 3-Mode Photo Framing Alignment Toggle -->
+            <div class="pt-1">
+              <input type="hidden" id="vipPhotoFitField" value="top" />
+              <div class="text-[11px] font-bold text-slate-600 mb-1.5">
+                <i class="fa-solid fa-crop-simple text-[#00629B] mr-1"></i>Photo Framing Alignment:
+              </div>
+              <div class="inline-flex flex-wrap justify-center sm:justify-start gap-1 p-1 rounded-xl bg-white border border-slate-200 shadow-2xs">
+                <button type="button" id="fitBtn-top" onclick="setVipPhotoFit('top')" class="photo-fit-btn px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-[#00629B] text-white transition cursor-pointer">
+                  Head &amp; Top Focus
+                </button>
+                <button type="button" id="fitBtn-center" onclick="setVipPhotoFit('center')" class="photo-fit-btn px-2.5 py-1.5 rounded-lg text-[11px] font-semibold text-slate-600 hover:bg-slate-100 transition cursor-pointer">
+                  Center Crop
+                </button>
+                <button type="button" id="fitBtn-contain" onclick="setVipPhotoFit('contain')" class="photo-fit-btn px-2.5 py-1.5 rounded-lg text-[11px] font-semibold text-slate-600 hover:bg-slate-100 transition cursor-pointer">
+                  Fit Full Photo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guest Name & Organization -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label for="vipNameField" class="block text-xs font-semibold text-slate-700 mb-1">Full Name &amp; Title *</label>
+            <input type="text" id="vipNameField" required oninput="syncMonogramIfDefault()" placeholder="e.g., Hon. Ir. H. Bambang Wirawan" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+          <div>
+            <label for="vipCompanyField" class="block text-xs font-semibold text-slate-700 mb-1">Organization / Ministry / Company *</label>
+            <input type="text" id="vipCompanyField" required placeholder="e.g., Ministry of Energy / PT Pertamina" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+        </div>
+
+        <!-- 12 Official VIP Tiers + Cascading Official Position / Designation -->
+        <div class="p-3.5 rounded-xl bg-[#FFFDF7] border border-[#FDE68A] space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <div>
+              <label for="vipTierField" class="block text-xs font-bold text-[#B45309] mb-1">
+                <i class="fa-solid fa-crown mr-1"></i>VIP Tier Classification (12 Official Levels) *
+              </label>
+              <select id="vipTierField" required onchange="handleVipTierChange()" class="touch-btn w-full px-3 py-2 rounded-lg border border-amber-300 text-xs font-bold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]">
+                <option value="VIP 1">VIP 1 — Government Officials</option>
+                <option value="VIP 2">VIP 2 — Diplomatic Guests</option>
+                <option value="VIP 3">VIP 3 — Royal Family</option>
+                <option value="VIP 4">VIP 4 — Corporate Executives</option>
+                <option value="VIP 5">VIP 5 — Business Partners</option>
+                <option value="VIP 6">VIP 6 — Celebrities &amp; Public Figures</option>
+                <option value="VIP 7">VIP 7 — Sports Personalities</option>
+                <option value="VIP 8">VIP 8 — Religious Leaders</option>
+                <option value="VIP 9">VIP 9 — Loyal Guests</option>
+                <option value="VIP 10">VIP 10 — Hotel Owners &amp; Shareholders</option>
+                <option value="VIP 11">VIP 11 — Hotel Management</option>
+                <option value="VIP 12">VIP 12 — Special Occasion Guests</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="vipPositionSelect" class="block text-xs font-bold text-slate-700 mb-1">
+                Official Position / Designation *
+              </label>
+              <select id="vipPositionSelect" required onchange="toggleCustomPositionInput()" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]">
+                <!-- Populated dynamically based on VIP Tier -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Custom Position Manual Input -->
+          <div id="vipCustomPositionBox" class="hidden">
+            <label for="vipCustomPositionField" class="block text-[11px] font-bold text-[#00629B] mb-1">Custom Official Designation / Title *</label>
+            <input type="text" id="vipCustomPositionField" placeholder="Enter exact official rank, title, or designation..." class="touch-btn w-full px-3 py-2 rounded-lg border border-sky-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#00629B]" />
+          </div>
+
+          <!-- Live Standard Protocol & Amenities Guide Banner -->
+          <div id="vipTierProtocolBanner" class="p-2.5 rounded-lg bg-white border border-amber-200 text-[11px] text-slate-600 leading-relaxed">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Flight/ETA & Stay Dates -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+          <div>
+            <label for="vipEtaField" class="block text-xs font-semibold text-slate-700 mb-1">Flight Number &amp; ETA *</label>
+            <input type="text" id="vipEtaField" required placeholder="e.g., GA-564 • 14:30 WITA" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+          <div>
+            <label for="vipCheckInField" class="block text-xs font-semibold text-slate-700 mb-1">Check-In Date *</label>
+            <input type="date" id="vipCheckInField" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+          <div>
+            <label for="vipCheckOutField" class="block text-xs font-semibold text-slate-700 mb-1">Check-Out Date *</label>
+            <input type="date" id="vipCheckOutField" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+        </div>
+
+        <!-- Exact 200-Room Inventory Selector (Room Type Filter + Room Number Dropdown) -->
+        <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-sky-200 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-xs font-bold text-[#00629B]">
+              <i class="fa-solid fa-bed mr-1.5"></i>200-Room Inventory Assignment (Floors 5–11)
+            </span>
+            <span id="roomMetaBadge" class="px-2.5 py-0.5 rounded-md bg-white border border-sky-200 text-[11px] font-bold text-[#004E7C]">
+              Floor 11 • PLS • Bed D
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="vipRoomTypeFilter" class="block text-xs font-semibold text-slate-700 mb-1">Room Type Filter</label>
+              <select id="vipRoomTypeFilter" onchange="populateRoomNumberDropdown()" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]">
+                <option value="ALL">All Types (200 Rooms)</option>
+                <option value="PLS">PLS - Platinum Suite (Bed D)</option>
+                <option value="EXS">EXS - Executive Suite (Bed K)</option>
+                <option value="JSU">JSU - Junior Suite (Bed K)</option>
+                <option value="BSNQ">BSNQ - Business Queen (Bed Q)</option>
+                <option value="BSNT">BSNT - Business Twin (Bed T)</option>
+                <option value="DLXQ">DLXQ - Deluxe Queen (Bed Q)</option>
+                <option value="DLXT">DLXT - Deluxe Twin (Bed T)</option>
+              </select>
+            </div>
+            <div>
+              <label for="vipRoomNumberField" class="block text-xs font-semibold text-slate-700 mb-1">Room Number *</label>
+              <select id="vipRoomNumberField" required onchange="updateSelectedRoomBadge()" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]">
+                <!-- Populated by JS -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pickup Fleet Vehicle + Custom Vehicle Manual Entry -->
+        <div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-3">
+          <div>
+            <label for="vipVehicleSelect" class="block text-xs font-bold text-slate-700 mb-1">
+              <i class="fa-solid fa-car-side text-[#00629B] mr-1"></i>Pickup Fleet Vehicle (Hotel Fleet or Custom Vehicle)
+            </label>
+            <select id="vipVehicleSelect" onchange="toggleVipCustomVehicleBox()" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div id="vipCustomVehicleBox" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2.5 border-t border-slate-200">
+            <div>
+              <label for="vipCustomModelField" class="block text-[11px] font-bold text-slate-700 mb-1">Custom Vehicle Name / Model *</label>
+              <input type="text" id="vipCustomModelField" placeholder="e.g., Toyota Land Cruiser 300 GR" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#00629B]" />
+            </div>
+            <div>
+              <label for="vipCustomPlateField" class="block text-[11px] font-bold text-slate-700 mb-1">License Plate Number</label>
+              <input type="text" id="vipCustomPlateField" placeholder="e.g., KT 1234 AB" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 uppercase bg-white focus:outline-none focus:border-[#00629B]" />
+            </div>
+            <div>
+              <label for="vipCustomDriverField" class="block text-[11px] font-bold text-slate-700 mb-1">Assigned Chauffeur / Driver</label>
+              <input type="text" id="vipCustomDriverField" placeholder="e.g., Mr. Hendra (External Escort)" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#00629B]" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Special Amenities & Notes -->
+        <div>
+          <label for="vipNotesField" class="block text-xs font-semibold text-slate-700 mb-1">Special Amenities &amp; Protocol Notes</label>
+          <textarea id="vipNotesField" rows="3" placeholder="e.g., VIP Gate pickup at Sepinggan Airport (BPN), tropical fruit platter, hypoallergenic pillows, Voss still water..." class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]"></textarea>
+        </div>
+
+        <div class="pt-3 border-t border-slate-200 flex flex-col-reverse sm:flex-row justify-end gap-2.5">
+          <button type="button" onclick="closeModal('vipFormModal')" class="touch-btn px-4 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-semibold cursor-pointer">
+            Cancel
+          </button>
+          <button type="submit" class="touch-btn px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white text-xs font-bold shadow-2xs cursor-pointer">
+            Save VIP Guest Profile
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 3: VIP GUEST COMPLETE DOSSIER MODAL                               -->
+  <!-- ======================================================================= -->
+  <div id="vipDossierModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/65 backdrop-blur-xs">
+    <div class="animate-modal bg-white w-full max-w-lg rounded-t-2xl sm:rounded-2xl shadow-modal border border-slate-200 overflow-hidden">
+      <div class="bg-[#004E7C] px-5 sm:px-6 py-4 text-white flex items-center justify-between border-b-4 border-[#C59B27]">
+        <h3 class="text-base font-extrabold">VIP Executive Guest Dossier</h3>
+        <button type="button" onclick="closeModal('vipDossierModal')" class="touch-btn w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer" aria-label="Close Dossier">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="vipDossierBody" class="p-5 sm:p-6 space-y-4 safe-modal-bottom">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 4: 3:4 PORTRAIT ZOOM LIGHTBOX MODAL (320px x 410px)                -->
+  <!-- ======================================================================= -->
+  <div id="portraitLightboxModal" onclick="if (event.target === this) closeModal('portraitLightboxModal')" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+    <div class="animate-modal bg-white w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl border-2 border-[#C59B27]">
+      <div class="bg-[#004E7C] px-4 py-3 text-white flex items-center justify-between border-b-2 border-[#C59B27]">
+        <div class="min-w-0 pr-2">
+          <div class="text-[10px] font-extrabold uppercase tracking-widest text-[#FDE68A]">VIP IDENTIFICATION PORTRAIT</div>
+          <h4 id="lightboxTitle" class="text-sm font-extrabold truncate">VIP Guest</h4>
+        </div>
+        <button type="button" onclick="closeModal('portraitLightboxModal')" class="touch-btn w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer flex-shrink-0" aria-label="Close Lightbox">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-5 bg-[#F4F7FA] flex flex-col items-center">
+        <img id="lightboxImage" src="" alt="Full VIP Portrait" class="w-[260px] h-[335px] sm:w-[320px] sm:h-[410px] object-cover object-top rounded-2xl gold-portrait-frame bg-white" />
+        <p id="lightboxSubtitle" class="text-xs font-bold text-slate-700 mt-3.5 text-center"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 5: 200-ROOM TYPE MATRIX MODAL (FLOORS 5-11 VISUAL RACK)           -->
+  <!-- ======================================================================= -->
+  <div id="roomMatrixModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/65 backdrop-blur-xs">
+    <div class="animate-modal bg-white w-full max-w-5xl rounded-t-2xl sm:rounded-2xl shadow-modal border border-slate-200 overflow-hidden max-h-[92vh] flex flex-col">
+      <div class="bg-[#004E7C] px-5 sm:px-6 py-4 text-white flex items-center justify-between border-b-4 border-[#C59B27] flex-shrink-0">
+        <div>
+          <div class="text-[10px] font-extrabold uppercase tracking-widest text-[#FDE68A]">PLATINUM BALIKPAPAN ROOM INVENTORY • 200 ROOMS</div>
+          <h3 class="text-base sm:text-lg font-extrabold">Floor-by-Floor Room Type &amp; VIP Allocation Matrix</h3>
+        </div>
+        <button type="button" onclick="closeModal('roomMatrixModal')" class="touch-btn w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer" aria-label="Close Room Matrix">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="px-4 sm:px-6 py-3 bg-white border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 flex-shrink-0">
+        <div class="flex flex-wrap items-center gap-2">
+          <select id="rackFloorFilter" onchange="renderRoomRack()" class="touch-btn px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold text-slate-700 bg-white">
+            <option value="ALL">All Floors (5 – 11)</option>
+            <option value="11">Floor 11 (Platinum Suites)</option>
+            <option value="10">Floor 10</option>
+            <option value="9">Floor 9</option>
+            <option value="8">Floor 8</option>
+            <option value="7">Floor 7</option>
+            <option value="6">Floor 6</option>
+            <option value="5">Floor 5</option>
+          </select>
+          <select id="rackTypeFilter" onchange="renderRoomRack()" class="touch-btn px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-bold text-slate-700 bg-white">
+            <option value="ALL">All 7 Room Types</option>
+            <option value="PLS">PLS — Platinum Suite (Bed D)</option>
+            <option value="EXS">EXS — Executive Suite (Bed K)</option>
+            <option value="JSU">JSU — Junior Suite (Bed K)</option>
+            <option value="BSNQ">BSNQ — Business Queen (Bed Q)</option>
+            <option value="BSNT">BSNT — Business Twin (Bed T)</option>
+            <option value="DLXQ">DLXQ — Deluxe Queen (Bed Q)</option>
+            <option value="DLXT">DLXT — Deluxe Twin (Bed T)</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-3 text-[11px] font-semibold">
+          <span class="inline-flex items-center gap-1.5 text-amber-800"><span class="w-3 h-3 rounded bg-amber-100 border border-amber-400 inline-block"></span> VIP Assigned</span>
+          <span class="inline-flex items-center gap-1.5 text-slate-600"><span class="w-3 h-3 rounded bg-slate-50 border border-slate-300 inline-block"></span> Standard Available</span>
+        </div>
+      </div>
+
+      <div id="roomRackBody" class="p-4 sm:p-6 overflow-y-auto scroll-smooth-x space-y-4 bg-[#F4F7FA] flex-1 safe-modal-bottom">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 6: ADD / EDIT HOTEL FLEET UNIT                                    -->
+  <!-- ======================================================================= -->
+  <div id="fleetUnitModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/65 backdrop-blur-xs">
+    <div class="animate-modal bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl shadow-modal border border-slate-200 overflow-hidden">
+      <div class="bg-[#00629B] px-5 sm:px-6 py-4 text-white flex items-center justify-between">
+        <h3 id="fleetUnitModalTitle" class="text-base font-extrabold">Add Hotel Fleet Unit</h3>
+        <button type="button" onclick="closeModal('fleetUnitModal')" class="touch-btn w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form id="fleetUnitForm" onsubmit="saveFleetUnit(event)" class="p-5 sm:p-6 space-y-3.5 safe-modal-bottom">
+        <input type="hidden" id="fleetUnitIdField" />
+        <div>
+          <label for="fleetModelField" class="block text-xs font-semibold text-slate-700 mb-1">Vehicle Model &amp; Trim *</label>
+          <input type="text" id="fleetModelField" required placeholder="e.g., Mercedes-Benz S 450 L" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="fleetPlateField" class="block text-xs font-semibold text-slate-700 mb-1">License Plate *</label>
+            <input type="text" id="fleetPlateField" required placeholder="KT 1 PLAT" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 uppercase focus:outline-none focus:border-[#00629B]" />
+          </div>
+          <div>
+            <label for="fleetStatusField" class="block text-xs font-semibold text-slate-700 mb-1">Unit Status *</label>
+            <select id="fleetStatusField" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]">
+              <option value="Available">Available</option>
+              <option value="In Use">In Use</option>
+              <option value="Maintenance">Maintenance</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="fleetDriverField" class="block text-xs font-semibold text-slate-700 mb-1">Primary Chauffeur *</label>
+            <input type="text" id="fleetDriverField" required placeholder="Mr. Rahmat Hidayat" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+          <div>
+            <label for="fleetOdometerField" class="block text-xs font-semibold text-slate-700 mb-1">Odometer (KM) *</label>
+            <input type="number" id="fleetOdometerField" required min="0" placeholder="14200" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+        </div>
+        <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('fleetUnitModal')" class="touch-btn px-4 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer">Cancel</button>
+          <button type="submit" class="touch-btn px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white text-xs font-bold cursor-pointer">Save Fleet Unit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 7: SCHEDULE VEHICLE DISPATCH (WITH CUSTOM VEHICLE ENTRY)          -->
+  <!-- ======================================================================= -->
+  <div id="dispatchModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/65 backdrop-blur-xs">
+    <div class="animate-modal bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl shadow-modal border border-slate-200 overflow-hidden max-h-[92vh] flex flex-col">
+      <div class="bg-[#00629B] px-5 sm:px-6 py-4 text-white flex items-center justify-between flex-shrink-0">
+        <h3 id="dispatchModalTitle" class="text-base font-extrabold">Schedule Vehicle Dispatch</h3>
+        <button type="button" onclick="closeModal('dispatchModal')" class="touch-btn w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form id="dispatchForm" onsubmit="saveVehicleDispatch(event)" class="p-5 sm:p-6 overflow-y-auto scroll-smooth-x space-y-3.5 flex-1 safe-modal-bottom">
+        <input type="hidden" id="dispIdField" />
+        <div>
+          <label for="dispVipField" class="block text-xs font-semibold text-slate-700 mb-1">VIP Guest Passenger *</label>
+          <select id="dispVipField" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]"></select>
+        </div>
+        <div>
+          <label for="dispVehicleField" class="block text-xs font-semibold text-slate-700 mb-1">Fleet Unit or Custom Vehicle *</label>
+          <select id="dispVehicleField" onchange="toggleDispatchCustomBox()" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]"></select>
+        </div>
+
+        <div id="dispCustomVehicleBox" class="hidden p-3 rounded-xl bg-[#FFFDF7] border border-[#FDE68A] space-y-2.5">
+          <div>
+            <label for="dispCustomModelField" class="block text-[11px] font-bold text-slate-700 mb-1">Custom Vehicle Name / Model *</label>
+            <input type="text" id="dispCustomModelField" placeholder="e.g., Toyota Land Cruiser 300 GR" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 bg-white" />
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label for="dispCustomPlateField" class="block text-[11px] font-bold text-slate-700 mb-1">License Plate</label>
+              <input type="text" id="dispCustomPlateField" placeholder="KT 1234 AB" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 uppercase bg-white" />
+            </div>
+            <div>
+              <label for="dispCustomDriverField" class="block text-[11px] font-bold text-slate-700 mb-1">Chauffeur / Driver</label>
+              <input type="text" id="dispCustomDriverField" placeholder="Mr. Hendra" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 bg-white" />
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="dispDateField" class="block text-xs font-semibold text-slate-700 mb-1">Transfer Date *</label>
+            <input type="date" id="dispDateField" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+          <div>
+            <label for="dispTimeField" class="block text-xs font-semibold text-slate-700 mb-1">Pickup Time *</label>
+            <input type="time" id="dispTimeField" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+        </div>
+        <div>
+          <label for="dispRouteField" class="block text-xs font-semibold text-slate-700 mb-1">Transfer Route &amp; Purpose *</label>
+          <input type="text" id="dispRouteField" required placeholder="e.g., Sepinggan Airport (BPN) -> Platinum Hotel" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+        </div>
+        <div>
+          <label for="dispStatusField" class="block text-xs font-semibold text-slate-700 mb-1">Dispatch Status *</label>
+          <select id="dispStatusField" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]">
+            <option value="Scheduled">Scheduled</option>
+            <option value="En Route">En Route</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+        <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('dispatchModal')" class="touch-btn px-4 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer">Cancel</button>
+          <button type="submit" class="touch-btn px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white text-xs font-bold cursor-pointer">Save Dispatch</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 8: LOG VEHICLE SERVICE RECORD                                     -->
+  <!-- ======================================================================= -->
+  <div id="serviceModal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-900/65 backdrop-blur-xs">
+    <div class="animate-modal bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl shadow-modal border border-slate-200 overflow-hidden">
+      <div class="bg-[#00629B] px-5 sm:px-6 py-4 text-white flex items-center justify-between">
+        <h3 id="serviceModalTitle" class="text-base font-extrabold">Log Vehicle Maintenance Record</h3>
+        <button type="button" onclick="closeModal('serviceModal')" class="touch-btn w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form id="serviceForm" onsubmit="saveServiceRecord(event)" class="p-5 sm:p-6 space-y-3.5 safe-modal-bottom">
+        <input type="hidden" id="srvIdField" />
+        <div>
+          <label for="srvVehicleField" class="block text-xs font-semibold text-slate-700 mb-1">Fleet Unit *</label>
+          <select id="srvVehicleField" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:border-[#00629B]"></select>
+        </div>
+        <div>
+          <label for="srvScopeField" class="block text-xs font-semibold text-slate-700 mb-1">Service Category &amp; Scope *</label>
+          <input type="text" id="srvScopeField" required placeholder="e.g., Synthetic Oil Change & Brake Inspection" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="srvLastDateField" class="block text-xs font-semibold text-slate-700 mb-1">Last Service Date *</label>
+            <input type="date" id="srvLastDateField" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+          <div>
+            <label for="srvNextDateField" class="block text-xs font-semibold text-slate-700 mb-1">Next Service Due *</label>
+            <input type="date" id="srvNextDateField" required class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#00629B]" />
+          </div>
+        </div>
+        <div>
+          <label for="srvWorkshopField" class="block text-xs font-semibold text-slate-700 mb-1">Authorized Workshop / Dealer *</label>
+          <input type="text" id="srvWorkshopField" required placeholder="e.g., Mercedes-Benz Authorized Service Balikpapan" class="touch-btn w-full px-3 py-2 rounded-lg border border-slate-300 text-xs text-slate-800 focus:outline-none focus:border-[#00629B]" />
+        </div>
+        <div class="pt-3 border-t border-slate-200 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('serviceModal')" class="touch-btn px-4 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer">Cancel</button>
+          <button type="submit" class="touch-btn px-5 py-2 rounded-lg bg-[#00629B] hover:bg-[#004E7C] text-white text-xs font-bold cursor-pointer">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 9: CUSTOM CONFIRMATION DIALOG (NO NATIVE ALERT/CONFIRM)           -->
+  <!-- ======================================================================= -->
+  <div id="confirmModal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-slate-900/65 backdrop-blur-xs">
+    <div class="animate-modal bg-white w-full max-w-sm rounded-2xl p-5 shadow-modal border border-slate-200 space-y-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3 id="confirmModalTitle" class="text-base font-extrabold text-slate-900">Confirm Action</h3>
+      </div>
+      <p id="confirmModalMessage" class="text-xs text-slate-600 leading-relaxed">Are you sure you want to proceed?</p>
+      <div class="flex justify-end gap-2 pt-1">
+        <button type="button" onclick="closeModal('confirmModal')" class="touch-btn px-4 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer">Cancel</button>
+        <button type="button" id="confirmModalYesBtn" class="touch-btn px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold cursor-pointer">Yes, Proceed</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- TOAST NOTIFICATION BANNER                                               -->
+  <!-- ======================================================================= -->
+  <div id="toastBanner" class="fixed bottom-5 right-5 z-[80] hidden items-center gap-2.5 px-4 py-3 rounded-xl bg-[#00385A] text-white text-xs font-semibold shadow-lg border border-sky-400/30">
+    <i class="fa-solid fa-circle-check text-[#10B981] text-sm"></i>
+    <span id="toastText">Action completed.</span>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- COMPLETE ES6+ APPLICATION LOGIC                                         -->
+  <!-- ======================================================================= -->
+  <script>
+    'use strict';
+
+    /**
+     * SAFE LOCALSTORAGE WRAPPER
+     */
+    const MemoryFallback = {};
+    const SafeStorage = {
+      available: true,
+      get(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (err) {
+          this.available = false;
+          return Object.prototype.hasOwnProperty.call(MemoryFallback, key) ? MemoryFallback[key] : null;
+        }
+      },
+      set(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (err) {
+          this.available = false;
+          MemoryFallback[key] = value;
+        }
+      }
+    };
+
+    const STORAGE_KEYS = {
+      VIPS: 'platinum_bpn_fom_vips_v6',
+      FLEET: 'platinum_bpn_fom_fleet_v6',
+      DISPATCH: 'platinum_bpn_fom_dispatch_v6',
+      SERVICE: 'platinum_bpn_fom_service_v6',
+      HANDOVER: 'platinum_bpn_fom_handover_v6'
+    };
+
+    /**
+     * OFFICIAL 12 VIP TIER CLASSIFICATIONS & CASCADING POSITIONS
+     */
+    const VIP_TIERS_CONFIG = {
+      'VIP 1': {
+        code: 'VIP 1',
+        name: 'Government Officials',
+        badgeClass: 'bg-amber-50 text-[#B45309] border-[#FDE68A]',
+        positions: [
+          'President',
+          'Minister',
+          'Governor',
+          'Mayor',
+          'Regent',
+          'Member of Parliament (DPR)',
+          'Member of Regional Legislative Council (DPRD)'
+        ],
+        protocol: 'State & Government Protocol: FOM & General Manager Lobby Escort, Sepinggan Airport VIP Gate Tarmac Pickup, Pre-Keyed Suite Registration, Kalimantan Orchid Garland, and Security Liaison Briefing.'
+      },
+      'VIP 2': {
+        code: 'VIP 2',
+        name: 'Diplomatic Guests',
+        badgeClass: 'bg-sky-50 text-[#00629B] border-sky-200',
+        positions: [
+          'Ambassador',
+          'Consul General / Consul',
+          'Diplomat',
+          'Foreign Government Representative'
+        ],
+        protocol: 'Diplomatic Protocol: Duty Manager Welcome, Diplomatic Immunity & Embassy Liaison Check, Flag-Appropriate Courtesy Setup, and Priority Chauffeur Escort.'
+      },
+      'VIP 3': {
+        code: 'VIP 3',
+        name: 'Royal Family',
+        badgeClass: 'bg-amber-100 text-amber-900 border-amber-300',
+        positions: [
+          'Sultan',
+          'King / Queen',
+          'Prince / Princess',
+          'Traditional Royal Dignitary'
+        ],
+        protocol: 'Royal Hospitality Protocol: Full Executive Committee Greeting, Platinum Suite / Royal Wing Allocation, Bespoke Cultural Welcome Amenity, and Dedicated Butler Service.'
+      },
+      'VIP 4': {
+        code: 'VIP 4',
+        name: 'Corporate Executives',
+        badgeClass: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+        positions: [
+          'Chief Executive Officer (CEO)',
+          'Managing Director',
+          'Board Director',
+          'Commissioner',
+          'Company Owner'
+        ],
+        protocol: 'Executive Corporate Protocol: Express In-Suite Check-In, Executive Lounge Access, Fresh Tropical Fruit Platter, and Priority Airport Limousine Transfer.'
+      },
+      'VIP 5': {
+        code: 'VIP 5',
+        name: 'Business Partners',
+        badgeClass: 'bg-blue-50 text-blue-800 border-blue-200',
+        positions: [
+          'Investor',
+          'Business Associate',
+          'Corporate Partner',
+          'Strategic Business Partner'
+        ],
+        protocol: 'Strategic Partner Protocol: Front Office Manager Greeting, Welcome Letter from General Manager, Complimentary Pressing Service, and F&B Welcome Amenity.'
+      },
+      'VIP 6': {
+        code: 'VIP 6',
+        name: 'Celebrities & Public Figures',
+        badgeClass: 'bg-purple-50 text-purple-800 border-purple-200',
+        positions: [
+          'Artist',
+          'Musician',
+          'Influencer',
+          'Prominent Public Figure'
+        ],
+        protocol: 'Privacy & Discretion Protocol: Private Back-of-House / VIP Elevator Access, Incognito Alias Registration Option, Strict No-Photo Staff Policy, and Customized Rider Amenities.'
+      },
+      'VIP 7': {
+        code: 'VIP 7',
+        name: 'Sports Personalities',
+        badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+        positions: [
+          'International Athlete',
+          'National Athlete',
+          'Sports Official',
+          'Sports Organization Representative'
+        ],
+        protocol: 'Athletic & Delegation Protocol: High-Protein / Hydration Welcome Kit, Gymnasium & Spa Priority Access, Coordinated Team/Official Fleet Dispatch, and Quiet-Zone Room Assignment.'
+      },
+      'VIP 8': {
+        code: 'VIP 8',
+        name: 'Religious Leaders',
+        badgeClass: 'bg-teal-50 text-teal-800 border-teal-200',
+        positions: [
+          'Religious Figure',
+          'Spiritual Leader',
+          'Head of Religious Organization'
+        ],
+        protocol: 'Reverent Hospitality Protocol: Quiet Sanctuary Floor Room Placement, Verified Dietary & Prayer Amenity Setup, and Direct Front Office Escort.'
+      },
+      'VIP 9': {
+        code: 'VIP 9',
+        name: 'Loyal Guests',
+        badgeClass: 'bg-yellow-50 text-yellow-800 border-yellow-300',
+        positions: [
+          'Platinum Repeat Guest',
+          'Long-Stay Regular Guest',
+          'High-Value Loyal Customer'
+        ],
+        protocol: 'Loyalty Recognition Protocol: Personalized "Welcome Back" Note, Saved Pillow & Room Temperature Preferences, Room Upgrade Subject to Availability, and Late Check-Out.'
+      },
+      'VIP 10': {
+        code: 'VIP 10',
+        name: 'Hotel Owners & Shareholders',
+        badgeClass: 'bg-amber-50 text-[#9A7414] border-[#C59B27]',
+        positions: [
+          'Hotel Owner',
+          'Majority Shareholder',
+          'Authorized Ownership Representative'
+        ],
+        protocol: 'Ownership VVIP Protocol: Immediate General Manager & HOD Notification, Pre-Arrival Suite Inspection by Executive Housekeeper, and Dedicated Executive Vehicle Standby.'
+      },
+      'VIP 11': {
+        code: 'VIP 11',
+        name: 'Hotel Management',
+        badgeClass: 'bg-slate-100 text-slate-800 border-slate-300',
+        positions: [
+          'Group CEO',
+          'President Director',
+          'Board of Directors',
+          'Regional Director',
+          'General Manager'
+        ],
+        protocol: 'Corporate Hospitality Leadership Protocol: FOM Welcome Greeting, Executive Suite / Business Floor Readiness Check, and Daily Operational Briefing Folder in Room.'
+      },
+      'VIP 12': {
+        code: 'VIP 12',
+        name: 'Special Occasion Guests',
+        badgeClass: 'bg-rose-50 text-rose-800 border-rose-200',
+        positions: [
+          'Honeymoon / Anniversary VIP',
+          'Milestone Celebration Guest',
+          'Management-Approved Special Recognition'
+        ],
+        protocol: 'Celebration Protocol (Management Approved): Complimentary Celebration Cake / Floral Arrangement, Personalized Greeting Card, and Turndown Amenity.'
+      }
+    };
+
+    function getTierMeta(tierCode) {
+      return VIP_TIERS_CONFIG[tierCode] || VIP_TIERS_CONFIG['VIP 1'];
+    }
+
+    /**
+     * EXACT 200-ROOM INVENTORY (Floors 5–11 across 7 Room Types)
+     */
+    const ROOM_TYPES = {
+      PLS: { code: 'PLS', name: 'Platinum Suite', bedCode: 'D', bedLabel: 'Double King Suite', rooms: ['1128', '1129'] },
+      EXS: { code: 'EXS', name: 'Executive Suite', bedCode: 'K', bedLabel: 'King Bed', rooms: ['510', '610', '710', '810', '910', '1010'] },
+      JSU: { code: 'JSU', name: 'Junior Suite', bedCode: 'K', bedLabel: 'King Bed', rooms: ['502', '537', '602', '637', '702', '737', '802', '837', '902', '937', '1002', '1037'] },
+      BSNQ: { code: 'BSNQ', name: 'Business Queen', bedCode: 'Q', bedLabel: 'Queen Bed', rooms: ['503', '528', '530', '532', '536', '538', '603', '703', '803', '903', '1003'] },
+      BSNT: {
+        code: 'BSNT',
+        name: 'Business Twin',
+        bedCode: 'T',
+        bedLabel: 'Twin Beds',
+        rooms: ['501', '509', '511', '512', '601', '609', '611', '701', '709', '711', '801', '809', '811', '901', '909', '911', '1001', '1009', '1011']
+      },
+      DLXQ: {
+        code: 'DLXQ',
+        name: 'Deluxe Queen',
+        bedCode: 'Q',
+        bedLabel: 'Queen Bed',
+        rooms: [
+          '516', '518', '520', '522', '526',
+          '616', '618', '620', '622', '626', '628', '630', '632', '636', '638',
+          '716', '718', '720', '722', '726', '728', '730', '732', '736', '738',
+          '816', '818', '820', '822', '826', '828', '830', '832', '836', '838',
+          '916', '918', '920', '922', '926', '928', '930', '932', '936', '938',
+          '1016', '1018', '1020', '1022', '1026', '1028', '1030', '1032', '1036', '1038'
+        ]
+      },
+      DLXT: {
+        code: 'DLXT',
+        name: 'Deluxe Twin',
+        bedCode: 'T',
+        bedLabel: 'Twin Beds',
+        rooms: [
+          '505', '506', '507', '508', '515', '517', '519', '521', '523', '525', '527', '529', '531', '533', '535',
+          '605', '606', '607', '608', '612', '615', '617', '619', '621', '623', '625', '627', '629', '631', '633', '635',
+          '705', '706', '707', '708', '712', '715', '717', '719', '721', '723', '725', '727', '729', '731', '733', '735',
+          '805', '806', '807', '808', '812', '815', '817', '819', '821', '823', '825', '827', '829', '831', '833', '835',
+          '905', '906', '907', '908', '912', '915', '917', '919', '921', '923', '925', '927', '929', '931', '933', '935',
+          '1005', '1006', '1007', '1008', '1012', '1015', '1017', '1019', '1021', '1023', '1025', '1027', '1029', '1031', '1033', '1035'
+        ]
+      }
+    };
+
+    const ROOM_LOOKUP = {};
+    const ALL_ROOMS_LIST = [];
+    Object.values(ROOM_TYPES).forEach(rt => {
+      rt.rooms.forEach(roomNum => {
+        const floor = roomNum.length === 4 ? Number(roomNum.slice(0, 2)) : Number(roomNum.slice(0, 1));
+        const info = {
+          roomNumber: roomNum,
+          floor,
+          typeCode: rt.code,
+          typeName: rt.name,
+          bedCode: rt.bedCode,
+          bedLabel: rt.bedLabel
+        };
+        ROOM_LOOKUP[roomNum] = info;
+        ALL_ROOMS_LIST.push(info);
+      });
+    });
+    ALL_ROOMS_LIST.sort((a, b) => Number(a.roomNumber) - Number(b.roomNumber));
+
+    function getRoomDetails(roomNumber) {
+      return ROOM_LOOKUP[String(roomNumber)] || {
+        roomNumber: String(roomNumber),
+        floor: 11,
+        typeCode: 'PLS',
+        typeName: 'Platinum Suite',
+        bedCode: 'D',
+        bedLabel: 'Double King Suite'
+      };
+    }
+
+    /**
+     * DATE & CLOCK UTILITIES
+     */
+    function getTodayISO() {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function getOffsetDateISO(daysOffset) {
+      const dt = new Date();
+      dt.setDate(dt.getDate() + daysOffset);
+      const y = dt.getFullYear();
+      const m = String(dt.getMonth() + 1).padStart(2, '0');
+      const d = String(dt.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function formatReadableDate(isoStr) {
+      if (!isoStr) return '-';
+      const parts = isoStr.split('-');
+      if (parts.length !== 3) return isoStr;
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return `${parts[2]} ${months[Number(parts[1]) - 1]} ${parts[0]}`;
+    }
+
+    function startWitaClock() {
+      const update = () => {
+        try {
+          const timeStr = new Date().toLocaleTimeString('en-GB', {
+            timeZone: 'Asia/Makassar',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          });
+          document.getElementById('witaLiveClock').textContent = `${timeStr} WITA`;
+        } catch (e) {
+          const fallback = new Date().toLocaleTimeString('en-GB');
+          document.getElementById('witaLiveClock').textContent = `${fallback} WITA`;
+        }
+      };
+      update();
+      setInterval(update, 1000);
+    }
+
+    /**
+     * HIGH-CONTRAST 3:4 GOLD MONOGRAM AVATAR SVG GENERATOR
+     */
+    function createGoldMonogramSVG(fullName) {
+      const cleaned = (fullName || 'VIP').replace(/[^a-zA-Z\s]/g, '').trim();
+      const words = cleaned.split(/\s+/).filter(Boolean);
+      let initials = 'VP';
+      if (words.length >= 2) {
+        initials = (words[0][0] + words[words.length - 1][0]).toUpperCase();
+      } else if (words.length === 1) {
+        initials = words[0].slice(0, 2).toUpperCase();
+      }
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="390" viewBox="0 0 300 390">
+          <defs>
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#004E7C"/>
+              <stop offset="100%" stop-color="#002B45"/>
+            </linearGradient>
+            <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FDE68A"/>
+              <stop offset="50%" stop-color="#C59B27"/>
+              <stop offset="100%" stop-color="#9A7414"/>
+            </linearGradient>
+          </defs>
+          <rect width="300" height="390" fill="url(#bgGrad)"/>
+          <rect x="16" y="16" width="268" height="358" rx="24" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-opacity="0.75"/>
+          <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" fill="url(#goldGrad)" font-family="Inter, Arial, sans-serif" font-size="104" font-weight="800" letter-spacing="4">${initials}</text>
+        </svg>
+      `;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg.trim());
+    }
+
+    /**
+     * APPLICATION STATE
+     */
+    let vipList = [];
+    let fleetList = [];
+    let dispatchList = [];
+    let serviceList = [];
+    let handoverList = [];
+    let currentPortraitDataUrl = '';
+    let activeTab = 'directory';
+
+    function seedInitialDemoData() {
+      const today = getTodayISO();
+      const tomorrow = getOffsetDateISO(1);
+      const dayAfter = getOffsetDateISO(2);
+      const plusThree = getOffsetDateISO(3);
+
+      fleetList = [
+        {
+          id: 'flt-1',
+          model: 'Mercedes-Benz S 450 L',
+          plate: 'KT 1 PLAT',
+          status: 'Available',
+          driver: 'Mr. Rahmat Hidayat',
+          odometer: 14850
+        },
+        {
+          id: 'flt-2',
+          model: 'Toyota Alphard Executive Lounge',
+          plate: 'KT 88 PLAT',
+          status: 'In Use',
+          driver: 'Mr. Denny Kurniawan',
+          odometer: 22410
+        },
+        {
+          id: 'flt-3',
+          model: 'Toyota Vellfire VIP',
+          plate: 'KT 99 PLAT',
+          status: 'Available',
+          driver: 'Mr. Agus Salim',
+          odometer: 19300
+        },
+        {
+          id: 'flt-4',
+          model: 'Hyundai Staria Signature',
+          plate: 'KT 77 PLAT',
+          status: 'Available',
+          driver: 'Mr. Eko Prasetyo',
+          odometer: 11200
+        }
+      ];
+
+      vipList = [
+        {
+          id: 'vip-101',
+          name: 'Hon. Ir. H. Bambang Wirawan',
+          company: 'Ministry of Energy & Mineral Resources',
+          tier: 'VIP 1',
+          position: 'Minister',
+          checkIn: today,
+          checkOut: dayAfter,
+          eta: 'GA-564 • 14:30 WITA',
+          roomNumber: '1128',
+          vehicleId: 'flt-1',
+          customVehicle: null,
+          checkedIn: false,
+          notes: 'BPN Airport VIP Gate tarmac pickup. Stage fresh Kalimantan orchid garland, cold towel, and tropical fruit platter in Platinum Suite 1128.',
+          photo: createGoldMonogramSVG('Bambang Wirawan'),
+          photoFit: 'top'
+        },
+        {
+          id: 'vip-102',
+          name: 'Mrs. Clarissa Tanuwijaya, MBA',
+          company: 'Nusantara Energy Holdings',
+          tier: 'VIP 4',
+          position: 'Chief Executive Officer (CEO)',
+          checkIn: today,
+          checkOut: plusThree,
+          eta: 'SQ-952 • 16:45 WITA',
+          roomNumber: '1010',
+          vehicleId: '__CUSTOM__',
+          customVehicle: {
+            model: 'Toyota Land Cruiser 300 GR',
+            plate: 'KT 1234 AB',
+            driver: 'Mr. Hendra (External Escort)'
+          },
+          checkedIn: false,
+          notes: 'Arriving via private corporate charter escort. Hypoallergenic feather-free pillows and Voss still water prepared.',
+          photo: createGoldMonogramSVG('Clarissa Tanuwijaya'),
+          photoFit: 'top'
+        },
+        {
+          id: 'vip-103',
+          name: 'H.E. Ambassador Kenji Takahashi',
+          company: 'Embassy of Japan — Trade Mission',
+          tier: 'VIP 2',
+          position: 'Ambassador',
+          checkIn: tomorrow,
+          checkOut: plusThree,
+          eta: 'JL-725 • 11:20 WITA',
+          roomNumber: '1129',
+          vehicleId: 'flt-2',
+          customVehicle: null,
+          checkedIn: false,
+          notes: 'Japanese morning newspaper, green tea amenity set, and late check-out confirmed until 15:00 WITA.',
+          photo: createGoldMonogramSVG('Kenji Takahashi'),
+          photoFit: 'top'
+        }
+      ];
+
+      dispatchList = [
+        {
+          id: 'dsp-201',
+          vipId: 'vip-101',
+          vehicleId: 'flt-1',
+          customVehicle: null,
+          date: today,
+          time: '13:45',
+          route: 'Sultan Aji Muhammad Sulaiman Airport (BPN) -> Platinum Hotel',
+          status: 'Scheduled'
+        },
+        {
+          id: 'dsp-202',
+          vipId: 'vip-102',
+          vehicleId: '__CUSTOM__',
+          customVehicle: {
+            model: 'Toyota Land Cruiser 300 GR',
+            plate: 'KT 1234 AB',
+            driver: 'Mr. Hendra (External Escort)'
+          },
+          date: today,
+          time: '16:15',
+          route: 'Private Aviation Terminal BPN -> Main Lobby Porte-Cochere',
+          status: 'Scheduled'
+        }
+      ];
+
+      serviceList = [
+        {
+          id: 'srv-301',
+          vehicleId: 'flt-1',
+          scope: '15,000 KM Full Synthetic Oil & Air Suspension Check',
+          lastDate: getOffsetDateISO(-45),
+          nextDate: getOffsetDateISO(25),
+          workshop: 'Mercedes-Benz Authorized Workshop Balikpapan'
+        },
+        {
+          id: 'srv-302',
+          vehicleId: 'flt-2',
+          scope: 'Brake Pad Replacement & Cabin HEPA Filter',
+          lastDate: getOffsetDateISO(-55),
+          nextDate: getOffsetDateISO(4),
+          workshop: 'Auto2000 MT Haryono Balikpapan'
+        },
+        {
+          id: 'srv-303',
+          vehicleId: 'flt-3',
+          scope: 'Ceramic Coating Refresh & Tire Alignment',
+          lastDate: getOffsetDateISO(-70),
+          nextDate: getOffsetDateISO(-2),
+          workshop: 'Auto2000 Sudirman Balikpapan'
+        },
+        {
+          id: 'srv-304',
+          vehicleId: 'flt-4',
+          scope: '20,000 KM General Inspection & AC Sanitization',
+          lastDate: getOffsetDateISO(-20),
+          nextDate: getOffsetDateISO(40),
+          workshop: 'Hyundai Motor Balikpapan'
+        }
+      ];
+
+      handoverList = [
+        {
+          id: 'ho-401',
+          shift: 'Morning Shift (07:00 - 15:00)',
+          officer: 'Abdul Ghofur — Front Office Manager',
+          date: today,
+          time: '08:15 WITA',
+          notes: 'Platinum Suite 1128 and Executive Suite 1010 inspected and cleared by Executive Housekeeper. Mercedes-Benz S 450 L (KT 1 PLAT) detailed and fueled for 14:30 WITA Government Minister pickup.'
+        }
+      ];
+
+      persistAllData();
+    }
+
+    function loadAllData() {
+      const rawVips = SafeStorage.get(STORAGE_KEYS.VIPS);
+      const rawFleet = SafeStorage.get(STORAGE_KEYS.FLEET);
+      const rawDisp = SafeStorage.get(STORAGE_KEYS.DISPATCH);
+      const rawSrv = SafeStorage.get(STORAGE_KEYS.SERVICE);
+      const rawHo = SafeStorage.get(STORAGE_KEYS.HANDOVER);
+
+      if (!rawVips || !rawFleet) {
+        seedInitialDemoData();
+      } else {
+        try {
+          vipList = JSON.parse(rawVips) || [];
+          fleetList = JSON.parse(rawFleet) || [];
+          dispatchList = rawDisp ? JSON.parse(rawDisp) : [];
+          serviceList = rawSrv ? JSON.parse(rawSrv) : [];
+          handoverList = rawHo ? JSON.parse(rawHo) : [];
+        } catch (e) {
+          seedInitialDemoData();
+        }
+      }
+
+      const statusEl = document.getElementById('storageStatusLabel');
+      if (!SafeStorage.available) {
+        statusEl.innerHTML = '<i class="fa-solid fa-memory mr-1 text-amber-600"></i>Session Memory Active';
+      }
+    }
+
+    function persistAllData() {
+      SafeStorage.set(STORAGE_KEYS.VIPS, JSON.stringify(vipList));
+      SafeStorage.set(STORAGE_KEYS.FLEET, JSON.stringify(fleetList));
+      SafeStorage.set(STORAGE_KEYS.DISPATCH, JSON.stringify(dispatchList));
+      SafeStorage.set(STORAGE_KEYS.SERVICE, JSON.stringify(serviceList));
+      SafeStorage.set(STORAGE_KEYS.HANDOVER, JSON.stringify(handoverList));
+    }
+
+    /**
+     * PORTRAIT FIT HELPER ('top' | 'center' | 'contain')
+     */
+    function getPortraitFitClasses(photoFit) {
+      if (photoFit === 'contain') return 'object-contain bg-slate-900';
+      if (photoFit === 'center') return 'object-cover object-center bg-white';
+      return 'object-cover object-top bg-white';
+    }
+
+    /**
+     * RESOLVE VEHICLE DISPLAY FOR BOTH HOTEL FLEET & CUSTOM VEHICLES
+     */
+    function resolveVehicleInfo(vehicleId, customVehicle) {
+      if (!vehicleId) return null;
+      if (vehicleId === '__CUSTOM__' && customVehicle) {
+        return {
+          model: customVehicle.model || 'Custom Protocol Vehicle',
+          plate: customVehicle.plate || 'CUSTOM',
+          driver: customVehicle.driver || 'External Chauffeur',
+          isCustom: true
+        };
+      }
+      const unit = fleetList.find(f => f.id === vehicleId);
+      if (!unit) return null;
+      return {
+        model: unit.model,
+        plate: unit.plate,
+        driver: unit.driver,
+        isCustom: false
+      };
+    }
+
+    /**
+     * NAVIGATION & UI HELPERS
+     */
+    function switchActiveTab(tabKey) {
+      activeTab = tabKey;
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
+      const target = document.getElementById(`panel-${tabKey}`);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.tab-pill-btn').forEach(btn => {
+        btn.classList.remove('bg-[#00629B]', 'text-white', 'font-bold', 'shadow-2xs');
+        btn.classList.add('text-slate-600', 'hover:bg-white', 'font-semibold');
+      });
+
+      const activeBtn = document.getElementById(`tabBtn-${tabKey}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-600', 'hover:bg-white', 'font-semibold');
+        activeBtn.classList.add('bg-[#00629B]', 'text-white', 'font-bold', 'shadow-2xs');
+      }
+    }
+
+    function renderSopTierGrid() {
+      const grid = document.getElementById('sopTierGrid');
+      if (!grid) return;
+      grid.innerHTML = Object.values(VIP_TIERS_CONFIG).map(t => `
+        <div class="p-2.5 rounded-lg bg-white border border-slate-200 space-y-1">
+          <div class="flex items-center justify-between gap-1">
+            <span class="px-2 py-0.5 rounded text-[10px] font-extrabold border ${t.badgeClass}">${t.code} — ${t.name}</span>
+          </div>
+          <p class="text-[11px] text-slate-500"><strong>Positions:</strong> ${t.positions.join(', ')}</p>
+        </div>
+      `).join('');
+    }
+
+    function toggleSopBanner() {
+      const box = document.getElementById('sopGuideBox');
+      if (box.classList.contains('hidden')) {
+        renderSopTierGrid();
+      }
+      box.classList.toggle('hidden');
+    }
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const banner = document.getElementById('toastBanner');
+      document.getElementById('toastText').textContent = msg;
+      banner.classList.remove('hidden');
+      banner.classList.add('flex');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.add('hidden');
+        banner.classList.remove('flex');
+      }, 3000);
+    }
+
+    /**
+     * DATE FILTERING
+     */
+    function handleFilterDateChange() {
+      const val = document.getElementById('filterDateInput').value || getTodayISO();
+      document.getElementById('selectedDatePill').textContent = `Selected Date: ${formatReadableDate(val)}`;
+      renderAll();
+    }
+
+    function resetFilterToToday() {
+      const today = getTodayISO();
+      document.getElementById('filterDateInput').value = today;
+      document.getElementById('selectedDatePill').textContent = `Today: ${formatReadableDate(today)}`;
+      document.getElementById('filterStatusSelect').value = 'ALL';
+      document.getElementById('filterTierSelect').value = 'ALL';
+      renderAll();
+      showToast('Filter date set to Today.');
+    }
+
+    /**
+     * MASTER RENDER FUNCTION
+     */
+    function renderAll() {
+      renderSummaryKPIs();
+      renderVipTable();
+      renderFleetSection();
+      renderServiceLogTable();
+      renderHandoverFeed();
+    }
+
+    function renderSummaryKPIs() {
+      const selectedDate = document.getElementById('filterDateInput').value || getTodayISO();
+      const today = getTodayISO();
+
+      const todayArrivals = vipList.filter(v => v.checkIn === today);
+      const selectedDateArrivals = vipList.filter(v => v.checkIn === selectedDate);
+      const priorityTodayCount = todayArrivals.filter(v => ['VIP 1', 'VIP 2', 'VIP 3', 'VIP 10'].includes(v.tier)).length;
+      const pendingPickups = todayArrivals.filter(v => !v.checkedIn && v.vehicleId).length;
+
+      document.getElementById('headerTodayBadge').textContent = selectedDateArrivals.length;
+      document.getElementById('kpiTodayArrivals').textContent = `${todayArrivals.length} ${todayArrivals.length === 1 ? 'Guest' : 'Guests'}`;
+      document.getElementById('kpiTodaySub').textContent = `${priorityTodayCount} High-Protocol • ${pendingPickups} Pending Pickups`;
+
+      document.getElementById('kpiActiveRegistry').textContent = `${vipList.length} ${vipList.length === 1 ? 'Profile' : 'Profiles'}`;
+      document.getElementById('kpiRegistrySub').textContent = `${vipList.length}/200 Rooms VIP Assigned`;
+
+      const availableFleet = fleetList.filter(f => f.status === 'Available').length;
+      const totalFleet = fleetList.length;
+      const readinessPct = totalFleet > 0 ? Math.round((availableFleet / totalFleet) * 100) : 100;
+      const activeDispatches = dispatchList.filter(d => d.status !== 'Completed').length;
+
+      document.getElementById('kpiFleetReadiness').textContent = `${readinessPct}% Ready`;
+      document.getElementById('kpiFleetSub').textContent = `${availableFleet}/${totalFleet} Units Available • ${activeDispatches} Active Dispatches`;
+
+      const serviceAlerts = serviceList.filter(s => getServiceHealth(s.nextDate).isAlert).length;
+      document.getElementById('kpiServiceCount').textContent = `${serviceAlerts} ${serviceAlerts === 1 ? 'Alert' : 'Alerts'}`;
+      document.getElementById('kpiServiceSub').textContent = serviceAlerts > 0
+        ? `${serviceAlerts} Unit(s) Due Soon or Overdue`
+        : 'All Fleet Units Inspected & Healthy';
+    }
+
+    /**
+     * RENDER TAB 1: VIP GUEST DIRECTORY TABLE
+     */
+    function renderVipTable() {
+      const tbody = document.getElementById('vipDirectoryBody');
+      const selectedDate = document.getElementById('filterDateInput').value;
+      const tierFilter = document.getElementById('filterTierSelect').value;
+      const statusFilter = document.getElementById('filterStatusSelect').value;
+      const query = (document.getElementById('vipSearchInput').value || '').toLowerCase().trim();
+      const today = getTodayISO();
+
+      const filtered = vipList.filter(v => {
+        const room = getRoomDetails(v.roomNumber);
+        const veh = resolveVehicleInfo(v.vehicleId, v.customVehicle);
+        const tierMeta = getTierMeta(v.tier);
+
+        if (tierFilter !== 'ALL' && v.tier !== tierFilter) return false;
+        if (statusFilter === 'ARRIVING_DATE' && selectedDate && v.checkIn !== selectedDate) return false;
+        if (statusFilter === 'PENDING' && v.checkedIn) return false;
+        if (statusFilter === 'CHECKED_IN' && !v.checkedIn) return false;
+
+        if (query) {
+          const hay = [
+            v.name,
+            v.company,
+            v.tier,
+            tierMeta.name,
+            v.position || '',
+            v.eta,
+            v.roomNumber,
+            room.typeCode,
+            room.typeName,
+            veh ? veh.model : '',
+            veh ? veh.plate : ''
+          ].join(' ').toLowerCase();
+          if (!hay.includes(query)) return false;
+        }
+        return true;
+      });
+
+      document.getElementById('mobileVipRowCount').textContent = `${filtered.length} VIPs`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-12 px-4 text-center">
+              <div class="max-w-sm mx-auto space-y-2">
+                <i class="fa-solid fa-user-tie text-3xl text-slate-300"></i>
+                <p class="text-sm font-bold text-slate-700">No VIP Guests Match Current Filter</p>
+                <p class="text-xs text-slate-500">Adjust the arrival date/tier filter or register a new VIP guest.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(vip => {
+        const isArrivingToday = vip.checkIn === today;
+        const room = getRoomDetails(vip.roomNumber);
+        const veh = resolveVehicleInfo(vip.vehicleId, vip.customVehicle);
+        const tierMeta = getTierMeta(vip.tier);
+        const rowHighlight = isArrivingToday ? 'bg-[#FFFDF7] hover:bg-amber-50/70' : 'bg-white hover:bg-slate-50';
+
+        const safeNameEscaped = vip.name.replace(/'/g, "\\'");
+        const fitMode = vip.photoFit || 'top';
+        const fitClasses = getPortraitFitClasses(fitMode);
+        const posLabel = vip.position || tierMeta.positions[0];
+
+        return `
+          <tr class="${rowHighlight} transition">
+            <td class="py-3.5 px-4">
+              <div class="flex items-center gap-3.5">
+                <div class="relative group flex-shrink-0">
+                  <img
+                    src="${vip.photo || createGoldMonogramSVG(vip.name)}"
+                    alt="${vip.name}"
+                    onclick="openPortraitLightbox(this.src, '${safeNameEscaped}', '${tierMeta.code} • ${posLabel} • Room ${room.roomNumber}', '${fitMode}')"
+                    title="Click to zoom 3:4 portrait"
+                    class="w-[64px] h-[82px] rounded-xl ${fitClasses} gold-portrait-frame cursor-zoom-in transition-transform duration-150 group-hover:scale-105"
+                  />
+                </div>
+                <div class="min-w-0">
+                  <div class="font-extrabold text-slate-900 flex items-center gap-1.5">
+                    ${isArrivingToday ? '<i class="fa-solid fa-star text-[#C59B27] text-xs" title="Arriving Today"></i>' : ''}
+                    <span class="truncate">${vip.name}</span>
+                  </div>
+                  <div class="text-xs text-slate-500 truncate mt-0.5">${vip.company}</div>
+                </div>
+              </div>
+            </td>
+
+            <td class="py-3.5 px-4">
+              <span class="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-extrabold border ${tierMeta.badgeClass}">
+                ${tierMeta.code} — ${tierMeta.name}
+              </span>
+              <div class="text-xs font-bold text-slate-700 mt-1">
+                <i class="fa-solid fa-id-card-clip text-[#00629B] mr-1"></i>${posLabel}
+              </div>
+            </td>
+
+            <td class="py-3.5 px-4 whitespace-nowrap tabular-nums">
+              <div class="font-bold text-slate-800">${formatReadableDate(vip.checkIn)}</div>
+              <div class="text-[11px] text-slate-400">to ${formatReadableDate(vip.checkOut)}</div>
+            </td>
+
+            <td class="py-3.5 px-4 whitespace-nowrap font-bold text-[#00629B] tabular-nums">
+              ${vip.eta}
+            </td>
+
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              <div class="font-extrabold text-slate-900">
+                Room ${room.roomNumber}
+                <span class="ml-1 px-1.5 py-0.5 rounded bg-sky-50 border border-sky-200 text-[#00629B] text-[10px] font-extrabold">${room.typeCode}</span>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-0.5">${room.typeName} • Floor ${room.floor} • Bed ${room.bedCode}</div>
+            </td>
+
+            <td class="py-3.5 px-4">
+              ${veh
+                ? `<div class="font-bold text-slate-800 flex flex-wrap items-center gap-1.5">
+                    <span>${veh.model}</span>
+                    ${veh.isCustom ? '<span class="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-amber-100 text-[#B45309] border border-amber-300">CUSTOM VEHICLE</span>' : ''}
+                   </div>
+                   <div class="text-[11px] text-slate-500 mt-0.5">${veh.plate} • ${veh.driver}</div>`
+                : `<span class="text-slate-400 italic text-xs">No Hotel Shuttle</span>`
+              }
+            </td>
+
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              ${vip.checkedIn
+                ? `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-circle-check"></i> Checked-In</span>`
+                : `<button type="button" onclick="markVipCheckedIn('${vip.id}')" class="px-3 py-1.5 rounded-full text-[11px] font-bold bg-amber-100 hover:bg-amber-200 text-[#B45309] border border-amber-300 transition cursor-pointer">Mark Checked-In</button>`
+              }
+            </td>
+
+            <td class="py-3.5 px-4 text-right whitespace-nowrap space-x-1">
+              <button type="button" onclick="openVipDossierModal('${vip.id}')" title="View Dossier" class="p-2 rounded-lg border border-slate-200 hover:bg-slate-100 text-[#00629B] transition cursor-pointer">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+              <button type="button" onclick="openVipModal('${vip.id}')" title="Edit VIP" class="p-2 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 transition cursor-pointer">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button type="button" onclick="promptDeleteItem('vip', '${vip.id}', '${safeNameEscaped}')" title="Delete VIP" class="p-2 rounded-lg border border-rose-200 hover:bg-rose-50 text-rose-600 transition cursor-pointer">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    /**
+     * RENDER TAB 2: FLEET UNITS & CHAUFFEUR DISPATCHES
+     */
+    function renderFleetSection() {
+      const container = document.getElementById('fleetUnitsContainer');
+      container.innerHTML = fleetList.map(unit => {
+        let pillStyle = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+        if (unit.status === 'In Use') pillStyle = 'bg-sky-50 text-[#00629B] border-sky-200';
+        if (unit.status === 'Maintenance') pillStyle = 'bg-amber-50 text-amber-800 border-amber-200';
+
+        const safeModel = unit.model.replace(/'/g, "\\'");
+        return `
+          <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs flex flex-col justify-between gap-3">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="px-2 py-0.5 rounded font-mono text-[11px] font-extrabold bg-slate-100 text-slate-800 border border-slate-300">${unit.plate}</span>
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${pillStyle}">${unit.status}</span>
+              </div>
+              <h4 class="font-extrabold text-sm text-slate-900 mt-2.5">${unit.model}</h4>
+              <p class="text-xs text-slate-600 mt-1"><i class="fa-solid fa-id-badge text-[#00629B] mr-1.5"></i>${unit.driver}</p>
+              <p class="text-[11px] text-slate-400 mt-0.5 tabular-nums">Odometer: ${Number(unit.odometer).toLocaleString('en-US')} KM</p>
+            </div>
+            <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2">
+              <select aria-label="Change Unit Status" onchange="quickUpdateFleetStatus('${unit.id}', this.value)" class="text-[11px] font-bold text-slate-700 border border-slate-200 rounded-lg px-2 py-1.5 bg-slate-50">
+                <option value="Available" ${unit.status === 'Available' ? 'selected' : ''}>Available</option>
+                <option value="In Use" ${unit.status === 'In Use' ? 'selected' : ''}>In Use</option>
+                <option value="Maintenance" ${unit.status === 'Maintenance' ? 'selected' : ''}>Maintenance</option>
+              </select>
+              <div class="space-x-1">
+                <button type="button" onclick="openFleetUnitModal('${unit.id}')" title="Edit Unit" class="p-1.5 text-slate-500 hover:text-[#00629B] cursor-pointer"><i class="fa-solid fa-pen text-xs"></i></button>
+                <button type="button" onclick="promptDeleteItem('fleet', '${unit.id}', '${safeModel}')" title="Remove Unit" class="p-1.5 text-slate-400 hover:text-rose-600 cursor-pointer"><i class="fa-solid fa-trash text-xs"></i></button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const dispBody = document.getElementById('dispatchTableBody');
+      if (dispatchList.length === 0) {
+        dispBody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400">No chauffeur dispatches scheduled yet.</td></tr>`;
+        return;
+      }
+
+      dispBody.innerHTML = dispatchList.map(dsp => {
+        const veh = resolveVehicleInfo(dsp.vehicleId, dsp.customVehicle);
+        const vip = vipList.find(v => v.id === dsp.vipId);
+
+        let stBadge = 'bg-slate-100 text-slate-700 border-slate-200';
+        if (dsp.status === 'En Route') stBadge = 'bg-sky-50 text-[#00629B] border-sky-200';
+        if (dsp.status === 'Completed') stBadge = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+
+        return `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="py-3.5 px-4 whitespace-nowrap tabular-nums">
+              <div class="font-bold text-slate-800">${formatReadableDate(dsp.date)}</div>
+              <div class="text-[11px] font-bold text-[#00629B]">${dsp.time} WITA</div>
+            </td>
+            <td class="py-3.5 px-4">
+              <div class="font-bold text-slate-900 flex flex-wrap items-center gap-1.5">
+                <span>${veh ? veh.model : 'Removed Vehicle'}</span>
+                ${veh && veh.isCustom ? '<span class="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-amber-100 text-[#B45309] border border-amber-300">CUSTOM VEHICLE</span>' : ''}
+              </div>
+              <div class="text-[11px] font-mono text-slate-500">${veh ? veh.plate : '-'}</div>
+            </td>
+            <td class="py-3.5 px-4 text-slate-700 font-medium">${veh ? veh.driver : '-'}</td>
+            <td class="py-3.5 px-4 font-bold text-slate-900">${vip ? vip.name : 'VIP Guest'}</td>
+            <td class="py-3.5 px-4 text-slate-600">${dsp.route}</td>
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-bold border ${stBadge}">${dsp.status}</span>
+            </td>
+            <td class="py-3.5 px-4 text-right whitespace-nowrap space-x-1">
+              <button type="button" onclick="openDispatchModal('${dsp.id}')" title="Edit Dispatch" class="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 cursor-pointer"><i class="fa-solid fa-pen"></i></button>
+              <button type="button" onclick="promptDeleteItem('dispatch', '${dsp.id}', 'this dispatch schedule')" title="Delete Dispatch" class="p-1.5 rounded-lg border border-rose-200 hover:bg-rose-50 text-rose-600 cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    /**
+     * RENDER TAB 3: VEHICLE SERVICE & MAINTENANCE LOG
+     */
+    function getServiceHealth(nextDateISO) {
+      const today = new Date(getTodayISO());
+      const due = new Date(nextDateISO);
+      const daysDiff = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
+
+      if (daysDiff < 0) {
+        return { isAlert: true, label: `Overdue (${Math.abs(daysDiff)}d)`, badge: 'bg-rose-50 text-rose-700 border-rose-200' };
+      }
+      if (daysDiff <= 7) {
+        return { isAlert: true, label: daysDiff === 0 ? 'Due Today' : `Due Soon (${daysDiff}d)`, badge: 'bg-amber-50 text-amber-800 border-amber-300' };
+      }
+      return { isAlert: false, label: `Healthy (${daysDiff}d left)`, badge: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
+    }
+
+    function renderServiceLogTable() {
+      const tbody = document.getElementById('serviceLogTableBody');
+      if (serviceList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="py-8 text-center text-slate-400">No vehicle maintenance records logged yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = serviceList.map(srv => {
+        const unit = fleetList.find(f => f.id === srv.vehicleId);
+        const health = getServiceHealth(srv.nextDate);
+
+        return `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="py-3.5 px-4">
+              <div class="font-bold text-slate-900">${unit ? unit.model : 'Removed Fleet Unit'}</div>
+              <div class="text-[11px] font-mono text-slate-500">${unit ? unit.plate : '-'}</div>
+            </td>
+            <td class="py-3.5 px-4 font-medium text-slate-700">${srv.scope}</td>
+            <td class="py-3.5 px-4 tabular-nums text-slate-600">${unit ? Number(unit.odometer).toLocaleString('en-US') + ' KM' : '-'}</td>
+            <td class="py-3.5 px-4 tabular-nums text-slate-500">${formatReadableDate(srv.lastDate)}</td>
+            <td class="py-3.5 px-4 tabular-nums font-bold text-slate-900">${formatReadableDate(srv.nextDate)}</td>
+            <td class="py-3.5 px-4 text-slate-600">${srv.workshop}</td>
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-bold border ${health.badge}">${health.label}</span>
+            </td>
+            <td class="py-3.5 px-4 text-right whitespace-nowrap space-x-1">
+              <button type="button" onclick="completeServiceCycle('${srv.id}')" title="Mark Service Completed & Advance 60 Days" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-[11px] font-bold cursor-pointer">
+                Complete
+              </button>
+              <button type="button" onclick="openServiceModal('${srv.id}')" title="Edit Service" class="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 cursor-pointer">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button type="button" onclick="promptDeleteItem('service', '${srv.id}', 'this service log')" title="Delete Service" class="p-1.5 rounded-lg border border-rose-200 hover:bg-rose-50 text-rose-600 cursor-pointer">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function completeServiceCycle(srvId) {
+      const srv = serviceList.find(s => s.id === srvId);
+      if (!srv) return;
+      srv.lastDate = getTodayISO();
+      srv.nextDate = getOffsetDateISO(60);
+      const unit = fleetList.find(f => f.id === srv.vehicleId);
+      if (unit && unit.status === 'Maintenance') {
+        unit.status = 'Available';
+      }
+      persistAllData();
+      renderAll();
+      showToast('Service marked completed; next inspection set +60 days.');
+    }
+
+    /**
+     * RENDER TAB 4: FOM SHIFT HANDOVER
+     */
+    function renderHandoverFeed() {
+      const container = document.getElementById('handoverFeedContainer');
+      document.getElementById('handoverCountBadge').textContent = `${handoverList.length} ${handoverList.length === 1 ? 'Entry' : 'Entries'}`;
+
+      if (handoverList.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 text-center py-8">No shift handover notes logged yet.</p>`;
+        return;
+      }
+
+      container.innerHTML = handoverList.map(item => `
+        <div class="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="px-2.5 py-0.5 rounded-md bg-sky-50 border border-sky-200 text-[#00629B] text-[11px] font-bold">${item.shift}</span>
+            <span class="text-[11px] font-semibold text-slate-500 tabular-nums">${formatReadableDate(item.date)} • ${item.time}</span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed whitespace-pre-line">${item.notes}</p>
+          <div class="pt-1 border-t border-slate-200/70 flex items-center justify-between text-[11px]">
+            <span class="font-bold text-slate-800"><i class="fa-solid fa-user-check text-[#00629B] mr-1"></i>${item.officer}</span>
+            <button type="button" onclick="promptDeleteItem('handover', '${item.id}', 'this handover log')" class="text-rose-600 hover:underline font-semibold cursor-pointer">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function autoFillHandoverSummary() {
+      const today = getTodayISO();
+      const todayVips = vipList.filter(v => v.checkIn === today);
+      const availFleet = fleetList.filter(f => f.status === 'Available').length;
+      const vipLines = todayVips.length > 0
+        ? todayVips.map(v => {
+            const tm = getTierMeta(v.tier);
+            return `- ${v.name} (${tm.code} - ${v.position || tm.positions[0]}) -> Room ${v.roomNumber} (${getRoomDetails(v.roomNumber).typeCode}), ETA ${v.eta}`;
+          }).join('\n')
+        : '- No new VIP arrivals scheduled today.';
+
+      document.getElementById('hoNotes').value =
+        `TODAY'S VIP ARRIVAL BRIEFING (${formatReadableDate(today)}):\n${vipLines}\n\nFLEET STATUS: ${availFleet}/${fleetList.length} hotel fleet units ready on standby. All welcome amenities staged.`;
+    }
+
+    function saveShiftHandover(e) {
+      e.preventDefault();
+      const nowTime = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' WITA';
+      handoverList.unshift({
+        id: 'ho-' + Date.now(),
+        shift: document.getElementById('hoShift').value,
+        officer: document.getElementById('hoOfficer').value.trim(),
+        date: getTodayISO(),
+        time: nowTime,
+        notes: document.getElementById('hoNotes').value.trim()
+      });
+      document.getElementById('hoNotes').value = '';
+      persistAllData();
+      renderHandoverFeed();
+      showToast('FOM shift handover logged.');
+    }
+
+    /**
+     * AUTOMATIC TODAY'S VIP ARRIVAL POP-UP MODAL
+     */
+    function openTodayAlertsModal(isManualTrigger = false) {
+      const filterDate = document.getElementById('filterDateInput').value || getTodayISO();
+      const targetDate = isManualTrigger ? filterDate : getTodayISO();
+      const arrivals = vipList.filter(v => v.checkIn === targetDate);
+
+      if (!isManualTrigger && arrivals.length === 0) return;
+
+      const body = document.getElementById('todayAlertsBody');
+      if (arrivals.length === 0) {
+        body.innerHTML = `
+          <div class="bg-white rounded-xl border border-slate-200 p-8 text-center space-y-2">
+            <i class="fa-solid fa-calendar-check text-3xl text-[#00629B]"></i>
+            <h4 class="font-extrabold text-sm text-slate-900">No VIP Arrivals Scheduled on ${formatReadableDate(targetDate)}</h4>
+            <p class="text-xs text-slate-500">All scheduled executive arrivals for this date are clear.</p>
+          </div>
+        `;
+      } else {
+        body.innerHTML = arrivals.map(vip => {
+          const room = getRoomDetails(vip.roomNumber);
+          const veh = resolveVehicleInfo(vip.vehicleId, vip.customVehicle);
+          const tierMeta = getTierMeta(vip.tier);
+          const posLabel = vip.position || tierMeta.positions[0];
+          const safeName = vip.name.replace(/'/g, "\\'");
+          const fitMode = vip.photoFit || 'top';
+          const fitClasses = getPortraitFitClasses(fitMode);
+
+          return `
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-2xs flex flex-col sm:flex-row gap-4">
+              <div class="flex-shrink-0 mx-auto sm:mx-0">
+                <img
+                  src="${vip.photo || createGoldMonogramSVG(vip.name)}"
+                  alt="${vip.name}"
+                  onclick="openPortraitLightbox(this.src, '${safeName}', '${tierMeta.code} • ${posLabel} • ETA ${vip.eta}', '${fitMode}')"
+                  title="Click to enlarge 3:4 portrait"
+                  class="w-[100px] h-[130px] sm:w-[120px] sm:h-[156px] rounded-2xl ${fitClasses} gold-portrait-frame cursor-zoom-in transition-transform hover:scale-[1.02]"
+                />
+              </div>
+
+              <div class="flex-1 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    <span class="px-2.5 py-0.5 rounded-md text-[11px] font-extrabold border ${tierMeta.badgeClass}">${tierMeta.code} — ${tierMeta.name}</span>
+                    <span class="text-xs font-extrabold text-[#00629B] tabular-nums"><i class="fa-solid fa-plane-arrival mr-1"></i>${vip.eta}</span>
+                  </div>
+                  ${vip.checkedIn
+                    ? `<span class="text-xs font-bold text-emerald-600"><i class="fa-solid fa-circle-check mr-1"></i>Checked-In &amp; Escorted</span>`
+                    : `<button type="button" onclick="markVipCheckedIn('${vip.id}', true)" class="px-3 py-1.5 rounded-lg bg-[#10B981] hover:bg-emerald-600 text-white text-[11px] font-bold transition cursor-pointer">Mark Checked-In</button>`
+                  }
+                </div>
+
+                <div>
+                  <h4 class="text-base font-extrabold text-slate-900">${vip.name}</h4>
+                  <p class="text-xs font-bold text-[#00629B]">${posLabel} <span class="text-slate-400 font-normal">•</span> <span class="text-slate-600 font-medium">${vip.company}</span></p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  <div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-slate-200">
+                    <span class="text-[10px] font-bold uppercase text-slate-400 block">Suite / Room Assignment</span>
+                    <span class="font-extrabold text-slate-800">Room ${room.roomNumber} • ${room.typeCode} (${room.typeName})</span>
+                  </div>
+                  <div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-slate-200">
+                    <span class="text-[10px] font-bold uppercase text-slate-400 block">Assigned Pickup Vehicle</span>
+                    <span class="font-extrabold text-slate-800">
+                      ${veh ? `${veh.model} (${veh.plate})${veh.isCustom ? ' [CUSTOM]' : ''}` : 'No Hotel Shuttle'}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="p-2.5 rounded-lg bg-[#FFFDF7] border border-[#FDE68A] text-xs text-slate-700 flex items-center justify-between gap-2">
+                  <div><strong class="text-[#B45309]">Amenities:</strong> ${vip.notes || 'Standard 5-star executive welcome.'}</div>
+                  <button type="button" onclick="closeModal('todayAlertsModal'); openVipDossierModal('${vip.id}')" class="text-[#00629B] font-bold hover:underline whitespace-nowrap cursor-pointer">
+                    View Dossier
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      openModal('todayAlertsModal');
+    }
+
+    function markVipCheckedIn(vipId, refreshAlertModal = false) {
+      const vip = vipList.find(v => v.id === vipId);
+      if (!vip) return;
+      vip.checkedIn = true;
+
+      const room = getRoomDetails(vip.roomNumber);
+      const tierMeta = getTierMeta(vip.tier);
+      const nowTime = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' WITA';
+      handoverList.unshift({
+        id: 'ho-' + Date.now(),
+        shift: 'Executive VIP Arrival Escort',
+        officer: 'Duty Manager / Front Office Concierge',
+        date: getTodayISO(),
+        time: nowTime,
+        notes: `VIP Guest ${vip.name} (${tierMeta.code} - ${vip.position || tierMeta.positions[0]}) welcomed at Main Lobby and escorted to Room ${room.roomNumber} (${room.typeCode} - ${room.typeName}).`
+      });
+
+      persistAllData();
+      renderAll();
+      if (refreshAlertModal) openTodayAlertsModal(true);
+      showToast(`${vip.name} marked Checked-In.`);
+    }
+
+    /**
+     * CASCADING VIP TIER -> OFFICIAL POSITION & PROTOCOL HANDLER
+     */
+    function handleVipTierChange(selectedPosition = null) {
+      const tierCode = document.getElementById('vipTierField').value;
+      const tierMeta = getTierMeta(tierCode);
+      const posSelect = document.getElementById('vipPositionSelect');
+
+      posSelect.innerHTML = `
+        ${tierMeta.positions.map(pos => `<option value="${pos}">${pos}</option>`).join('')}
+        <option value="__CUSTOM_POS__">+ Other / Custom Designation (Manual Input)</option>
+      `;
+
+      if (selectedPosition) {
+        if (tierMeta.positions.includes(selectedPosition)) {
+          posSelect.value = selectedPosition;
+        } else {
+          posSelect.value = '__CUSTOM_POS__';
+          document.getElementById('vipCustomPositionField').value = selectedPosition;
+        }
+      }
+
+      toggleCustomPositionInput();
+      document.getElementById('vipTierProtocolBanner').innerHTML = `
+        <strong class="text-[#B45309]"><i class="fa-solid fa-shield-halved mr-1"></i>Standard Protocol (${tierMeta.code} — ${tierMeta.name}):</strong>
+        <span>${tierMeta.protocol}</span>
+      `;
+    }
+
+    function toggleCustomPositionInput() {
+      const val = document.getElementById('vipPositionSelect').value;
+      const box = document.getElementById('vipCustomPositionBox');
+      const input = document.getElementById('vipCustomPositionField');
+      if (val === '__CUSTOM_POS__') {
+        box.classList.remove('hidden');
+        input.setAttribute('required', 'required');
+      } else {
+        box.classList.add('hidden');
+        input.removeAttribute('required');
+      }
+    }
+
+    /**
+     * VIP REGISTRATION / EDIT MODAL LOGIC (3:4 PORTRAIT + 12 TIERS + 200 ROOMS + CUSTOM VEHICLE)
+     */
+    function populateRoomNumberDropdown(selectedRoomNum = null) {
+      const typeFilter = document.getElementById('vipRoomTypeFilter').value;
+      const roomSelect = document.getElementById('vipRoomNumberField');
+      const filteredRooms = typeFilter === 'ALL'
+        ? ALL_ROOMS_LIST
+        : ALL_ROOMS_LIST.filter(r => r.typeCode === typeFilter);
+
+      roomSelect.innerHTML = filteredRooms.map(r =>
+        `<option value="${r.roomNumber}">Room ${r.roomNumber} • Floor ${r.floor} • ${r.typeCode} (${r.typeName} - Bed ${r.bedCode})</option>`
+      ).join('');
+
+      if (selectedRoomNum && filteredRooms.some(r => r.roomNumber === String(selectedRoomNum))) {
+        roomSelect.value = String(selectedRoomNum);
+      }
+      updateSelectedRoomBadge();
+    }
+
+    function updateSelectedRoomBadge() {
+      const roomNum = document.getElementById('vipRoomNumberField').value;
+      const info = getRoomDetails(roomNum);
+      document.getElementById('roomMetaBadge').textContent = `Floor ${info.floor} • ${info.typeCode} (${info.typeName}) • Bed ${info.bedCode}`;
+    }
+
+    function toggleVipCustomVehicleBox() {
+      const val = document.getElementById('vipVehicleSelect').value;
+      const box = document.getElementById('vipCustomVehicleBox');
+      const modelInput = document.getElementById('vipCustomModelField');
+      if (val === '__CUSTOM__') {
+        box.classList.remove('hidden');
+        modelInput.setAttribute('required', 'required');
+      } else {
+        box.classList.add('hidden');
+        modelInput.removeAttribute('required');
+      }
+    }
+
+    function setVipPhotoFit(fitMode) {
+      const normalized = ['top', 'center', 'contain'].includes(fitMode) ? fitMode : 'top';
+      document.getElementById('vipPhotoFitField').value = normalized;
+
+      const previewImg = document.getElementById('vipPortraitPreview');
+      previewImg.className = `w-[128px] h-[166px] sm:w-[150px] sm:h-[195px] rounded-2xl ${getPortraitFitClasses(normalized)} gold-portrait-frame cursor-zoom-in transition-transform duration-200 group-hover:scale-[1.02]`;
+
+      document.querySelectorAll('.photo-fit-btn').forEach(btn => {
+        btn.classList.remove('bg-[#00629B]', 'text-white', 'font-bold');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100', 'font-semibold');
+      });
+
+      const activeBtn = document.getElementById(`fitBtn-${normalized}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-100', 'font-semibold');
+        activeBtn.classList.add('bg-[#00629B]', 'text-white', 'font-bold');
+      }
+    }
+
+    function openVipModal(vipId = null) {
+      const form = document.getElementById('vipForm');
+      form.reset();
+      document.getElementById('vipIdField').value = '';
+
+      const vehSelect = document.getElementById('vipVehicleSelect');
+      vehSelect.innerHTML = `
+        <option value="">-- No Airport / Chauffeur Transfer --</option>
+        <option value="__CUSTOM__">+ Custom / External Vehicle (Manual Entry)</option>
+        <optgroup label="Platinum Hotel Chauffeur Fleet">
+          ${fleetList.map(f => `<option value="${f.id}">${f.model} (${f.plate} — ${f.status})</option>`).join('')}
+        </optgroup>
+      `;
+
+      if (vipId) {
+        const vip = vipList.find(v => v.id === vipId);
+        if (!vip) return;
+        document.getElementById('vipFormTitle').textContent = 'Edit VIP Guest Profile';
+        document.getElementById('vipIdField').value = vip.id;
+        document.getElementById('vipNameField').value = vip.name;
+        document.getElementById('vipCompanyField').value = vip.company;
+        document.getElementById('vipTierField').value = vip.tier || 'VIP 1';
+        handleVipTierChange(vip.position || null);
+
+        document.getElementById('vipEtaField').value = vip.eta;
+        document.getElementById('vipCheckInField').value = vip.checkIn;
+        document.getElementById('vipCheckOutField').value = vip.checkOut;
+
+        document.getElementById('vipRoomTypeFilter').value = 'ALL';
+        populateRoomNumberDropdown(vip.roomNumber);
+
+        vehSelect.value = vip.vehicleId || '';
+        if (vip.vehicleId === '__CUSTOM__' && vip.customVehicle) {
+          document.getElementById('vipCustomModelField').value = vip.customVehicle.model || '';
+          document.getElementById('vipCustomPlateField').value = vip.customVehicle.plate || '';
+          document.getElementById('vipCustomDriverField').value = vip.customVehicle.driver || '';
+        }
+        toggleVipCustomVehicleBox();
+
+        document.getElementById('vipNotesField').value = vip.notes || '';
+        currentPortraitDataUrl = vip.photo || createGoldMonogramSVG(vip.name);
+        setVipPhotoFit(vip.photoFit || 'top');
+      } else {
+        document.getElementById('vipFormTitle').textContent = 'Register New VIP Guest';
+        document.getElementById('vipTierField').value = 'VIP 1';
+        handleVipTierChange();
+        document.getElementById('vipCheckInField').value = getTodayISO();
+        document.getElementById('vipCheckOutField').value = getOffsetDateISO(2);
+        document.getElementById('vipRoomTypeFilter').value = 'ALL';
+        populateRoomNumberDropdown('1128');
+        vehSelect.value = '';
+        toggleVipCustomVehicleBox();
+        currentPortraitDataUrl = createGoldMonogramSVG('VIP');
+        setVipPhotoFit('top');
+      }
+
+      document.getElementById('vipPortraitPreview').src = currentPortraitDataUrl;
+      openModal('vipFormModal');
+    }
+
+    function syncMonogramIfDefault() {
+      if (!currentPortraitDataUrl || currentPortraitDataUrl.startsWith('data:image/svg+xml')) {
+        const nameVal = document.getElementById('vipNameField').value || 'VIP';
+        currentPortraitDataUrl = createGoldMonogramSVG(nameVal);
+        document.getElementById('vipPortraitPreview').src = currentPortraitDataUrl;
+      }
+    }
+
+    function processVipPhotoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          const maxDim = 600;
+          let width = img.width;
+          let height = img.height;
+          if (width > height && width > maxDim) {
+            height = Math.round(height * (maxDim / width));
+            width = maxDim;
+          } else if (height > maxDim) {
+            width = Math.round(width * (maxDim / height));
+            height = maxDim;
+          }
+          canvas.width = width;
+          canvas.height = height;
+          canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+          currentPortraitDataUrl = canvas.toDataURL('image/jpeg', 0.9);
+          document.getElementById('vipPortraitPreview').src = currentPortraitDataUrl;
+          showToast('VIP portrait uploaded in 600px clarity.');
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetVipPortraitToMonogram() {
+      const nameVal = document.getElementById('vipNameField').value || 'VIP';
+      currentPortraitDataUrl = createGoldMonogramSVG(nameVal);
+      document.getElementById('vipPortraitPreview').src = currentPortraitDataUrl;
+      document.getElementById('vipPhotoUploadInput').value = '';
+    }
+
+    function saveVipGuest(e) {
+      e.preventDefault();
+      const id = document.getElementById('vipIdField').value;
+      const name = document.getElementById('vipNameField').value.trim();
+      const tier = document.getElementById('vipTierField').value;
+      const posSel = document.getElementById('vipPositionSelect').value;
+      const position = posSel === '__CUSTOM_POS__'
+        ? document.getElementById('vipCustomPositionField').value.trim()
+        : posSel;
+      const checkIn = document.getElementById('vipCheckInField').value;
+      const vehicleId = document.getElementById('vipVehicleSelect').value;
+
+      let customVehicle = null;
+      if (vehicleId === '__CUSTOM__') {
+        customVehicle = {
+          model: document.getElementById('vipCustomModelField').value.trim(),
+          plate: document.getElementById('vipCustomPlateField').value.trim().toUpperCase(),
+          driver: document.getElementById('vipCustomDriverField').value.trim()
+        };
+      }
+
+      let portrait = currentPortraitDataUrl;
+      if (!portrait || portrait.startsWith('data:image/svg+xml')) {
+        portrait = createGoldMonogramSVG(name);
+      }
+
+      const existing = id ? vipList.find(v => v.id === id) : null;
+      const record = {
+        id: id || 'vip-' + Date.now(),
+        name,
+        company: document.getElementById('vipCompanyField').value.trim(),
+        tier,
+        position,
+        eta: document.getElementById('vipEtaField').value.trim(),
+        roomNumber: document.getElementById('vipRoomNumberField').value,
+        checkIn,
+        checkOut: document.getElementById('vipCheckOutField').value,
+        vehicleId,
+        customVehicle,
+        notes: document.getElementById('vipNotesField').value.trim(),
+        checkedIn: existing ? existing.checkedIn : false,
+        photo: portrait,
+        photoFit: document.getElementById('vipPhotoFitField').value || 'top'
+      };
+
+      if (id) {
+        const index = vipList.findIndex(v => v.id === id);
+        if (index !== -1) vipList[index] = record;
+        showToast('VIP guest profile updated.');
+      } else {
+        vipList.unshift(record);
+        showToast('New VIP guest registered.');
+      }
+
+      persistAllData();
+      renderAll();
+      closeModal('vipFormModal');
+
+      if (checkIn === getTodayISO()) {
+        setTimeout(() => openTodayAlertsModal(false), 260);
+      }
+    }
+
+    /**
+     * VIP DOSSIER & 3:4 PORTRAIT LIGHTBOX MODALS
+     */
+    function openVipDossierModal(vipId) {
+      const vip = vipList.find(v => v.id === vipId);
+      if (!vip) return;
+      const room = getRoomDetails(vip.roomNumber);
+      const veh = resolveVehicleInfo(vip.vehicleId, vip.customVehicle);
+      const tierMeta = getTierMeta(vip.tier);
+      const posLabel = vip.position || tierMeta.positions[0];
+      const safeName = vip.name.replace(/'/g, "\\'");
+      const fitMode = vip.photoFit || 'top';
+      const fitClasses = getPortraitFitClasses(fitMode);
+
+      document.getElementById('vipDossierBody').innerHTML = `
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
+          <img
+            src="${vip.photo || createGoldMonogramSVG(vip.name)}"
+            alt="${vip.name}"
+            onclick="openPortraitLightbox(this.src, '${safeName}', '${tierMeta.code} • ${posLabel} • Room ${room.roomNumber}', '${fitMode}')"
+            title="Click to zoom 3:4 portrait"
+            class="w-[120px] h-[156px] rounded-2xl ${fitClasses} gold-portrait-frame flex-shrink-0 cursor-zoom-in transition-transform hover:scale-[1.02]"
+          />
+          <div class="pt-1 space-y-1">
+            <span class="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-extrabold border ${tierMeta.badgeClass}">${tierMeta.code} — ${tierMeta.name}</span>
+            <h4 class="text-lg font-extrabold text-slate-900">${vip.name}</h4>
+            <p class="text-xs font-bold text-[#00629B]">${posLabel}</p>
+            <p class="text-xs text-slate-500">${vip.company}</p>
+            <button type="button" onclick="openPortraitLightbox('${vip.photo || createGoldMonogramSVG(vip.name)}', '${safeName}', '${tierMeta.code} • ${posLabel} • Room ${room.roomNumber}', '${fitMode}')" class="mt-1.5 inline-flex items-center gap-1.5 text-xs font-bold text-[#00629B] hover:underline cursor-pointer">
+              <i class="fa-solid fa-magnifying-glass-plus"></i> Inspect Full-Size Portrait
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div class="p-3 rounded-xl bg-[#F8FAFC] border border-slate-200">
+            <span class="text-[10px] font-bold uppercase text-slate-400 block">Room &amp; Excel Type</span>
+            <span class="font-extrabold text-slate-900">Room ${room.roomNumber} • ${room.typeCode} (${room.typeName} - Bed ${room.bedCode})</span>
+          </div>
+          <div class="p-3 rounded-xl bg-[#F8FAFC] border border-slate-200">
+            <span class="text-[10px] font-bold uppercase text-slate-400 block">Flight &amp; ETA</span>
+            <span class="font-extrabold text-[#00629B]">${vip.eta}</span>
+          </div>
+          <div class="p-3 rounded-xl bg-[#F8FAFC] border border-slate-200">
+            <span class="text-[10px] font-bold uppercase text-slate-400 block">Stay Dates</span>
+            <span class="font-bold text-slate-800">${formatReadableDate(vip.checkIn)} to ${formatReadableDate(vip.checkOut)}</span>
+          </div>
+          <div class="p-3 rounded-xl bg-[#F8FAFC] border border-slate-200">
+            <span class="text-[10px] font-bold uppercase text-slate-400 block">Assigned Pickup Vehicle</span>
+            <span class="font-bold text-slate-800">${veh ? `${veh.model} (${veh.plate})` : 'No Hotel Shuttle'}</span>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-[#FFFDF7] border border-[#FDE68A] text-xs text-slate-700 space-y-1">
+          <div class="font-bold text-[#B45309]">Special Amenities &amp; Escort Protocol:</div>
+          <p>${vip.notes || tierMeta.protocol}</p>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-1">
+          <button type="button" onclick="closeModal('vipDossierModal'); openVipModal('${vip.id}')" class="touch-btn px-4 py-2 rounded-lg border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50 cursor-pointer">Edit Profile</button>
+          <button type="button" onclick="closeModal('vipDossierModal')" class="touch-btn px-5 py-2 rounded-lg bg-[#00629B] text-white text-xs font-bold cursor-pointer">Close</button>
+        </div>
+      `;
+      openModal('vipDossierModal');
+    }
+
+    function openPortraitLightbox(imgSrc, guestName, subtitleText = '', photoFit = 'top') {
+      const lightboxImg = document.getElementById('lightboxImage');
+      lightboxImg.src = imgSrc;
+      lightboxImg.className = `w-[260px] h-[335px] sm:w-[320px] sm:h-[410px] ${getPortraitFitClasses(photoFit)} rounded-2xl gold-portrait-frame`;
+      document.getElementById('lightboxTitle').textContent = guestName || 'VIP Guest Portrait';
+      document.getElementById('lightboxSubtitle').textContent = subtitleText || 'Platinum Hotel & Convention Hall Balikpapan';
+      openModal('portraitLightboxModal');
+    }
+
+    /**
+     * 200-ROOM TYPE MATRIX MODAL (FLOOR-BY-FLOOR VISUAL RACK)
+     */
+    function openRoomMatrixModal() {
+      renderRoomRack();
+      openModal('roomMatrixModal');
+    }
+
+    function renderRoomRack() {
+      const floorFilter = document.getElementById('rackFloorFilter').value;
+      const typeFilter = document.getElementById('rackTypeFilter').value;
+
+      const assignedMap = {};
+      vipList.forEach(v => {
+        if (v.roomNumber) assignedMap[String(v.roomNumber)] = v;
+      });
+
+      const floors = [11, 10, 9, 8, 7, 6, 5].filter(fl => floorFilter === 'ALL' || Number(floorFilter) === fl);
+      const container = document.getElementById('roomRackBody');
+
+      container.innerHTML = floors.map(floorNum => {
+        const floorRooms = ALL_ROOMS_LIST.filter(r => {
+          if (r.floor !== floorNum) return false;
+          if (typeFilter !== 'ALL' && r.typeCode !== typeFilter) return false;
+          return true;
+        });
+
+        if (floorRooms.length === 0) return '';
+
+        return `
+          <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-[#004E7C] text-white text-xs font-extrabold">FLOOR ${floorNum}</span>
+                <span class="text-xs font-bold text-slate-600">${floorRooms.length} Rooms Displayed</span>
+              </div>
+              <span class="text-[11px] font-semibold text-slate-400">Platinum Hotel Balikpapan</span>
+            </div>
+
+            <div class="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2">
+              ${floorRooms.map(r => {
+                const vipOcc = assignedMap[r.roomNumber];
+                if (vipOcc) {
+                  return `
+                    <div title="Assigned to ${vipOcc.name} (${vipOcc.tier})" class="p-2 rounded-lg bg-amber-50 border-2 border-[#C59B27] text-center shadow-2xs">
+                      <div class="font-mono text-xs font-extrabold text-[#B45309]">★ ${r.roomNumber}</div>
+                      <div class="text-[10px] font-extrabold text-[#004E7C]">${r.typeCode} • ${r.bedCode}</div>
+                      <div class="text-[9px] font-bold text-amber-800 truncate mt-0.5">${vipOcc.name.split(' ')[0]}</div>
+                    </div>
+                  `;
+                }
+                return `
+                  <div class="p-2 rounded-lg bg-slate-50 border border-slate-200 text-center">
+                    <div class="font-mono text-xs font-bold text-slate-800">${r.roomNumber}</div>
+                    <div class="text-[10px] font-semibold text-[#00629B]">${r.typeCode} • ${r.bedCode}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /**
+     * FLEET UNIT, DISPATCH & SERVICE MODAL CRUD
+     */
+    function openFleetUnitModal(unitId = null) {
+      const form = document.getElementById('fleetUnitForm');
+      form.reset();
+      document.getElementById('fleetUnitIdField').value = '';
+
+      if (unitId) {
+        const unit = fleetList.find(f => f.id === unitId);
+        if (!unit) return;
+        document.getElementById('fleetUnitModalTitle').textContent = 'Edit Hotel Fleet Unit';
+        document.getElementById('fleetUnitIdField').value = unit.id;
+        document.getElementById('fleetModelField').value = unit.model;
+        document.getElementById('fleetPlateField').value = unit.plate;
+        document.getElementById('fleetStatusField').value = unit.status;
+        document.getElementById('fleetDriverField').value = unit.driver;
+        document.getElementById('fleetOdometerField').value = unit.odometer;
+      } else {
+        document.getElementById('fleetUnitModalTitle').textContent = 'Add Hotel Fleet Unit';
+      }
+      openModal('fleetUnitModal');
+    }
+
+    function saveFleetUnit(e) {
+      e.preventDefault();
+      const id = document.getElementById('fleetUnitIdField').value;
+      const item = {
+        id: id || 'flt-' + Date.now(),
+        model: document.getElementById('fleetModelField').value.trim(),
+        plate: document.getElementById('fleetPlateField').value.trim().toUpperCase(),
+        status: document.getElementById('fleetStatusField').value,
+        driver: document.getElementById('fleetDriverField').value.trim(),
+        odometer: Number(document.getElementById('fleetOdometerField').value) || 0
+      };
+
+      if (id) {
+        const idx = fleetList.findIndex(f => f.id === id);
+        if (idx !== -1) fleetList[idx] = item;
+      } else {
+        fleetList.push(item);
+      }
+
+      persistAllData();
+      renderAll();
+      closeModal('fleetUnitModal');
+      showToast('Hotel fleet unit saved.');
+    }
+
+    function quickUpdateFleetStatus(unitId, newStatus) {
+      const unit = fleetList.find(f => f.id === unitId);
+      if (!unit) return;
+      unit.status = newStatus;
+      persistAllData();
+      renderAll();
+      showToast(`${unit.plate} updated to ${newStatus}.`);
+    }
+
+    function toggleDispatchCustomBox() {
+      const val = document.getElementById('dispVehicleField').value;
+      const box = document.getElementById('dispCustomVehicleBox');
+      const modelInput = document.getElementById('dispCustomModelField');
+      if (val === '__CUSTOM__') {
+        box.classList.remove('hidden');
+        modelInput.setAttribute('required', 'required');
+      } else {
+        box.classList.add('hidden');
+        modelInput.removeAttribute('required');
+      }
+    }
+
+    function openDispatchModal(dispId = null) {
+      const vipSel = document.getElementById('dispVipField');
+      const vehSel = document.getElementById('dispVehicleField');
+
+      vipSel.innerHTML = vipList.map(v => {
+        const rm = getRoomDetails(v.roomNumber);
+        return `<option value="${v.id}">${v.name} (Room ${rm.roomNumber} • ${rm.typeCode})</option>`;
+      }).join('');
+
+      vehSel.innerHTML = `
+        <option value="__CUSTOM__">+ Custom / External Vehicle (Manual Entry)</option>
+        ${fleetList.map(f => `<option value="${f.id}">${f.model} (${f.plate})</option>`).join('')}
+      `;
+
+      const form = document.getElementById('dispatchForm');
+      form.reset();
+      document.getElementById('dispIdField').value = '';
+
+      if (dispId) {
+        const dsp = dispatchList.find(d => d.id === dispId);
+        if (!dsp) return;
+        document.getElementById('dispatchModalTitle').textContent = 'Edit Vehicle Dispatch';
+        document.getElementById('dispIdField').value = dsp.id;
+        vipSel.value = dsp.vipId;
+        vehSel.value = dsp.vehicleId;
+        if (dsp.vehicleId === '__CUSTOM__' && dsp.customVehicle) {
+          document.getElementById('dispCustomModelField').value = dsp.customVehicle.model || '';
+          document.getElementById('dispCustomPlateField').value = dsp.customVehicle.plate || '';
+          document.getElementById('dispCustomDriverField').value = dsp.customVehicle.driver || '';
+        }
+        document.getElementById('dispDateField').value = dsp.date;
+        document.getElementById('dispTimeField').value = dsp.time;
+        document.getElementById('dispRouteField').value = dsp.route;
+        document.getElementById('dispStatusField').value = dsp.status;
+      } else {
+        document.getElementById('dispatchModalTitle').textContent = 'Schedule Vehicle Dispatch';
+        vehSel.value = fleetList.length > 0 ? fleetList[0].id : '__CUSTOM__';
+        document.getElementById('dispDateField').value = getTodayISO();
+        document.getElementById('dispTimeField').value = '14:00';
+      }
+
+      toggleDispatchCustomBox();
+      openModal('dispatchModal');
+    }
+
+    function saveVehicleDispatch(e) {
+      e.preventDefault();
+      const id = document.getElementById('dispIdField').value;
+      const vehicleId = document.getElementById('dispVehicleField').value;
+      const status = document.getElementById('dispStatusField').value;
+
+      let customVehicle = null;
+      if (vehicleId === '__CUSTOM__') {
+        customVehicle = {
+          model: document.getElementById('dispCustomModelField').value.trim(),
+          plate: document.getElementById('dispCustomPlateField').value.trim().toUpperCase(),
+          driver: document.getElementById('dispCustomDriverField').value.trim()
+        };
+      }
+
+      const item = {
+        id: id || 'dsp-' + Date.now(),
+        vipId: document.getElementById('dispVipField').value,
+        vehicleId,
+        customVehicle,
+        date: document.getElementById('dispDateField').value,
+        time: document.getElementById('dispTimeField').value,
+        route: document.getElementById('dispRouteField').value.trim(),
+        status
+      };
+
+      if (vehicleId !== '__CUSTOM__') {
+        const unit = fleetList.find(f => f.id === vehicleId);
+        if (unit) {
+          if (status === 'En Route') unit.status = 'In Use';
+          if (status === 'Completed' && unit.status === 'In Use') unit.status = 'Available';
+        }
+      }
+
+      if (id) {
+        const idx = dispatchList.findIndex(d => d.id === id);
+        if (idx !== -1) dispatchList[idx] = item;
+      } else {
+        dispatchList.unshift(item);
+      }
+
+      persistAllData();
+      renderAll();
+      closeModal('dispatchModal');
+      showToast('Chauffeur dispatch saved.');
+    }
+
+    function openServiceModal(srvId = null) {
+      const vehSel = document.getElementById('srvVehicleField');
+      vehSel.innerHTML = fleetList.map(f => `<option value="${f.id}">${f.model} (${f.plate})</option>`).join('');
+
+      const form = document.getElementById('serviceForm');
+      form.reset();
+      document.getElementById('srvIdField').value = '';
+
+      if (srvId) {
+        const srv = serviceList.find(s => s.id === srvId);
+        if (!srv) return;
+        document.getElementById('serviceModalTitle').textContent = 'Edit Vehicle Maintenance Record';
+        document.getElementById('srvIdField').value = srv.id;
+        vehSel.value = srv.vehicleId;
+        document.getElementById('srvScopeField').value = srv.scope;
+        document.getElementById('srvLastDateField').value = srv.lastDate;
+        document.getElementById('srvNextDateField').value = srv.nextDate;
+        document.getElementById('srvWorkshopField').value = srv.workshop;
+      } else {
+        document.getElementById('serviceModalTitle').textContent = 'Log Vehicle Maintenance Record';
+        document.getElementById('srvLastDateField').value = getTodayISO();
+        document.getElementById('srvNextDateField').value = getOffsetDateISO(45);
+      }
+      openModal('serviceModal');
+    }
+
+    function saveServiceRecord(e) {
+      e.preventDefault();
+      const id = document.getElementById('srvIdField').value;
+      const item = {
+        id: id || 'srv-' + Date.now(),
+        vehicleId: document.getElementById('srvVehicleField').value,
+        scope: document.getElementById('srvScopeField').value.trim(),
+        lastDate: document.getElementById('srvLastDateField').value,
+        nextDate: document.getElementById('srvNextDateField').value,
+        workshop: document.getElementById('srvWorkshopField').value.trim()
+      };
+
+      if (id) {
+        const idx = serviceList.findIndex(s => s.id === id);
+        if (idx !== -1) serviceList[idx] = item;
+      } else {
+        serviceList.unshift(item);
+      }
+
+      persistAllData();
+      renderAll();
+      closeModal('serviceModal');
+      showToast('Maintenance log saved.');
+    }
+
+    /**
+     * VISUAL EXCEL REPORT EXPORT WITH EMBEDDED VIP PORTRAIT PHOTOS (.xls)
+     * Converts SVG monograms or uploaded photos to clean PNG data URLs so Excel renders every image cleanly.
+     */
+    function rasterizeImageToPng(dataUrl, w = 90, h = 116) {
+      return new Promise((resolve) => {
+        if (!dataUrl) {
+          resolve('');
+          return;
+        }
+        const img = new Image();
+        img.onload = function () {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, w, h);
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/png'));
+          } catch (err) {
+            resolve(dataUrl);
+          }
+        };
+        img.onerror = function () {
+          resolve('');
+        };
+        img.src = dataUrl;
+      });
+    }
+
+    function escapeHtmlXml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    async function exportExcelWithPhotos() {
+      showToast('Preparing Excel Report with VIP portraits...');
+
+      const rasterizedPhotos = await Promise.all(
+        vipList.map(v => rasterizeImageToPng(v.photo || createGoldMonogramSVG(v.name), 84, 108))
+      );
+
+      const todayStr = formatReadableDate(getTodayISO());
+      const vipRowsHtml = vipList.map((v, idx) => {
+        const rm = getRoomDetails(v.roomNumber);
+        const veh = resolveVehicleInfo(v.vehicleId, v.customVehicle);
+        const tm = getTierMeta(v.tier);
+        const posLabel = v.position || tm.positions[0];
+        const pngSrc = rasterizedPhotos[idx];
+        const bgRow = v.checkIn === getTodayISO() ? '#FFFDF7' : '#FFFFFF';
+
+        return `
+          <tr style="background-color:${bgRow}; height:118px;">
+            <td style="border:1px solid #CBD5E1; text-align:center; vertical-align:middle; width:96px; padding:4px;">
+              ${pngSrc ? `<img src="${pngSrc}" width="84" height="108" alt="${escapeHtmlXml(v.name)}" />` : 'No Photo'}
+            </td>
+            <td style="border:1px solid #CBD5E1; vertical-align:middle; padding:6px;">
+              <strong>${escapeHtmlXml(v.name)}</strong><br/>
+              <span style="color:#475569;">${escapeHtmlXml(v.company)}</span>
+            </td>
+            <td style="border:1px solid #CBD5E1; vertical-align:middle; padding:6px;">
+              <strong>${escapeHtmlXml(tm.code)} — ${escapeHtmlXml(tm.name)}</strong><br/>
+              <span style="color:#00629B;">${escapeHtmlXml(posLabel)}</span>
+            </td>
+            <td style="border:1px solid #CBD5E1; vertical-align:middle; padding:6px;">
+              In: <strong>${escapeHtmlXml(formatReadableDate(v.checkIn))}</strong><br/>
+              Out: ${escapeHtmlXml(formatReadableDate(v.checkOut))}
+            </td>
+            <td style="border:1px solid #CBD5E1; vertical-align:middle; padding:6px; color:#00629B;">
+              <strong>${escapeHtmlXml(v.eta)}</strong>
+            </td>
+            <td style="border:1px solid #CBD5E1; vertical-align:middle; padding:6px;">
+              <strong>Room ${escapeHtmlXml(rm.roomNumber)} (${escapeHtmlXml(rm.typeCode)})</strong><br/>
+              ${escapeHtmlXml(rm.typeName)} • Floor ${rm.floor} • Bed ${escapeHtmlXml(rm.bedCode)}
+            </td>
+            <td style="border:1px solid #CBD5E1; vertical-align:middle; padding:6px;">
+              ${veh
+                ? `<strong>${escapeHtmlXml(veh.model)}</strong>${veh.isCustom ? ' [CUSTOM]' : ''}<br/>${escapeHtmlXml(veh.plate)} • ${escapeHtmlXml(veh.driver)}`
+                : 'No Hotel Shuttle'}
+            </td>
+            <td style="border:1px solid #CBD5E1; vertical-align:middle; padding:6px;">
+              <strong>${v.checkedIn ? 'Checked-In' : 'Pending Arrival'}</strong>
+            </td>
+            <td style="border:1px solid #CBD5E1; vertical-align:middle; padding:6px;">
+              ${escapeHtmlXml(v.notes || tm.protocol)}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      const dispatchRowsHtml = dispatchList.map(d => {
+        const veh = resolveVehicleInfo(d.vehicleId, d.customVehicle);
+        const vip = vipList.find(v => v.id === d.vipId);
+        return `
+          <tr>
+            <td style="border:1px solid #CBD5E1; padding:6px;">${escapeHtmlXml(formatReadableDate(d.date))} • ${escapeHtmlXml(d.time)} WITA</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;"><strong>${escapeHtmlXml(veh ? veh.model : '-')}</strong> (${escapeHtmlXml(veh ? veh.plate : '-')})</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;">${escapeHtmlXml(veh ? veh.driver : '-')}</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;">${escapeHtmlXml(vip ? vip.name : 'VIP Guest')}</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;">${escapeHtmlXml(d.route)}</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;"><strong>${escapeHtmlXml(d.status)}</strong></td>
+          </tr>
+        `;
+      }).join('');
+
+      const serviceRowsHtml = serviceList.map(s => {
+        const unit = fleetList.find(f => f.id === s.vehicleId);
+        const health = getServiceHealth(s.nextDate);
+        return `
+          <tr>
+            <td style="border:1px solid #CBD5E1; padding:6px;"><strong>${escapeHtmlXml(unit ? unit.model : '-')}</strong> (${escapeHtmlXml(unit ? unit.plate : '-')})</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;">${escapeHtmlXml(s.scope)}</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;">${unit ? Number(unit.odometer).toLocaleString('en-US') + ' KM' : '-'}</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;">${escapeHtmlXml(formatReadableDate(s.lastDate))}</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;"><strong>${escapeHtmlXml(formatReadableDate(s.nextDate))}</strong></td>
+            <td style="border:1px solid #CBD5E1; padding:6px;">${escapeHtmlXml(s.workshop)}</td>
+            <td style="border:1px solid #CBD5E1; padding:6px;"><strong>${escapeHtmlXml(health.label)}</strong></td>
+          </tr>
+        `;
+      }).join('');
+
+      const excelDocHtml = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+        <head>
+          <meta charset="UTF-8" />
+          <!--[if gte mso 9]>
+          <xml>
+            <x:ExcelWorkbook>
+              <x:ExcelWorksheets>
+                <x:ExcelWorksheet>
+                  <x:Name>VIP & Fleet Report</x:Name>
+                  <x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+                </x:ExcelWorksheet>
+              </x:ExcelWorksheets>
+            </x:ExcelWorkbook>
+          </xml>
+          <![endif]-->
+          <style>
+            body { font-family: Arial, sans-serif; font-size: 11pt; color: #1E293B; }
+            table { border-collapse: collapse; width: 100%; }
+          </style>
+        </head>
+        <body>
+          <table>
+            <tr>
+              <td colspan="9" style="background-color:#00629B; color:#FFFFFF; font-size:15pt; font-weight:bold; padding:12px; border-bottom:4px solid #C59B27;">
+                PLATINUM HOTEL &amp; CONVENTION HALL BALIKPAPAN — FRONT OFFICE VIP &amp; FLEET REPORT
+              </td>
+            </tr>
+            <tr>
+              <td colspan="9" style="background-color:#F4F7FA; color:#334155; font-size:10pt; padding:8px;">
+                Report Generated: <strong>${escapeHtmlXml(todayStr)}</strong> • Total Registered VIPs: <strong>${vipList.length}</strong> • Fleet Units: <strong>${fleetList.length}</strong> • 200-Room Inventory (Floors 5–11)
+              </td>
+            </tr>
+            <tr><td colspan="9" style="height:10px;"></td></tr>
+            <tr>
+              <td colspan="9" style="background-color:#004E7C; color:#FFFFFF; font-weight:bold; padding:8px;">1. VIP GUEST ARRIVAL &amp; PORTRAIT DIRECTORY</td>
+            </tr>
+            <tr style="background-color:#E2E8F0; font-weight:bold;">
+              <th style="border:1px solid #94A3B8; padding:6px;">VIP Portrait</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Full Name &amp; Organization</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">VIP Tier &amp; Official Position</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Stay Dates</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Flight &amp; ETA</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Room &amp; Excel Type</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Pickup Vehicle</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Arrival Status</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Amenities &amp; Protocol</th>
+            </tr>
+            ${vipRowsHtml}
+            <tr><td colspan="9" style="height:14px;"></td></tr>
+            <tr>
+              <td colspan="6" style="background-color:#004E7C; color:#FFFFFF; font-weight:bold; padding:8px;">2. CHAUFFEUR &amp; VEHICLE DISPATCH SCHEDULE</td>
+            </tr>
+            <tr style="background-color:#E2E8F0; font-weight:bold;">
+              <th style="border:1px solid #94A3B8; padding:6px;">Date &amp; Time</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Vehicle &amp; Plate</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Chauffeur</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">VIP Passenger</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Transfer Route</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Status</th>
+            </tr>
+            ${dispatchRowsHtml}
+            <tr><td colspan="9" style="height:14px;"></td></tr>
+            <tr>
+              <td colspan="7" style="background-color:#004E7C; color:#FFFFFF; font-weight:bold; padding:8px;">3. VEHICLE PREVENTIVE MAINTENANCE &amp; SERVICE LOG</td>
+            </tr>
+            <tr style="background-color:#E2E8F0; font-weight:bold;">
+              <th style="border:1px solid #94A3B8; padding:6px;">Fleet Unit</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Service Scope</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Odometer</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Last Service</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Next Service Due</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Workshop</th>
+              <th style="border:1px solid #94A3B8; padding:6px;">Health Status</th>
+            </tr>
+            ${serviceRowsHtml}
+          </table>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', excelDocHtml], { type: 'application/vnd.ms-excel;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `Platinum_Balikpapan_VIP_Fleet_Report_${getTodayISO()}.xls`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast('Visual Excel Report with VIP portraits downloaded (.xls).');
+    }
+
+    /**
+     * CONFIRMATION MODAL & DEMO RESET
+     */
+    function promptDeleteItem(category, id, label) {
+      document.getElementById('confirmModalTitle').textContent = 'Confirm Deletion';
+      document.getElementById('confirmModalMessage').textContent = `Are you sure you want to delete ${label}? This record will be permanently removed.`;
+      document.getElementById('confirmModalYesBtn').onclick = function () {
+        if (category === 'vip') vipList = vipList.filter(x => x.id !== id);
+        if (category === 'fleet') fleetList = fleetList.filter(x => x.id !== id);
+        if (category === 'dispatch') dispatchList = dispatchList.filter(x => x.id !== id);
+        if (category === 'service') serviceList = serviceList.filter(x => x.id !== id);
+        if (category === 'handover') handoverList = handoverList.filter(x => x.id !== id);
+        persistAllData();
+        renderAll();
+        closeModal('confirmModal');
+        showToast('Record deleted.');
+      };
+      openModal('confirmModal');
+    }
+
+    function promptResetDemoData() {
+      document.getElementById('confirmModalTitle').textContent = 'Reset Demo Data';
+      document.getElementById('confirmModalMessage').textContent = 'Restore the default Platinum Hotel Balikpapan VIP arrivals, 4 executive fleet units, and service schedules?';
+      document.getElementById('confirmModalYesBtn').onclick = function () {
+        seedInitialDemoData();
+        resetFilterToToday();
+        closeModal('confirmModal');
+        showToast('Demo dataset restored.');
+        setTimeout(() => openTodayAlertsModal(false), 250);
+      };
+      openModal('confirmModal');
+    }
+
+    /**
+     * BOOTSTRAP APPLICATION
+     */
+    window.addEventListener('DOMContentLoaded', () => {
+      const today = getTodayISO();
+      document.getElementById('filterDateInput').value = today;
+      document.getElementById('selectedDatePill').textContent = `Today: ${formatReadableDate(today)}`;
+
+      startWitaClock();
+      loadAllData();
+      renderAll();
+
+      // Automatically display Today's VIP Arrival Pop-Up Alert if any VIPs arrive today
+      setTimeout(() => {
+        openTodayAlertsModal(false);
+      }, 350);
+    });
+  </script>
+</body>
+</html>
